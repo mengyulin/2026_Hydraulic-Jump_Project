@@ -1,0 +1,36 @@
+{
+  "historical_sv_header_hashes": {
+    "common.h": "76a533410a51da69c690587a0d03ca6dd196ec31facc70f617138d052140b7d2",
+    "elevation.h": "009471c5b613bb151e24eb5291c25bcdbcfae8edff8bab593867ce41ced108a9",
+    "gauges.h": "0b2b48b7f47927d4e597e3754fa9ebe89e7fcb97352e55fa541d5bf25db054d4",
+    "grid/cartesian-common.h": "ec94500a5bfa6be44ee3a555bd30a27371b80fb6b951b8e137def1e1fa09c86c",
+    "grid/events.h": "0e0083811806ae9d37512d24e5b73c2c3c26af10bcf5d106f29c86f4084019a1",
+    "grid/foreach_cell.h": "0c1f2a9a85de14d29bb3942e5fca54dfffbf36077122db30926ac0d5a661ad70",
+    "grid/fpe.h": "215f70dff8315c04447cdb64e0c883eb7aea0cfbeadf314e9309a4a21046eb3b",
+    "grid/gpu/output.h": "08dbc30e2f90cecb46e241286d98ce7cb01392d991859503ae31f67bb1f836db",
+    "grid/layers.h": "8c0a1192e79b243e3205ffb686f68806dbe535efb851db552d1367738b629c0a",
+    "grid/multigrid-common.h": "d958069efd1c2ea3a9aed2b525c32965f506c801e567a1abdc749a0206817622",
+    "grid/multigrid-mpi.h": "05812d8fd4c534931f75e678685b139c65609557d3ffd190e3bae726db46b041",
+    "grid/multigrid.h": "bc54b3b9d4e98a013526a624bcb1819eb44d56787fa500deab0d8e325582682e",
+    "grid/multigrid1D.h": "01dd4348d5d574b03666d3ce67430a61b848f016c8c2230f871cd809e3cbe4ae",
+    "grid/neighbors.h": "192275772b830fa599f08205a6087a6fc23cd699e4d0f84b08dd3eff29aac58d",
+    "grid/stencils.h": "29fdb8841cd7fede25783f42bda96313f4308d58b005b13720c121f5426de348",
+    "grid/variables.h": "b1fb9cb70db400fef0e36eed6311d302fb9d74b2a5303103ad757c40fb1f8fb2",
+    "khash.h": "e7e8e8d071c1d81a026d93f621beeba569ebbeb3f61db794af1516b38af50ef1",
+    "multilayer.h": "8388fe51a4890d2a707b31040cf064cbbbc51d526e4f717095065bbd792b5080",
+    "output.h": "b312043b74b4a63833b9cb48d3ffdbe5e987b5d22b392a1f8cdb1d71ce2d80c1",
+    "poisson.h": "f7df8d2d0d14bbe1832d4b0cc2fc4ec2fa50f586e80af4f5ecf61af671a333e4",
+    "predictor-corrector.h": "85ee364c85917408fef3559646fdb2c7b6f8aa87f865c8ca0ebbf5d9fba6e81d",
+    "riemann.h": "85ef1872af5c7f31e3b83c6f785f52c0105436473b7712a68f1e0f60f617270b",
+    "utils.h": "8b669805c0e7316eb8971250d9a309b3fcc25b67f8f694c38268dce8c858b349"
+  },
+  "different_headers_in_teaching_archive": [
+    "common.h",
+    "grid/gpu/output.h",
+    "grid/multigrid.h",
+    "grid/stencils.h",
+    "output.h",
+    "utils.h"
+  ],
+  "policy": "Use a coherent, complete official source archive without mixing header versions. CPU/serial profile reproduction must pass. No global installation is used or modified."
+}

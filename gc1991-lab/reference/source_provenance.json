@@ -1,0 +1,48 @@
+{
+  "project": "Hydraulic Jump",
+  "copied_sources": {
+    "core/standard_step.py": {
+      "research_path": "code/hydraulics/gc1991_standard_step.py",
+      "sha256": "a7563201acb0656796f3374d96a9b916a2491fb1e527185d5e5029efa96b8855"
+    },
+    "core/sv_case.c": {
+      "research_path": "cases/basilisk/GC1991_sv_gn_2026-09-10/input/experiment.c",
+      "sha256": "36b154806e77f3cd6a8e9d8b6ed25a0889795cd52c1b994f5d4cf49ee0090eaa"
+    },
+    "core/sv_instrumented.h": {
+      "research_path": "cases/basilisk/GC1991_sv_gn_2026-09-10/input/sv_instrumented.h",
+      "sha256": "fb36fbf71b5c8463c7b23436679872cfbff93d02fb284d9990ce65bdde600243"
+    },
+    "core/custom_solver.c": {
+      "research_path": "cases/basilisk/GC1991_startup_source_2026-09-11/input/gc1991_startup_source.c",
+      "sha256": "80220e1c8e420f61357cd75488728e7130c151e3ec2fade53f8a522a69375220"
+    },
+    "reference/standard_step.json": {
+      "research_path": "results/validation/GC1991_sv_gn_2026-09-10/data/standard_step_test4.json",
+      "sha256": "7c7cf28d2ae4d27ae1f867660fd27418a6749d9b236a9b0ac2a9a12b28df09d4"
+    },
+    "reference/sv_profile.dat": {
+      "research_path": "results/validation/GC1991_sv_gn_2026-09-10/data/runs/test4_sv_N512_long/profile.dat",
+      "sha256": "75d17c5f32f7ec000a59a2842aa9625ce4273f834d344e1d6b4dd5b4333d4206"
+    },
+    "reference/sv_initial.dat": {
+      "research_path": "results/validation/GC1991_sv_gn_2026-09-10/data/runs/test4_sv_N512_long/initial.dat",
+      "sha256": "99ed8b74f8af09c3f3eb1eaf5e4adc33209568af361a4f20ed1736fe44fc530d"
+    },
+    "reference/custom_profile.dat": {
+      "research_path": "results/teaching/GC1991_test4_custom_v1/reference/profile.dat",
+      "sha256": "3b7c2fbd3e6f0eccd5e4ee4ac848889c9ef333f42231116ec4f2b0d670620ede"
+    },
+    "reference/custom_initial.dat": {
+      "research_path": "results/teaching/GC1991_test4_custom_v1/input/initial.dat",
+      "sha256": "ce4c2246333e86d1304568b54e8cb06ac1fe6b445a07462803bc71619ae777d4"
+    }
+  },
+  "note": "Original source hashes identify archived inputs. The SV-only adapter removes inactive GN branches; other numerical kernels are unchanged. New teaching interface and the fixed official Basilisk snapshot are checked against archived outputs.",
+  "adaptations": {
+    "core/sv_case.c": {
+      "change": "Remove inactive MODEL_GN branches so qcc does not require GN headers; add explanatory comment. MODEL_GN=0 algorithm unchanged.",
+      "packaged_sha256": "c939593af8a49cc041e4170a04ff78fad45f14f45955021c80b8fcaf3b3e4f19"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>程式導讀｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：程式導讀。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 程式導讀</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html" aria-current="page">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">程式導讀</h1>
+<p>先從 Notebook 看呼叫順序，再閱讀對應水理段落。核心程式採英文註解以保留公式名稱；本頁提供中文導覽。</p>
+<h2 id="_2">第一層：學生操作</h2>
+<p><code>student_lab.ipynb</code> 只做四類事情：載入設定、呼叫計算、顯示誤差、畫圖。<code>lab.py</code> 是共同入口：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>函式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>load_case()</code></td>
+<td>讀取固定 Test 4 設定，每次回傳獨立副本</td>
+</tr>
+<tr>
+<td><code>initial_rows()</code></td>
+<td>以漸變流方程及 RK4 建立急流初始水面，處理 h,u 與 h,q 的差異</td>
+</tr>
+<tr>
+<td><code>run_method(case, method)</code></td>
+<td>建立獨立輸出目錄、生成輸入、編譯／執行、核對完成狀態</td>
+</tr>
+<tr>
+<td><code>run_all(case)</code></td>
+<td>依序執行三種方法</td>
+</tr>
+<tr>
+<td><code>check_result()</code></td>
+<td>與封存結果核對，避免未完成結果被當成成功</td>
+</tr>
+<tr>
+<td><code>plot_compare(results)</code></td>
+<td>讀取此次實際水面、疊合實驗、保存圖與來源</td>
+</tr>
+</tbody>
+</table></div>
+<p>共同輸入為 <code>cases/test4.json</code>；不要自行編輯執行目錄內的 <code>config.dat</code> 再期待 Notebook 採用它，因為每次執行都會由 JSON 重新產生輸入。</p>
+<h2 id="python">第二層：Python 水理核心</h2>
+<p>閱讀 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/core/standard_step.py"><code>core/standard_step.py</code></a>：</p>
+<ol>
+<li><code>energy()</code>、<code>force()</code>、<code>critical()</code>、<code>conjugate()</code> 對應基本水理公式。</li>
+<li><code>friction()</code> 使用完整矩形水力半徑。</li>
+<li><code>step()</code> 解相鄰斷面的能量平衡，將急流與緩流根分開。</li>
+<li><code>solve()</code> 建立兩個分支，找比力殘差換號的位置。</li>
+</ol>
+<p><code>h</code> 是水深、<code>q</code> 是單寬流量，並非總流量 Q。<code>wide=False</code> 是目前實際使用的矩形渠道形式。<code>critical_distance()</code> 是附帶的深度座標檢查工具，課堂流程沒有呼叫。</p>
+<h2 id="saint-venant">第三層：顯式 Saint-Venant</h2>
+<p>閱讀 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/core/sv_case.c"><code>core/sv_case.c</code></a>：</p>
+<ul>
+<li><code>main()</code> 接收物理與數值設定；<code>event init</code> 載入格心水深、流速。</li>
+<li><code>update_checked()</code> 在預測與修正階段使用一致 Manning 源項。</li>
+<li><code>advance_checked()</code> 保存實際邊界流量、動量與摩阻累積，並處理時間平均。</li>
+<li><code>event observe</code> 檢查正水深、流速與收支；<code>event finish</code> 寫入完成水面。</li>
+</ul>
+<p><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/core/sv_instrumented.h"><code>core/sv_instrumented.h</code></a> 是附有原生 literate comments 的 Basilisk 標頭副本。重點是 <code>update_saint_venant</code> 內對左右外邊界面通量的設定及 <code>stage_qin</code> 等收支量。<code>sv-boundary.patch</code> 可用來確認與隨附原生標頭的差異。</p>
+<p>教學副本移除了歷史來源中未啟用的 GN 條件區塊。原因是 qcc 在 C 預處理前就掃描 include，否則仍要求 GN 檔案。選定的 SV 方程與時間更新內容維持不變。</p>
+<h2 id="_3">第四層：自訂求解器</h2>
+<p>閱讀 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/core/custom_solver.c"><code>core/custom_solver.c</code></a>：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>程式位置</th>
+<th>水理／離散意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>State { h, q }</code></td>
+<td>兩個守恆變量</td>
+</tr>
+<tr>
+<td><code>weight()</code>、<code>sum_state()</code></td>
+<td>兩端半寬控制體與全域積分</td>
+</tr>
+<tr>
+<td><code>radius()</code>、<code>source()</code></td>
+<td>水力半徑與摩阻源項</td>
+</tr>
+<tr>
+<td><code>operator()</code></td>
+<td>速度導數、B 通量、Rusanov 通量與人工輸運；同一面以相反符號供相鄰控制體使用</td>
+</tr>
+<tr>
+<td><code>valid()</code>、<code>failure_dump()</code></td>
+<td>中間階段異常即停止並保存診斷</td>
+</tr>
+<tr>
+<td><code>event</code> 更新段</td>
+<td>predictor／corrector、面通量收支與時間平均</td>
+</tr>
+<tr>
+<td><code>event outputs</code></td>
+<td>輸出節點水深、q、平均值及收支</td>
+</tr>
+</tbody>
+</table></div>
+<p>第一版固定 <code>source_mode=0</code>（顯式摩阻）、<code>strip_mode=2</code>（全域 Rusanov）、B=1、κ=0.03。其他分支是保留的研究程式，並非此教材已驗收的替代方案。課堂不需要逐行理解所有診斷陣列。</p>
+<h2 id="_4">再現與實驗驗證</h2>
+<p><code>reference/source_provenance.json</code> 記錄研究來源與 SHA-256；<code>vendor/basilisk-source.json</code> 記錄完整 Basilisk 原始碼快照。歷史研究安裝與教材快照之間有六個相依標頭不同，記錄在 <code>vendor/historical-comparison.json</code>；教材使用完整一致的快照，沒有混合標頭版本。是否重現既有結果以實際 CPU 計算核對，而非假定編譯器相同。</p>
+<p><code>tests/test_lab.py</code> 只做小型公式、分支、初始條件與錯誤輸入檢查。真正的三種方法重現由 Notebook／<code>lab.py all</code> 在每次操作中完成，無需另跑網格或長時間矩陣。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/code-guide.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

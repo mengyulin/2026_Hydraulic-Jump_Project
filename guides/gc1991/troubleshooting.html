@@ -1,0 +1,67 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>疑難排解｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：疑難排解。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 疑難排解</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html" aria-current="page">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">疑難排解</h1>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>現象</th>
+<th>處理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 找不到 bash 或 make</td>
+<td>使用 Ubuntu／WSL 終端機，依 Windows 安裝頁完成系統工具安裝。</td>
+</tr>
+<tr>
+<td>Python 版本低於 3.10</td>
+<td>安裝較新的 Python，重新開啟終端機；Ubuntu 可使用 24.04 提供的 Python。</td>
+</tr>
+<tr>
+<td>提示路徑含空白／非 ASCII</td>
+<td>將教材放到 <code>~/gc1991-lab</code>，重新執行 <code>bash setup.sh</code>。</td>
+</tr>
+<tr>
+<td>找不到 cc、make、awk、ar</td>
+<td>Mac 完成 Xcode Command Line Tools；Ubuntu 安裝 build-essential 與 gawk。</td>
+</tr>
+<tr>
+<td><code>venv</code>／<code>ensurepip</code> 不存在</td>
+<td>Ubuntu 安裝 <code>python3-venv</code> 後重試。</td>
+</tr>
+<tr>
+<td>套件下載／憑證或網路失敗</td>
+<td>確認可連網，按 Python 官方安裝程序處理憑證，重新執行 setup；不要關閉 HTTPS 憑證驗證。</td>
+</tr>
+<tr>
+<td>Basilisk 編譯失敗</td>
+<td>閱讀 <code>.tools/build.log</code>；教材內的原始碼快照有校驗，不應自行換成網站最新版本。</td>
+</tr>
+<tr>
+<td>Notebook 找不到 numpy 或 lab</td>
+<td>確認工作目錄是教材根目錄、核心選 GC1991 Lab，並用 <code>bash start_lab.sh</code> 啟動。</td>
+</tr>
+<tr>
+<td>找不到 GC1991 Lab 核心</td>
+<td>重新執行 setup，關閉舊 Jupyter 服務後再啟動。</td>
+</tr>
+<tr>
+<td>移動教材後不能執行</td>
+<td>重新執行 setup 讓編譯路徑更新。如仍使用舊 Python 路徑，先把 <code>.venv</code> 改名備份，再執行 setup。</td>
+</tr>
+<tr>
+<td>瀏覽器要求 token</td>
+<td>使用終端機顯示的完整 localhost 網址；不要只複製連接埠。</td>
+</tr>
+<tr>
+<td>顯示 fixed Test 4／參數檢查失敗</td>
+<td>還原 <code>cases/test4.json</code>；本版只驗收固定案例，不能把改參數後的結果當成同一基準。</td>
+</tr>
+<tr>
+<td>顯示 reference depth error 或 solver failed</td>
+<td>保留此次 runs 目錄，交給教師查看 metadata、build.log、stderr.log；不要改容許值來消除訊息。</td>
+</tr>
+</tbody>
+</table></div>
+<p>學生應提供錯誤文字、作業系統、Python 版本與該次 <code>metadata.json</code>。無需交出整個 <code>.tools/</code> 或 <code>.venv/</code>。SV 通常比另兩種方法久；程式逾時保護為單次流場 300 秒，避免失敗後無限等待。</p>
+<p>若只想閱讀結果，README 已有預期圖；這張圖不會取代 Notebook 的重新計算。原始失敗結果保留在本機 <code>runs/</code>，不會被下一次重跑覆蓋。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/troubleshooting.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

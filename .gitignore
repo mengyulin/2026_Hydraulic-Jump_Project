@@ -1,0 +1,11 @@
+.DS_Store
+.site-venv/
+_site/
+.sites-runtime/
+__pycache__/
+*.pyc
+.venv/
+.tools/
+runs/
+.ipynb_checkpoints/
+

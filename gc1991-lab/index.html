@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GC1991 水躍實驗室｜水躍學生專題</title>
+<meta name="description" content="在一本 Notebook 重現 GC1991 Test 4 的三種計算方法，下載教材、安裝環境並比較實驗水面。">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../assets/site.js">
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="../index.html">
+<span class="mark" aria-hidden="true">HJ</span>
+<span>
+<strong>水躍學生專題</strong>
+<small>HYDRAULIC JUMP PROJECT</small>
+</span>
+</a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+<nav class="nav" id="site-nav" aria-label="主要導覽">
+<a href="../index.html#projects">全部工作項目</a>
+<a href="index.html" aria-current="page">GC1991 實驗室</a>
+<a href="../guides/gc1991/quickstart.html">操作指南</a>
+<a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/tree/main/gc1991-lab">GitHub ↗</a>
+</nav>
+</div>
+</header>
+<main id="main" class="wrap">
+<p class="breadcrumb">
+<a href="../index.html">專題首頁</a> / <a href="../index.html#projects">工作項目</a> / GC1991</p>
+<div class="page-intro">
+<p class="eyebrow">Lab 01 / Horizontal channel</p>
+<h1>GC1991 水躍實驗室</h1>
+<p>一個實驗、三種方法。用同一組水平矩形渠道 Test 4 資料，理解水理假設與數值方法如何影響計算水面。</p>
+</div>
+<div class="lab-layout">
+<div class="lab-main">
+<section>
+<h2>第一次使用，從這裡開始</h2>
+<ol>
+<li>
+<a href="../downloads/gc1991-lab-v1.zip" download>下載 GC1991 教材 ZIP</a>，解壓縮後將 <code>gc1991-lab</code> 放到英文且不含空白的路徑，例如 <code>~/gc1991-lab</code>。</li>
+<li>依平台完成 <a href="../guides/gc1991/install-windows.html">Windows／WSL</a> 或 <a href="../guides/gc1991/install-macos.html">macOS 安裝</a>，在教材資料夾執行：</li>
+</ol>
+<pre>
+<code>cd ~/gc1991-lab
+bash setup.sh
+bash start_lab.sh</code>
+</pre>
+<p>用瀏覽器開啟終端機提供的本機網址，打開 <code>student_lab.ipynb</code>，選擇 <strong>GC1991 Lab</strong> 核心，從上到下執行。</p>
+<p class="small muted">網頁提供教材與說明；實際計算在你的電腦上執行。日後上課只需啟動 <code>bash start_lab.sh</code>。</p>
+<div class="notice">
+<strong>安裝狀態：</strong>macOS／Apple Silicon 已完成實機測試。Windows／WSL 與 Intel Mac 尚未實機驗收；遇到問題請保留錯誤訊息與執行紀錄。</div>
+</section>
+<section>
+<h2>這次比較哪些方法？</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="三種計算方法比較">
+<table class="schedule">
+<thead>
+<tr>
+<th scope="col">方法</th>
+<th scope="col">學習重點</th>
+<th scope="col">參考 RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard-step</td>
+<td>能量方程、急／緩流分支與比力匹配</td>
+<td>52.22 mm</td>
+</tr>
+<tr>
+<td>Saint-Venant</td>
+<td>深度平均守恆與水深突變捕捉</td>
+<td>52.20 mm</td>
+</tr>
+<tr>
+<td>Custom M92</td>
+<td>穩態 B 修正、數值耗散與水面上升</td>
+<td>14.14 mm</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small muted">三者共用水理條件，各自保留已確認的網格、時間步與平均時段。RMSE 採計算區內的 13 個原始量測座標，不平移剖面。</p>
+<figure>
+<img src="docs/images/comparison.png" alt="三種方法的水深剖面與 GC1991 Test 4 原始量測點">
+<figcaption class="small muted">教材參考圖。Notebook 會重新執行三種求解器，並保存自己的比較圖。</figcaption>
+</figure>
+</section>
+<section>
+<h2>先看懂數字，再解釋曲線</h2>
+<p>本案例底床為水平、<em>z</em> = 0，水深等於水面高程。上游水深為 0.043 m、流速為 2.737 m/s；渠道寬度為 0.46 m，下游邊界水深為 0.222 m。</p>
+<p>Manning <em>n</em> = 0.008 與出口 <em>x</em> = 14 m 是教材明列的採用假設，並非都已確認為原論文的個別設定。完整定義見<a href="../guides/gc1991/methods.html">方程與方法</a>。</p>
+<details>
+<summary>為什麼自訂模式的 RMSE 較小，仍須保留限制？</summary>
+<p>M92 的上升寬度與網格及數值耗散有關，尚不是收斂的物理預測。較接近此組實驗水面，不代表滾流、紊流或水躍內部流速已通過驗證。相同網格 B off／on 的 RMSE 約為 14.47／14.14 mm，不能將全部差異歸因於 B 修正。</p>
+</details>
+<details>
+<summary>「reproduction passed」代表什麼？</summary>
+<p>代表這台電腦重現教材已封存的數值結果。它與對實驗的誤差、物理有效性是不同的檢查。請保留兩種比較的原有定義。</p>
+</details>
+</section>
+<section>
+<h2>完成一次課堂作業</h2>
+<ol>
+<li>交付三種方法的比較圖、RMSE 表及各方法的設定。</li>
+<li>用共軛水深與比力解釋 standard-step 的突跳。</li>
+<li>說明較接近實驗水面，為何不足以驗證內部流速。</li>
+<li>調整 Python 圖的範圍，觀察水躍區與下游緩流段。</li>
+</ol>
+<p>第一版不要求修改 C 核心、加密網格或調整 Manning <em>n</em> 來擬合。每次執行的輸入、曲線與紀錄保存在新的 <code>runs/</code> 子資料夾。</p>
+<a href="../guides/gc1991/quickstart.html">閱讀完整操作與交付說明 →</a>
+</section>
+<section>
+<h2>實驗資料來源</h2>
+<p>Gharangik, A. M. &amp; Chaudhry, M. H. (1991). Numerical simulation of hydraulic jump. <em>Journal of Hydraulic Engineering</em>, 117(9), 1195–1211. <a href="https://doi.org/10.1061/%28ASCE%290733-9429%281991%29117%3A9%281195%29">論文 DOI ↗</a>
+</p>
+<p class="small muted">量測取自 Test 4 Table 2 的既有核對抄錄。資料來源、Basilisk 原始碼與授權資訊見<a href="../guides/gc1991/credits.html">來源說明</a>。</p>
+</section>
+</div>
+<aside class="lab-aside" aria-label="實驗資源">
+<h2>實驗資源</h2>
+<a href="../guides/gc1991/install-windows.html">Windows／WSL 安裝</a>
+<a href="../guides/gc1991/install-macos.html">macOS 安裝</a>
+<a href="../guides/gc1991/quickstart.html">操作指南與作業</a>
+<a href="../guides/gc1991/methods.html">方程與方法</a>
+<a href="../guides/gc1991/code-guide.html">程式導讀</a>
+<a href="../guides/gc1991/troubleshooting.html">疑難排解</a>
+<a href="../guides/gc1991/verification.html">本機驗證紀錄</a>
+<a href="../guides/gc1991/instructor.html">教師維護</a>
+<a class="button" href="../downloads/gc1991-lab-v1.zip" download>下載完整教材 ZIP ↓</a>
+<p>v1 · 含 Notebook、資料與 Basilisk 原始碼</p>
+<a href="../downloads/zip-sha256.txt">下載檔案 SHA-256</a>
+</aside>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div>
+<strong>Hydraulic Jump Project</strong>
+<p>LAB 01 · GC1991 水平渠道水躍</p>
+</div>
+<a href="../index.html">回到專題首頁 ↑</a>
+</div>
+</footer>
+</body>
+</html>

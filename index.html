@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>水躍學生專題｜Hydraulic Jump Project</title>
+<meta name="description" content="水躍學生專題入口：從 GC1991 三方法實驗出發，學習古典水理、Python、HEC-RAS 與 Basilisk，建立可重現的坡度轉折水躍研究。">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="assets/site.js">
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="site-header">
+<div class="wrap header-inner">
+<a class="brand" href="index.html" aria-label="水躍學生專題首頁">
+<span class="mark" aria-hidden="true">HJ</span>
+<span>
+<strong>水躍學生專題</strong>
+<small>HYDRAULIC JUMP PROJECT</small>
+</span>
+</a>
+<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
+<nav class="nav" id="site-nav" aria-label="主要導覽">
+<a href="#projects">工作項目</a>
+<a href="#research">研究問題</a>
+<a href="#roadmap">學期路線</a>
+<a href="#resources">學習資源</a>
+<a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section class="hero">
+<div class="wrap">
+<div class="hero-grid">
+<div class="hero-copy">
+<p class="eyebrow">Undergraduate Research · 2026</p>
+<h1>理解水躍，<br>
+<span>從一個可重現的實驗開始。</span>
+</h1>
+<p>用水理公式解釋水面，用共同案例比較模型。從水平渠道的入門實驗，逐步走向陡坡轉緩坡的水躍問題。</p>
+<div class="actions">
+<a class="button" href="gc1991-lab/index.html">開始 GC1991 實驗 <span aria-hidden="true">→</span>
+</a>
+<a class="button secondary" href="#roadmap">查看學期路線</a>
+</div>
+</div>
+<figure class="diagram">
+<div class="diagram-top">
+<span>RESEARCH GEOMETRY</span>
+<span>陡坡 → 緩坡</span>
+</div>
+<svg viewBox="0 0 540 282" role="img" aria-labelledby="geometry-title geometry-desc">
+<title id="geometry-title">坡度轉折水躍概念示意</title>
+<desc id="geometry-desc">由左往右，水流沿陡坡呈淺水急流，接近轉折後水深上升，形成緩坡上的深水緩流。僅表示研究幾何，非計算水面。</desc>
+<defs>
+<pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+<path d="M 30 0 L 0 0 0 30" fill="none" stroke="#edf3f7" stroke-width="1"/>
+</pattern>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#075ca9"/>
+</marker>
+</defs>
+<rect x="16" y="20" width="510" height="232" fill="url(#grid)"/>
+<path d="M26 103 L203 164 C230 173 244 155 255 126 C266 97 289 101 313 104 L515 114 L515 240 L231 226 L26 153Z" fill="#d1e9f7"/>
+<path d="M26 103 L203 164 C230 173 244 155 255 126 C266 97 289 101 313 104 L515 114" fill="none" stroke="#1476b8" stroke-width="3"/>
+<path d="M26 153 L231 226 L515 240" fill="none" stroke="#142b40" stroke-width="4"/>
+<path d="M231 188 L231 264" stroke="#8ba8bc" stroke-dasharray="4 5"/>
+<path d="M52 81 L145 113" stroke="#075ca9" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M364 86 L456 91" stroke="#075ca9" stroke-width="2" marker-end="url(#arrow)"/>
+<g font-family="sans-serif" font-size="16" fill="#142b40">
+<text x="47" y="48">急流</text>
+<text x="364" y="52">緩流</text>
+<text x="254" y="66">水躍區</text>
+<text x="64" y="201">陡坡 S₁</text>
+<text x="401" y="270">緩坡 S₂</text>
+<text x="197" y="280" font-size="13" fill="#516779">坡度轉折</text>
+</g>
+<path d="M275 76 L264 110" stroke="#738ea0"/>
+<g font-family="Georgia,serif" font-size="14" fill="#516779">
+<text x="47" y="67">Fr &gt; 1</text>
+<text x="364" y="72">Fr &lt; 1</text>
+</g>
+</svg>
+<figcaption>概念示意，非計算結果。水躍位置隨尾水與流況改變；GC1991 入門教材使用水平底床。</figcaption>
+</figure>
+</div>
+<div class="hero-strip">
+<b>18 週專題路線</b>
+<span class="divider">
+</span>
+<span>教師提供核心程式</span>
+<span class="divider">
+</span>
+<span>學生重現、分析與解釋</span>
+</div>
+</div>
+</section>
+<section id="projects" class="section">
+<div class="wrap">
+<div class="section-title">
+<div>
+<p class="eyebrow">01 / Project work</p>
+<h2>工作項目</h2>
+</div>
+<p>先完成一個固定案例，再擴展比較範圍。每項工作都有自己的案例、方法與交付成果。</p>
+</div>
+<article class="work-feature">
+<div class="work-info">
+<span class="number">LAB 01</span>
+<span class="badge">教材已備妥 · macOS 已測</span>
+<h3>GC1991 水躍實驗室</h3>
+<p>在同一個 Notebook 中，重現 Python standard-step、Basilisk Saint-Venant 與自訂模式，對照 Test 4 的實驗水面。</p>
+<div class="work-links">
+<a class="button" href="gc1991-lab/index.html">進入實驗室 <span aria-hidden="true">→</span>
+</a>
+<a href="guides/gc1991/methods.html">先讀方法與限制</a>
+</div>
+</div>
+<figure class="work-image">
+<img src="gc1991-lab/docs/images/comparison.png" width="1620" height="882" alt="GC1991 Test 4：standard-step、Saint-Venant、自訂模式與實驗量測水深比較">
+<figcaption>教材既有參考結果；課堂中由學生重新計算。</figcaption>
+</figure>
+</article>
+<div class="work-grid">
+<article class="work-next">
+<span class="number">WORK 02</span>
+<span class="badge planned">待教師提供案例</span>
+<h3>古典水理與坡度轉折</h3>
+<p>連結比能、比力與共軛水深，建立急流及緩流分支，再檢查陡坡轉緩坡的水躍位置。</p>
+<p class="meta">Python · 手算核對 · 共同幾何</p>
+</article>
+<article class="work-next">
+<span class="number">WORK 03</span>
+<span class="badge planned">待教師提供案例</span>
+<h3>HEC-RAS 工程比較</h3>
+<p>對齊幾何、流量、糙率與尾水，比較 mixed-flow 結果及斷面間距對水躍定位的影響。</p>
+<p class="meta">HEC-RAS · 匹配案例 · 差異解釋</p>
+</article>
+<article class="work-next">
+<span class="number">WORK 04</span>
+<span class="badge planned">完成共同基準後</span>
+<h3>坡度與尾水小型研究</h3>
+<p>用教師開放的案例進行 5–9 組受控比較，整理水躍位置、下游水深與總水頭損失。</p>
+<p class="meta">Python / Basilisk · 資料與期末報告</p>
+</article>
+</div>
+<div class="notice">
+<strong>目前從 LAB 01 開始。</strong> 這一版固定 Test 4 設定；可調整繪圖與分析，不要求修改 C 核心或加密網格。Windows／WSL 實機驗收仍待完成。</div>
+</div>
+</section>
+<section id="research" class="section tint">
+<div class="wrap">
+<div class="section-title">
+<div>
+<p class="eyebrow">02 / Research questions</p>
+<h2>我們想理解什麼？</h2>
+</div>
+<p>主題是渠道從陡坡轉為緩坡時，急流如何轉成緩流，以及工程計算能解釋到哪裡。</p>
+</div>
+<div class="question-grid">
+<article>
+<span class="metric">x<sub>t</sub>
+</span>
+<h3>水躍發生在哪裡？</h3>
+<p>尾水、底床坡度與邊界條件如何改變水躍位置？不同方法定位水躍的方式有何差異？</p>
+</article>
+<article>
+<span class="metric">y₂ &amp; ΔH</span>
+<h3>水深與能量如何改變？</h3>
+<p>共軛水深與總水頭損失如何連到計算結果？哪些差異可以由水理假設解釋？</p>
+</article>
+<article>
+<span class="metric">Model ↔ Evidence</span>
+<h3>比較結果代表什麼？</h3>
+<p>分清楚程式重現、模型間一致與實驗驗證。圖形接近，仍需檢查數值設定與適用範圍。</p>
+</article>
+</div>
+<div class="principles">
+<span>先從古典水理出發</span>
+<span>Manning n 代表渠道阻力</span>
+<span>數值結果需要驗證</span>
+<span>每張圖都能追溯到案例</span>
+</div>
+</div>
+</section>
+<section id="roadmap" class="section">
+<div class="wrap">
+<div class="section-title">
+<div>
+<p class="eyebrow">03 / Semester roadmap</p>
+<h2>18 週，從重現到解釋</h2>
+</div>
+<p>依既有學期規劃安排，以週次表示。後續工作須等教師完成對應教材，再依課堂進度調整。</p>
+</div>
+<div class="table-wrap" tabindex="0" role="region" aria-label="18 週學期路線，可左右捲動">
+<table class="schedule">
+<thead>
+<tr>
+<th scope="col">週次</th>
+<th scope="col">學習與研究工作</th>
+<th scope="col">留下的成果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01–02</td>
+<td>認識問題、安裝環境、重現 GC1991 範例</td>
+<td>參考比較圖、輸入與輸出說明</td>
+</tr>
+<tr>
+<td>03–04</td>
+<td>閱讀 Python 水理公式，核對比能、比力與共軛水深</td>
+<td>手算與程式對照的 Notebook</td>
+</tr>
+<tr>
+<td>05–06</td>
+<td>使用教師另行開放的案例，一次改一個參數</td>
+<td>預測、比較圖與變更紀錄</td>
+</tr>
+<tr>
+<td>07–08</td>
+<td>建立匹配的 HEC-RAS 案例，比較斷面間距</td>
+<td>期中 Python–HEC-RAS 比較</td>
+</tr>
+<tr>
+<td>09–10</td>
+<td>操作提供的 Basilisk 案例，閱讀邊界與數值設定</td>
+<td>基準與一組變例、診斷圖</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td>比較共同基準，完成教師指定的敏感度與驗證練習</td>
+<td>三模型比較與獨立的驗證說明</td>
+</tr>
+<tr>
+<td>13–14</td>
+<td>完成小型坡度／尾水矩陣</td>
+<td>5–9 組可追溯案例與結果圖</td>
+</tr>
+<tr>
+<td>15–16</td>
+<td>做一項有目的的 Python 分析改動，整理主要發現</td>
+<td>改動前後比較、報告草稿</td>
+</tr>
+<tr>
+<td>17–18</td>
+<td>交換案例重跑，完成報告與簡報</td>
+<td>程式、輸入、圖表與重現指南</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="small muted" style="margin-top:18px">本學期重點是可重現的比較與水理解釋。新閉合公式、機器學習及大規模三維 CFD 不列為必做成果。</p>
+</div>
+</section>
+<section id="resources" class="section tint">
+<div class="wrap">
+<div class="section-title">
+<div>
+<p class="eyebrow">04 / Learning resources</p>
+<h2>從這些資源開始</h2>
+</div>
+<p>先安裝，再跑通一本 Notebook。需要時回到公式、程式導讀與問題排解。</p>
+</div>
+<div class="resource-grid">
+<a class="resource" href="guides/gc1991/install-windows.html">
+<h3>Windows / WSL 安裝</h3>
+<p>在 Ubuntu 準備 Basilisk 與 Python。附首次設定與日後啟動步驟。</p>
+<span>閱讀安裝指南 →</span>
+</a>
+<a class="resource" href="guides/gc1991/install-macos.html">
+<h3>macOS 安裝</h3>
+<p>準備開發工具，建立教材專用環境，啟動 GC1991 Lab。</p>
+<span>閱讀安裝指南 →</span>
+</a>
+<a class="resource" href="guides/gc1991/quickstart.html">
+<h3>操作與第一份作業</h3>
+<p>重現三種方法，找到輸出檔案，完成比較圖與簡短討論。</p>
+<span>開始課堂操作 →</span>
+</a>
+</div>
+</div>
+</section>
+<section class="section" id="deliverables">
+<div class="wrap submit-grid">
+<div>
+<p class="eyebrow">05 / Student outcomes</p>
+<h2>交付可以被重現的結論</h2>
+<p class="muted" style="margin-top:18px">每組結果都應回答：使用什麼設定、改了什麼、觀察到什麼，以及這個解釋有哪些限制。</p>
+<ul>
+<li>保留案例 ID、輸入條件、方法與數值設定。</li>
+<li>圖中標示座標、單位、圖例與資料來源。</li>
+<li>同時報告成功、失敗及尚未確認的結果。</li>
+<li>讓另一位同學能依說明重跑至少一個案例。</li>
+</ul>
+</div>
+<div>
+<h3>第一次實驗的交付</h3>
+<ul>
+<li>三種方法與實驗的比較圖。</li>
+<li>RMSE 表及各方法的計算設定。</li>
+<li>用比力說明 standard-step 的零長度水躍。</li>
+<li>說明水面較接近實驗，為何不足以驗證內部流速。</li>
+</ul>
+<div class="actions">
+<a href="guides/gc1991/quickstart.html">查看作業說明 →</a>
+<a href="guides/gc1991/code-guide.html">程式導讀 →</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap footer-inner">
+<div>
+<strong>Hydraulic Jump Project</strong>
+<p>Prof. Lin · 水躍學生專題 · 內容更新 2026.09.14</p>
+</div>
+<div>
+<a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">專案原始碼</a> · <a href="guides/gc1991/credits.html">資料來源與授權說明</a>
+</div>
+</div>
+</footer>
+</body>
+</html>

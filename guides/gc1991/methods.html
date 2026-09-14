@@ -1,0 +1,87 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方程與方法｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：方程與方法。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script><script>window.MathJax={tex:{inlineMath:[["$","$"]]},svg:{fontCache:"local"},options:{enableMenu:false}};</script><script defer src="../../assets/vendor/mathjax/tex-svg.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 方程與方法</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html" aria-current="page">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">方程、案例設定與物理解讀</h1>
+<h2 id="_2">共同水理條件</h2>
+<p>此例為 GC1991 <strong>水平矩形渠道 Test 4</strong>；目前沒有坡度轉折。三種方法共用 <code>cases/test4.json</code> 的水理條件，全部使用 SI 制，x 向下游為正，底床 z=0，水深 h 等於水面高程。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>量</th>
+<th>值與來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>計算區域</td>
+<td>x = 0.305–14.0 m</td>
+</tr>
+<tr>
+<td>渠道寬度 B</td>
+<td>0.46 m</td>
+</tr>
+<tr>
+<td>上游水深 h₁</td>
+<td>0.043 m（GC1991 Test 4）</td>
+</tr>
+<tr>
+<td>上游平均流速 u₁</td>
+<td>2.737 m/s（GC1991 Test 4）</td>
+</tr>
+<tr>
+<td>下游邊界水深</td>
+<td>0.222 m（不是最後一個量測站的 0.223 m）</td>
+</tr>
+<tr>
+<td>單寬流量 q = h₁u₁</td>
+<td>0.117691 m²/s</td>
+</tr>
+<tr>
+<td>總流量 Q = Bq</td>
+<td>0.05413786 m³/s，約 54.14 L/s</td>
+</tr>
+<tr>
+<td>重力加速度 g</td>
+<td>9.81 m/s²</td>
+</tr>
+<tr>
+<td>Manning n</td>
+<td>0.008 s/m^(1/3)，本案例採用值</td>
+</tr>
+<tr>
+<td>上游 Fr</td>
+<td>由已四捨五入的輸入算得約 4.214；原文報告 4.23</td>
+</tr>
+</tbody>
+</table></div>
+<p>GC1991 報告的 n 範圍為 0.008–0.011，但未確認 Test 4 的個別 n；14 m 是水槽全長，原文數值出口確切位置也未完全確認。本教材把 n=0.008 與 xout=14 m 明列為採用假設，沒有把它們宣稱成已確認的原文數值設定。</p>
+<p>所有摩阻均採完整矩形水力半徑 R = Bh/(B+2h)，不用寬渠道近似 R=h。Manning n 表示渠道阻力；水躍處的數值耗散另由離散方法產生，不能混同成實際糙率。</p>
+<h2 id="1-python-standard-step">1. Python standard-step</h2>
+<p>比能與每單位寬度的比力為：</p>
+<div class="math-display">\[E=h+\frac{q^2}{2gh^2},\qquad M=\frac{h^2}{2}+\frac{q^2}{gh}.\]</div>
+<p>水平渠道相鄰斷面以能量平衡逐步求解：</p>
+<div class="math-display">\[E_i-E_{i+1}=\frac{\Delta x}{2}(S_{f,i}+S_{f,i+1}),\qquad S_f=\frac{n^2(q/h)^2}{R^{4/3}}.\]</div>
+<p>從上游 h₁、q 往下游計算急流分支；從下游水深以相同 q 往上游計算緩流分支。兩分支比力相等處設為<strong>零長度水躍</strong>，能量在此不連續減少。固定步距約 0.005 m，得到跳躍位置約 x=1.458 m。這是穩態代數計算，不需要時間平均，也沒有水躍內部形狀。</p>
+<p>繪圖在同一個跳躍 x 保留兩個水深；RMSE 在各量測站採對應分支，不把突跳插值成有限長度的平滑過渡。</p>
+<h2 id="2-basilisk-saint-venant">2. Basilisk 顯式 Saint-Venant</h2>
+<div class="math-display">\[\partial_t h+\partial_x q=0,\]</div>
+<div class="math-display">\[\partial_t q+\partial_x\left(\frac{q^2}{h}+\frac{gh^2}{2}\right)
+=-\frac{gn^2q|q|}{hR^{4/3}}.\]</div>
+<p>採一維靜水壓深度平均假設，以 Basilisk 的 Saint-Venant 通量與顯式 predictor–corrector 推進。局部 <code>sv_instrumented.h</code> 保留原有內部通量，加入可核對的外邊界面通量與守恆紀錄；差異保存在 <code>core/sv-boundary.patch</code>。</p>
+<p>入口直接指定單寬流量 h₁u₁ 與對應動量通量。出口指定水深 hout，以內側特徵關係估算出口速度：</p>
+<div class="math-display">\[u_b=u_i+2(\sqrt{gh_i}-\sqrt{gh_{out}}).\]</div>
+<p>出口以 hout、u_b 建立面通量，不額外固定流量。兩端 ghost 條件與真正施加的面通量應區分；守恆檢查採實際面通量。</p>
+<p>512 個格心控制體，Δx 約 0.02675 m，CFL=0.4。從全域急流 GVF 水面開始，計算至 1200 s，對 1000–1200 s 做逐步加權平均。這個初始水面沒有預先放入擬合的水躍。SV 能形成水深突變，但沒有解析垂向滾流的變量。</p>
+<h2 id="3-basilisk-c-b">3. Basilisk C 自訂穩態 B 修正</h2>
+<p>此程式使用 Basilisk 的網格與事件時鐘，另以陣列、共用面通量及兩階段更新計算 h、q。它是專案自訂求解器，不能等同於 Basilisk 原生 GN，也不是 GC1991 原碼的逐項完整複製。</p>
+<p>動量通量加入與 GC1991 穩態 Boussinesq 項對照的修正：</p>
+<div class="math-display">\[F_q=\frac{q^2}{h}+\frac{gh^2}{2}+B_c,\qquad
+B_c=-\frac{h^3}{3}\left(u\,u_{xx}-u_x^2\right).\]</div>
+<p>本程式省略完整非定常色散式的 u_xt 項，僅作穩態迭代近似。它使用全域 Rusanov 靜水壓通量、曲率感測人工輸運 κ=0.03，以及顯式 Manning 摩阻。B 修正在內部指定高階通量區作用；近邊界採既有低階處理。這些離散與邊界細節也是結果的一部分，不能單把改善歸因於「非靜水壓」。</p>
+<p>採 92 個間隔、93 個節點（M92），Δx 約 0.14886 m，兩端為半寬控制體。入口及出口採與上述面通量同型的物理條件，計算至 300 s、平均 200–300 s，CFL=0.1。初始值同為全域急流 GVF，但輸入儲存的是節點 x,h,q；SV 輸入則為格心 x,h,u。</p>
+<h2 id="_3">如何解讀改善與限制</h2>
+<p>固定 M92 的水面 RMSE 約 14.14 mm，明顯小於 SV／standard-step 的約 52 mm。較寬的水面上升主要與所選網格及數值耗散有關，B 修正的額外改善很小：同格網 B off 約 14.47 mm，B on 約 14.14 mm。這兩個控制值是既有研究證據，學生不需重跑。</p>
+<p>M184 時曾得到約 26.12 mm，並未比 M92 更接近實驗；跳躍位置 x50 改變約 9.17 cm。細化格網不是這個固定教學案例的必要任務，也尚不能把 M92 的上升寬度當成已收斂的物理預測。</p>
+<p>自訂模式的局部節點 q 在水躍內可偏離入口 q 約 45.6%，即使共用面通量的總體守恆檢查通過。故不使用其局部 q/h 驗證垂向流況、滾流長度或紊流耗能閉合。已知強稀疏波及更細網格的失敗仍是研究限制，沒有因教學接受而改判通過。</p>
+<h2 id="_4">與實驗比較的規則</h2>
+<p>使用 GC1991 Table 2 的 14 點原始座標。其中 x=0.30 m 位於計算入口 0.305 m 之外：圖上保留叉號，但不列入 RMSE。其餘 13 點在原始 x 評估模型水深，<strong>不平移水面、不移動量測位置</strong>。C 模式在相鄰格心／節點之間線性內插；standard-step 使用各自的急／緩流分支。</p>
+<p>RMSE 描述此案例與量測的差距；安裝重現檢查描述不同電腦是否得到相同數值結果。兩者的意義與容許範圍不同。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/methods.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

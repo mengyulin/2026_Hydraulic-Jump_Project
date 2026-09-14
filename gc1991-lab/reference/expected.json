@@ -1,0 +1,43 @@
+{
+  "case": {
+    "id": "test4",
+    "title": "GC1991 Test 4 — fixed teaching baseline",
+    "physical": {
+      "hin_m": 0.043,
+      "uin_m_s": 2.737,
+      "hout_m": 0.222,
+      "manning_n": 0.008,
+      "width_m": 0.46,
+      "gravity_m_s2": 9.81,
+      "bed_slope": 0.0,
+      "x0_m": 0.305,
+      "xout_m": 14.0
+    },
+    "standard_step": {
+      "dx_m": 0.005
+    },
+    "sv": {
+      "cells": 512,
+      "end_s": 1200.0,
+      "mean_start_s": 1000.0,
+      "CFL": 0.4,
+      "boundary_kind": 1
+    },
+    "custom": {
+      "intervals": 92,
+      "boussinesq": 1,
+      "scheme": 1,
+      "CFL": 0.1,
+      "kappa": 0.03,
+      "end_s": 300.0,
+      "mean_start_s": 200.0,
+      "max_dt_s": 1.0,
+      "source_mode": 0,
+      "strip_mode": 2,
+      "periodic": 0
+    }
+  },
+  "profile_max_abs_tolerance_m": 0.0002,
+  "standard_step_jump_tolerance_m": 0.002,
+  "purpose": "Reproduction/installation checks, not new physical validation or grid convergence criteria. All pre-existing failed research criteria remain unchanged."
+}

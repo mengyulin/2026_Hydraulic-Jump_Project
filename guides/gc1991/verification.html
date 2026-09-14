@@ -1,0 +1,50 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>本機驗證紀錄｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：本機驗證紀錄。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 本機驗證紀錄</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html" aria-current="page">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">本機驗證紀錄</h1>
+<p>日期：2026-09-14。狀態：<strong>macOS 本機發行候選版通過</strong>；Windows／WSL 與 Intel Mac 尚未實機驗證。</p>
+<h2 id="_2">已測試環境</h2>
+<p>macOS 26.6.2、Apple Silicon arm64；Apple clang 21.0.0；全新 Python 3.14.5 虛擬環境。完整環境版本表在 <a href="../../gc1991-lab/docs/python-packages-tested.txt"><code>python-packages-tested.txt</code></a>。主要套件為 NumPy 2.5.3、Matplotlib 3.11.2、JupyterLab 4.6.3、nbclient 0.11.0、ipykernel 7.3.0。</p>
+<p>從獨立匯出目錄開始，使用隨附原始碼建置 Basilisk，從 PyPI 安裝 Python 依賴，註冊本套件的 Jupyter 核心。第一次下載受測試執行環境的網路限制阻擋；取得網路存取後，同一安裝程序完整通過，沒有放寬依賴條件或改用教師既有虛擬環境。</p>
+<h2 id="_3">完成項目</h2>
+<ul>
+<li>五項快速檢查通過：共軛水深的動量／能量、standard-step 分支、兩種初始資料的座標與單位、錯誤輸入攔截、實驗比較範圍。</li>
+<li>六個 Notebook 程式儲存格全部執行成功，輸出兩張內嵌 PNG 圖；Notebook 真的重新執行三種計算。</li>
+<li><code>start_lab.sh</code> 可啟動 JupyterLab，僅監聽 127.0.0.1；本機服務回傳教材 Notebook 與 GC1991 Lab 核心，測試結束後已停止。</li>
+<li>兩個 C 模式完成指定時間與平均視窗，正水深及原有收支檢查通過。</li>
+<li>核心與 Notebook 通過 Python 3.10 語法檢查；這項靜態檢查不等於所有舊版 Python／套件組合均已實機測試。</li>
+<li>README 比較圖已檢視，標題、單位、圖例與圖註完整；配送檔案沒有教師私人絕對路徑。相對文件連結與 ZIP 指紋另於發行時核對。</li>
+</ul>
+<h2 id="_4">獨立目錄的實際結果</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align: right;">流場／水理計算耗時</th>
+<th style="text-align: right;">實驗 RMSE</th>
+<th>對封存基準的差異</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard-step</td>
+<td style="text-align: right;">約 0.11 s</td>
+<td style="text-align: right;">52.216 mm</td>
+<td>跳躍位置差 0 m</td>
+</tr>
+<tr>
+<td>Explicit SV</td>
+<td style="text-align: right;">約 12.93 s</td>
+<td style="text-align: right;">52.196 mm</td>
+<td>最大平均水深差 0 m</td>
+</tr>
+<tr>
+<td>Custom M92 B on</td>
+<td style="text-align: right;">約 0.78 s</td>
+<td style="text-align: right;">14.142 mm</td>
+<td>最大平均水深差 0 m</td>
+</tr>
+</tbody>
+</table></div>
+<p>耗時不含首次 Basilisk／Python 安裝、C 編譯與繪圖，也不是其他電腦的保證。C 程式首次編譯通常另需約 0.5–1 s。本次預先設定的重現公差未調整：C 水深差 0.2 mm、standard-step 位置差 2 mm；實際結果與基準一致。</p>
+<p>完整可讀數值摘要與來源指紋見 <a href="../../gc1991-lab/docs/verification.json"><code>verification.json</code></a>。這些檢查確認教材能運作並重現既有結果，不增加水躍內部流速、滾流或網格收斂的物理宣稱。</p>
+<p>原 M92 教學套件、研究驗收結果與失敗紀錄均未改動；舊套件及相關封存資料另以既有檢查工具確認完整。新的三模式教學發行不覆蓋舊套件。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/verification.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

@@ -1,0 +1,112 @@
+{
+  "date": "2026-09-14",
+  "status": "macOS local candidate passed",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "python": "3.14.5",
+  "basilisk_archive_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+  "notebook": {
+    "status": "passed",
+    "code_cells_executed": 6,
+    "inline_png_outputs": 2,
+    "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "jupyter_service": {
+    "status": "passed",
+    "launch_script": "start_lab.sh",
+    "notebook_served": true,
+    "gc1991_kernel_listed": true,
+    "bind_address": "127.0.0.1"
+  },
+  "quick_tests_passed": 5,
+  "windows_wsl_tested": false,
+  "intel_mac_tested": false,
+  "new_physical_validation": false,
+  "methods": {
+    "standard_step": {
+      "status": "passed",
+      "checks": {
+        "finite_positive_profile": true,
+        "jump_difference_m": 0.0,
+        "passed": true
+      },
+      "rmse_m": 0.052216245788547826,
+      "observation_count": 13,
+      "flow_seconds": 0.11495049999211915,
+      "profile_sha256": "01340e1c5a1e7a9bbe56afb038632e7029b98962be233275bb41bf16892e263b",
+      "source_sha256": {
+        "standard_step.py": "a7563201acb0656796f3374d96a9b916a2491fb1e527185d5e5029efa96b8855"
+      }
+    },
+    "sv": {
+      "status": "passed",
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 0.0,
+        "passed": true
+      },
+      "rmse_m": 0.052195808790007285,
+      "observation_count": 13,
+      "flow_seconds": 12.93322387500666,
+      "profile_sha256": "75d17c5f32f7ec000a59a2842aa9625ce4273f834d344e1d6b4dd5b4333d4206",
+      "source_sha256": {
+        "sv_case.c": "c939593af8a49cc041e4170a04ff78fad45f14f45955021c80b8fcaf3b3e4f19",
+        "sv_instrumented.h": "fb36fbf71b5c8463c7b23436679872cfbff93d02fb284d9990ce65bdde600243"
+      },
+      "compile_seconds": 1.2624276249844115
+    },
+    "custom": {
+      "status": "passed",
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 0.0,
+        "passed": true
+      },
+      "rmse_m": 0.014142414618083464,
+      "observation_count": 13,
+      "flow_seconds": 0.7770532080030534,
+      "profile_sha256": "3b7c2fbd3e6f0eccd5e4ee4ac848889c9ef333f42231116ec4f2b0d670620ede",
+      "source_sha256": {
+        "custom_solver.c": "80220e1c8e420f61357cd75488728e7130c151e3ec2fade53f8a522a69375220"
+      },
+      "compile_seconds": 0.5084978329832666
+    }
+  },
+  "final_notebook_recheck": {
+    "status": "passed",
+    "code_cells_executed": 6,
+    "inline_png_outputs": 2,
+    "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "final_interface_sha256": "ae48c2d2ba1a2e5e0d092a29b51aa82d0132871101e2c891e106a79c1019ddd0",
+  "notebook_source_sha256": "ae42c54d4fe70454294d0a12a7448ad781b9975abdc2dcfd2983550714bb966d",
+  "final_run_statuses": {
+    "standard_step": {
+      "status": "passed",
+      "profile_sha256": "01340e1c5a1e7a9bbe56afb038632e7029b98962be233275bb41bf16892e263b",
+      "checks": {
+        "finite_positive_profile": true,
+        "jump_difference_m": 0.0,
+        "passed": true
+      }
+    },
+    "sv": {
+      "status": "passed",
+      "profile_sha256": "75d17c5f32f7ec000a59a2842aa9625ce4273f834d344e1d6b4dd5b4333d4206",
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 0.0,
+        "passed": true
+      }
+    },
+    "custom": {
+      "status": "passed",
+      "profile_sha256": "3b7c2fbd3e6f0eccd5e4ee4ac848889c9ef333f42231116ec4f2b0d670620ede",
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 0.0,
+        "passed": true
+      }
+    }
+  }
+}

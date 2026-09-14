@@ -1,0 +1,34 @@
+--- Basilisk/saint-venant.h
++++ core/sv_instrumented.h
+@@ -280,6 +280,31 @@
+     We store the divergence of the fluxes in the update fields. Note that
+     these are updates for $h$ and $h\mathbf{u}$ (not $\mathbf{u}$). */
+   
++
++    /* GC1991 flat-bed boundary closure and stage ledger. The actual face
++       flux is recorded before it enters the divergence. No interior flux
++       or reconstruction is changed. boundary_kind=0 retains native faces. */
++    if (boundary_kind == 1) {
++      foreach_boundary(left) {
++        Fh.x[] = in_h*in_u;
++        Fq.x.x[] = S.x[] = in_h*sq(in_u) + G*sq(in_h)/2.;
++      }
++      foreach_boundary(right) {
++        /* First-order outgoing R+ compatibility, prescribed tail depth.
++           It is not a literal transcription of GC1991 Eq. 25. */
++        double ub = u.x[] + 2.*(sqrt(G*max(h[],dry)) - sqrt(G*out_h));
++        Fh.x[1] = out_h*ub;
++        Fq.x.x[1] = S.x[1] = out_h*sq(ub) + G*sq(out_h)/2.;
++      }
++    }
++    stage_qin = stage_qout = stage_fin = stage_fout = 0.;
++    foreach_boundary(left) {
++      stage_qin += Fh.x[]; stage_fin += Fq.x.x[];
++    }
++    foreach_boundary(right) {
++      stage_qout += Fh.x[1]; stage_fout += S.x[1];
++    }
++
+     vector dhu = avector (updates[1 + dimension*l], updates[2 + dimension*l]);    
+     double layerl = layer[l]; // fixme: arrays with length would be nice
+     foreach() {

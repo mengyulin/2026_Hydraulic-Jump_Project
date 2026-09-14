@@ -1,0 +1,7 @@
+{
+  "url": "https://basilisk.fr/basilisk/basilisk.tar.gz",
+  "retrieved_utc_date": "2026-09-08",
+  "sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+  "archive_file": "basilisk-source.tar.gz",
+  "note": "Official release archive snapshot; identified by SHA-256, not an asserted Darcs revision. Original installed Basilisk is not changed."
+}

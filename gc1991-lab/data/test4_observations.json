@@ -1,0 +1,74 @@
+{
+  "status": "literature_transcription_not_simulation_output",
+  "source_key": "gharangikNumericalSimulationHydraulic1991",
+  "doi": "10.1061/(ASCE)0733-9429(1991)117:9(1195)",
+  "pdf_sha256": "a419c7ac198101435a715344ca8a240e8bc323deea52d34bfba57506c64417ba",
+  "extraction": "Manual transcription from printed tables; visually checked against rendered PDF pages on 2026-09-04.",
+  "notes": [
+    "Table x=0.30 is retained; text identifies upstream boundary x=0.305 m.",
+    "Downstream boundary depth differs from the final tabulated profile depth; do not substitute one for the other.",
+    "14 m is facility length; exact numerical outflow station requires confirmation.",
+    "Point gauge accuracy 0.3 mm does not quantify fluctuating jump-profile uncertainty."
+  ],
+  "test": 4,
+  "table": 2,
+  "points": [
+    {
+      "x_reported_m": 0.3,
+      "h_m": 0.043
+    },
+    {
+      "x_reported_m": 0.61,
+      "h_m": 0.043
+    },
+    {
+      "x_reported_m": 0.91,
+      "h_m": 0.046
+    },
+    {
+      "x_reported_m": 1.22,
+      "h_m": 0.049
+    },
+    {
+      "x_reported_m": 1.52,
+      "h_m": 0.055
+    },
+    {
+      "x_reported_m": 1.83,
+      "h_m": 0.152
+    },
+    {
+      "x_reported_m": 2.13,
+      "h_m": 0.207
+    },
+    {
+      "x_reported_m": 2.44,
+      "h_m": 0.232
+    },
+    {
+      "x_reported_m": 2.74,
+      "h_m": 0.229
+    },
+    {
+      "x_reported_m": 3.05,
+      "h_m": 0.226
+    },
+    {
+      "x_reported_m": 3.35,
+      "h_m": 0.223
+    },
+    {
+      "x_reported_m": 3.66,
+      "h_m": 0.223
+    },
+    {
+      "x_reported_m": 3.96,
+      "h_m": 0.223
+    },
+    {
+      "x_reported_m": 4.27,
+      "h_m": 0.223
+    }
+  ],
+  "scoring": "13 points inside [0.305,14] m; no horizontal shift. x=0.30 m is retained for display only."
+}

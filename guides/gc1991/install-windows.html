@@ -1,0 +1,34 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Windows／WSL 安裝｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：Windows／WSL 安裝。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / Windows／WSL 安裝</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html" aria-current="page">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="windows-wsl-2ubuntu">Windows 安裝（WSL 2／Ubuntu）</h1>
+<p>本教材在 Ubuntu 環境編譯 Basilisk。請使用 Windows 11，或支援 WSL 的 Windows 10（版本 2004、組建 19041 以上）。以下流程依 <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Microsoft 官方指南</a>整理；本版尚未在 Windows 實機跑完，教師宜先用一台學生電腦確認。</p>
+<h2 id="1-ubuntu">1. 安裝 Ubuntu</h2>
+<p>以系統管理員身分開啟 PowerShell，執行：</p>
+<pre><code class="language-powershell">wsl --install -d Ubuntu-24.04
+</code></pre>
+<p>依提示重新啟動電腦，開啟 Ubuntu，建立自己的使用者名稱和密碼。輸入 Linux 密碼時畫面不顯示字元是正常現象。若已安裝 Ubuntu，可直接使用；在 PowerShell 用 <code>wsl --list --verbose</code> 確认 VERSION 為 2。</p>
+<p>此後本頁的指令均在 <strong>Ubuntu 終端機</strong>執行。</p>
+<h2 id="2">2. 安裝必要工具</h2>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install -y build-essential gawk python3 python3-venv unzip
+</code></pre>
+<p><code>sudo</code> 會要求剛才設定的 Ubuntu 密碼。這些是系統工具，通常只需安裝一次。</p>
+<h2 id="3">3. 放置教材</h2>
+<p>先在 Ubuntu 執行 <code>explorer.exe .</code>，開啟目前 Linux 家目錄的檔案視窗。把教材 ZIP 放入這裡，然後在 Ubuntu 解壓縮：</p>
+<pre><code class="language-bash">unzip gc1991-lab-v1.zip
+cd gc1991-lab
+</code></pre>
+<p>ZIP 預設包含 <code>gc1991-lab/</code> 目錄。路徑請使用英文字母且不含空白，例如 <code>~/gc1991-lab</code>。建議放在 Linux 家目錄，避免在 <code>/mnt/c/</code>、OneDrive、中文或含空白的路徑編譯。</p>
+<p>若日後從 GitHub 下載得到不同名稱的目錄，先將包含 <code>README.md</code> 和 <code>setup.sh</code> 的那一層改名為 <code>gc1991-lab</code>，再使用上面的路徑。</p>
+<h2 id="4-notebook">4. 安裝教材環境並開啟 Notebook</h2>
+<pre><code class="language-bash">bash setup.sh
+bash start_lab.sh
+</code></pre>
+<p>第一次需要網路下載 Python 套件。Basilisk 原始碼已隨教材附上，安裝器先查核 SHA-256，再在教材的 <code>.tools/</code> 內編譯；Python 套件放在 <code>.venv/</code>。不必另外安裝全域 Basilisk。</p>
+<p>將終端機顯示的 <code>http://localhost:8888/lab?token=...</code>（連接埠可能不同）完整貼入 Windows 瀏覽器。保留該終端機，接著依<a href="quickstart.html">操作指南</a>執行。完成後儲存 Notebook，回到終端機按 Ctrl+C 停止服務。</p>
+<h2 id="_1">之後每次上課</h2>
+<p>開啟 Ubuntu，執行：</p>
+<pre><code class="language-bash">cd ~/gc1991-lab
+bash start_lab.sh
+</code></pre>
+<p>如系統停用虛擬化或 WSL，請按 Microsoft 指引或請系所電腦管理人員協助；Python 套件的安裝不能解決 WSL 系統設定問題。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/install-windows.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

@@ -1,0 +1,69 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>操作指南與作業｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：操作指南與作業。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 操作指南與作業</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html" aria-current="page">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">操作指南</h1>
+<p>完成安裝後，執行 <code>bash start_lab.sh</code>，開啟終端機提供的 localhost 網址。雙擊 <code>student_lab.ipynb</code>，右上方核心應為 <strong>GC1991 Lab</strong>。用 Shift+Enter 逐格執行，或選 Run → Run All Cells。</p>
+<h2 id="_2">依序執行的五件事</h2>
+<ol>
+<li>載入 Test 4，閱讀流量、水深、渠道寬度與計算區域。</li>
+<li>執行 standard-step，觀察急流和緩流分支以比力匹配得到的零長度水躍。</li>
+<li>執行 Saint-Venant，觀察時間演進後的平均水面。</li>
+<li>執行自訂模式，觀察有限寬度的水面上升。</li>
+<li>疊合三種結果與實驗，查看各方法的 RMSE。</li>
+</ol>
+<p>每個計算格都會顯示 <code>reproduction passed</code>。這表示程式重現教材的既有數值結果；它不代表所有方法都與實驗吻合。standard-step 和 SV 的較大誤差正是此比較的學習重點。</p>
+<p>Notebook 的三次計算都是重新執行求解器；<code>reference/</code> 中的水面僅供核對。最後一格可把圖的 x 範圍改為 <code>(0, 14)</code>，查看整段渠道。圖中水深即水面高程，因為此例渠道底床設為 z=0。</p>
+<h2 id="_3">結果在哪裡</h2>
+<p>每次計算在 <code>runs/日期時間_方法_識別碼/</code> 建立新目錄，包含：</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>case.json</code></td>
+<td>此次實際採用的完整設定</td>
+</tr>
+<tr>
+<td><code>profile.dat</code></td>
+<td>原始數值水面，各模式欄位見檔案第一行</td>
+</tr>
+<tr>
+<td><code>metadata.json</code></td>
+<td>計算耗時、來源指紋、RMSE、重現與完成狀態</td>
+</tr>
+<tr>
+<td><code>initial.dat</code>、C 原始碼</td>
+<td>Basilisk 案例的實際初始資料及核心程式副本</td>
+</tr>
+<tr>
+<td><code>build.log</code>、<code>stderr.log</code></td>
+<td>Basilisk 編譯與執行訊息</td>
+</tr>
+<tr>
+<td><code>solution.json</code></td>
+<td>standard-step 的兩條分支、跳躍位置與水深</td>
+</tr>
+</tbody>
+</table></div>
+<p>比較圖在另一個 <code>runs/日期時間_comparison_識別碼/</code>，含 <code>comparison.png</code>、<code>comparison.pdf</code> 與記錄來源計算的 <code>comparison.json</code>。可直接把圖放進專題報告。重跑不覆蓋先前結果；若曾失敗，也保留該次紀錄。</p>
+<h2 id="notebook">不使用 Notebook</h2>
+<p>在教材根目錄執行：</p>
+<pre><code class="language-bash">.venv/bin/python lab.py all
+</code></pre>
+<p>只跑一個方法：</p>
+<pre><code class="language-bash">.venv/bin/python lab.py standard_step
+.venv/bin/python lab.py sv
+.venv/bin/python lab.py custom
+</code></pre>
+<p>命令列產生相同資料；<code>all</code> 會自動保存比較圖。</p>
+<h2 id="_4">一次課堂即可完成的作業</h2>
+<ul>
+<li>繳交三種方法的比較圖與 RMSE 表，附上各方法的計算設定。</li>
+<li>用共軛水深與比力說明 standard-step 為何產生突跳。</li>
+<li>解釋自訂模式水面較接近實驗，為何仍不能宣稱水躍內部流速正確。</li>
+<li>在 Python 中調整圖的顯示範圍，說明水躍區與下游緩流段的差別。</li>
+</ul>
+<p>第一版不要求學生修改 C 核心、加密網格、調整 Manning n 來擬合，或重新跑教師的驗收矩陣。先理解<a href="methods.html">方法與限制</a>即可。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/quickstart.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>

@@ -1,0 +1,24 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>macOS 安裝｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：macOS 安裝。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css"><script defer src="../../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / macOS 安裝</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html" aria-current="page">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="macos">macOS 安裝</h1>
+<p>需要 Python 3.10 以上與 Apple 命令列開發工具。本版已在 macOS／Apple Silicon 實機驗證，詳細版本見<a href="verification.html">驗證紀錄</a>。Intel Mac 尚未實機測試。</p>
+<h2 id="1">1. 準備工具</h2>
+<p>開啟「終端機」，檢查：</p>
+<pre><code class="language-bash">python3 --version
+xcode-select -p
+</code></pre>
+<p>若沒有開發工具，執行下面指令並完成安裝視窗：</p>
+<pre><code class="language-bash">xcode-select --install
+</code></pre>
+<p>若沒有 Python，或版本低於 3.10，請安裝 <a href="https://www.python.org/downloads/macos/">Python 官方 macOS 套件</a>，再重新開啟終端機確認 <code>python3 --version</code>。Python 3.12 可作為教學環境選擇；勿只依賴作業系統提供的舊版 Python。</p>
+<h2 id="2">2. 放置教材</h2>
+<p>將 <code>gc1991-lab-v1.zip</code> 解壓縮，把其中的 <code>gc1991-lab</code> 資料夾移到個人家目錄。完整路徑須為 ASCII 且不含空白，例如 <code>~/gc1991-lab</code>。Basilisk 編譯工具會把路徑寫入編譯參數，因此不要放在有空白或中文字的資料夾。</p>
+<pre><code class="language-bash">cd ~/gc1991-lab
+bash setup.sh
+</code></pre>
+<p>第一次需網路下載 Python 套件。安裝器把 Basilisk 編譯到教材的 <code>.tools/</code>，Python 套件放在 <code>.venv/</code>，不改動既有 Basilisk 安裝或全域 PATH。等待出現 <code>Installation checks passed</code>。</p>
+<h2 id="3">3. 開始操作</h2>
+<pre><code class="language-bash">bash start_lab.sh
+</code></pre>
+<p>把終端機顯示的完整 localhost 網址貼入瀏覽器，依<a href="quickstart.html">操作指南</a>執行。服務只監聽本機。每次上課重新執行這一指令即可。</p>
+<p>若移動或改名教材資料夾，請重新執行 <code>bash setup.sh</code>；編譯器及 Python 虛擬環境可能含舊路徑。安裝失敗時查閱<a href="troubleshooting.html">疑難排解</a>，不要對整個教材使用 <code>sudo</code>。</p><p class="doc-source">來源：GC1991 v1 教學教材 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/docs/install-macos.md">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>
