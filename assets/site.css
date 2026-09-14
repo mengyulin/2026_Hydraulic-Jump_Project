@@ -164,6 +164,9 @@ p+p {
   font-size:1.04rem;
 }
 .hero h1 span {
+  display:inline-block;
+  max-width:100%;
+  text-wrap:balance;
   color:var(--blue);
 }
 .actions {

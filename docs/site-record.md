@@ -27,3 +27,9 @@ MathJax 檔案取自 `https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js`
 - 瀏覽器檢查涵蓋桌面／手機首頁、導覽、GC1991 分頁、中文文件與 MathJax 公式。
 - 本次未重新執行水理求解或新的精度矩陣；延用既有教學驗收證據。
 - Windows／WSL 和 Intel Mac 尚未實機驗收；HEC-RAS 及坡度轉折教材仍待教師提供。
+
+## 首次發布
+
+GitHub Pages 已啟用為 GitHub Actions，首次成功發布見 [workflow 34841848744](https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/34841848744)。首頁位於主專題網址，GC1991 入口為其中的 `gc1991-lab/`。
+
+線上首頁、實驗入口、方法頁、樣式與完整教材 ZIP 均回傳 HTTP 200，並與本地發布版本逐位元組一致。初次推送的建置檢查已通過，但部署先於 Pages 啟用而停止；啟用後同一版本重發成功。
