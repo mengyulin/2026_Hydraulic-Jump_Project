@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import hashlib
 import json
+import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,7 +48,15 @@ def main():
                 assert unquote(url.fragment) in pages[target].ids, f'Missing anchor: {ref}'
             count += 1
     methods = (SITE / 'guides/gc1991/methods.html').read_text()
-    assert methods.count('class="math-display"') == 6
+    source = (ROOT / 'gc1991-lab/docs/methods.md').read_text()
+    display_count = len(re.findall(r'^\$\$$', source, re.M)) // 2
+    assert display_count > 0
+    assert methods.count('class="math-display"') == display_count
+    # TeX must survive Markdown byte-for-byte, including matrix line breaks.
+    from html import escape
+    for equation in re.findall(r'\$\$(.*?)\$\$', source, re.S):
+        assert '\\[' + escape(equation) + '\\]' in methods, equation
+    assert 'class="math-inline"' in methods
     assert 'EQUATIONPLACEHOLDER' not in methods
     manifest = json.loads((ROOT / 'gc1991-lab/CHECKSUMS.json').read_text())
     archive = SITE / 'downloads/gc1991-lab-v1.zip'
@@ -60,7 +69,7 @@ def main():
     digest = (SITE / 'downloads/zip-sha256.txt').read_text().split()[0]
     assert hashlib.sha256(archive.read_bytes()).hexdigest() == digest
     assert not list(SITE.rglob('.git')) and not list(SITE.rglob('.venv'))
-    print(f'PASS: {len(pages)} pages, {count} local references, 6 display equations, {len(manifest)} sealed teaching files and ZIP checksum.')
+    print(f'PASS: {len(pages)} pages, {count} local references, {display_count} display equations, {len(manifest)} sealed teaching files and ZIP checksum.')
 
 
 if __name__ == '__main__': main()

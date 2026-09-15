@@ -33,3 +33,9 @@ MathJax 檔案取自 `https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js`
 GitHub Pages 已啟用為 GitHub Actions，首次成功發布見 [workflow 34841848744](https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/34841848744)。首頁位於主專題網址，GC1991 入口為其中的 `gc1991-lab/`。
 
 線上首頁、實驗入口、方法頁、樣式與完整教材 ZIP 均回傳 HTTP 200，並與本地發布版本逐位元組一致。初次推送的建置檢查已通過，但部署先於 Pages 啟用而停止；啟用後同一版本重發成功。
+
+## 2026-09-15 方法文件擴充
+
+依教師要求，將方法章擴展成 11 節的獨立教材，涵蓋 standard-step、Saint-Venant 與 Boussinesq 的基本方程、推導、實際算法與結果解讀。具體改動、文獻核對、計算例及版本指紋見 [方法文件修訂紀錄](releases/2026-09-15-methods.md)。
+
+本次僅變更原始 45 個教材檔案中的 `docs/methods.md`；其餘 44 檔與首次發行一致。原始 ZIP 與校驗表已另行保存，新 ZIP 同步供學生下載。新增行內 TeX 保護、章節導覽及長公式捲動，54 組獨立公式與 229 處行內公式在桌面及手機上均成功顯示。

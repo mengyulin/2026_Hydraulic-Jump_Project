@@ -695,6 +695,34 @@ pre code {
 .doc-content mjx-container {
   max-width:100%;
 }
+.math-display mjx-container[display="true"] {
+  max-width:none;
+  min-width:100%;
+  width:max-content;
+}
+.math-inline {
+  display:inline-block;
+  max-width:100%;
+  overflow-x:auto;
+  vertical-align:middle;
+}
+.chapter-toc {
+  padding:0 22px 15px;
+  background:var(--pale);
+  border:1px solid var(--line);
+  margin:28px 0;
+}
+.chapter-toc h2 {
+  margin:0;
+  padding-top:20px;
+  border:0;
+}
+.chapter-toc ul {
+  padding-left:22px;
+}
+.doc-content a[id] {
+  scroll-margin-top:110px;
+}
 .doc-content .notice {
   margin:0 0 27px;
 }
