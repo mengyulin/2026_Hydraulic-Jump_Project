@@ -1,0 +1,43 @@
+name: Check teaching kit on Windows WSL 2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wsl:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    steps:
+      - name: Preserve Linux script line endings
+        shell: pwsh
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@v6
+      - name: Install Ubuntu 24.04 in the runner's WSL 2
+        shell: pwsh
+        run: |
+          wsl --version
+          if ($LASTEXITCODE -ne 0) { throw 'WSL is unavailable.' }
+          wsl --set-default-version 2
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot select WSL 2.' }
+          wsl --install -d Ubuntu-24.04 --no-launch
+          if ($LASTEXITCODE -ne 0) { throw 'Ubuntu installation failed.' }
+          wsl --list --verbose
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot list WSL distributions.' }
+      - name: Check the ZIP using a Linux home directory and ordinary user
+        shell: pwsh
+        run: |
+          $linuxWorkspace = (wsl -d Ubuntu-24.04 -u root -- wslpath -u $env:GITHUB_WORKSPACE).Trim()
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot locate the checked-out kit from WSL.' }
+          wsl -d Ubuntu-24.04 -u root -- bash "$linuxWorkspace/scripts/check_wsl_kit.sh" "$linuxWorkspace"
+          if ($LASTEXITCODE -ne 0) { throw 'Teaching kit check failed.' }
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-wsl-teaching-check
+          path: wsl-report/
+          if-no-files-found: warn
+          retention-days: 14
