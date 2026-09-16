@@ -39,3 +39,11 @@ GitHub Pages 已啟用為 GitHub Actions，首次成功發布見 [workflow 34841
 依教師要求，將方法章擴展成 11 節的獨立教材，涵蓋 standard-step、Saint-Venant 與 Boussinesq 的基本方程、推導、實際算法與結果解讀。具體改動、文獻核對、計算例及版本指紋見 [方法文件修訂紀錄](releases/2026-09-15-methods.md)。
 
 本次僅變更原始 45 個教材檔案中的 `docs/methods.md`；其餘 44 檔與首次發行一致。原始 ZIP 與校驗表已另行保存，新 ZIP 同步供學生下載。新增行內 TeX 保護、章節導覽及長公式捲動，54 組獨立公式與 229 處行內公式在桌面及手機上均成功顯示。
+
+## 2026-09-16 初學者 Windows 安裝說明
+
+將 Windows／WSL 安裝重寫為從辨識視窗到開始、結束每次上課的逐步教材。新增 Ubuntu 啟動與帳號設定、WSL 2 檢查、Linux 家目錄、ZIP 搬移、成功訊息及分階段排錯；未加入 Mac 虛擬機議題。
+
+指令與示意輸出明確分開，示意輸出不提供複製按鈕；長篇指南的章節連結使用立即跳轉。完整修訂與驗證範圍見 [2026-09-16 修訂紀錄](releases/2026-09-16-windows.md)。
+
+Windows／WSL 雲端驗證 [35079687917](https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/35079687917) 通過安裝、三種既有方法的結果重現、Jupyter 啟動及 Windows localhost 連線；首頁與安裝頁已更新目前狀態。Windows 11 首次啟用及桌面操作仍待人工驗收，較早的 2026-09-14 驗證文件保留為當時紀錄。

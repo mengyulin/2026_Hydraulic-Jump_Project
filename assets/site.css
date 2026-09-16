@@ -633,6 +633,9 @@ pre code {
   color:var(--blue);
   font-weight:600;
 }
+.guide-page {
+  scroll-behavior:auto;
+}
 .doc-content {
   max-width:850px;
   min-width:0;
@@ -716,6 +719,10 @@ pre code {
   margin:0;
   padding-top:20px;
   border:0;
+}
+.chapter-toc a {
+  display:block;
+  padding:2px 0;
 }
 .chapter-toc ul {
   padding-left:22px;

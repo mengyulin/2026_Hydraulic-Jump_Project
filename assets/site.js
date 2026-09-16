@@ -12,7 +12,7 @@ if (toggle && nav) {
 if (navigator.clipboard && window.isSecureContext) {
   document.querySelectorAll('pre').forEach(pre => {
     const code = pre.querySelector('code');
-    if (!code) return;
+    if (!code || code.classList.contains('language-text')) return;
     const button = document.createElement('button');
     button.type = 'button'; button.className = 'copy-button'; button.textContent = '複製';
     button.setAttribute('aria-label', '複製這段指令');

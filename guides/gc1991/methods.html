@@ -1,4 +1,4 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方程與方法｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：方程與方法。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css?v=7bc71d0cad24"><script defer src="../../assets/site.js"></script><script>window.MathJax={"tex": {"inlineMath": [["\\(", "\\)"]]}, "svg": {"fontCache": "local"}, "options": {"enableMenu": false}};</script><script defer src="../../assets/vendor/mathjax/tex-svg.js"></script></head><body>
+<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>方程與方法｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：方程與方法。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css?v=d6713b0dabc7"><script defer src="../../assets/site.js?v=03e7b67c7aae"></script><script>window.MathJax={"tex": {"inlineMath": [["\\(", "\\)"]]}, "svg": {"fontCache": "local"}, "options": {"enableMenu": false}};</script><script defer src="../../assets/vendor/mathjax/tex-svg.js"></script></head><body>
 <a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a></nav></div></header>
 <div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / 方程與方法</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2><a href="install-windows.html">Windows／WSL 安裝</a><a href="install-macos.html">macOS 安裝</a><a href="quickstart.html">操作指南與作業</a><a href="methods.html" aria-current="page">方程與方法</a><a href="code-guide.html">程式導讀</a><a href="troubleshooting.html">疑難排解</a><a href="verification.html">本機驗證紀錄</a><a href="instructor.html">教師維護</a><a href="credits.html">資料來源與授權</a><a href="#main">本章導覽 ↑</a><a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content"><h1 id="_1">從基本水理到數值計算：三種水躍方法</h1>
 <p>本章以 <strong>GC1991 水平矩形渠道 Test 4</strong> 為共同問題，說明方程為什麼這樣寫、如何求解，以及計算結果可以如何解讀。不需要先學 C，也不必先讀原論文；先備知識是微積分、質量守恆、動量守恆與基本 Python。</p>
@@ -18,8 +18,7 @@
 <li><a href="#questions">10. 自我檢核與參考解答</a></li>
 <li><a href="#references">11. 來源與延伸閱讀</a></li>
 </ul></nav>
-<p><a id="notation"></a></p>
-<h2 id="1">1. 共同問題、符號與假設</h2>
+<h2 id="notation"><span id="1"></span>1. 共同問題、符號與假設</h2>
 <h3 id="11">1.1 這次實驗要解決什麼？</h3>
 <p>水由左往右流過固定寬度、水平底床的水槽。入口是淺水急流，出口給定較大的尾水深。問題是：<strong>在這些條件下，水深沿程如何改變，水躍會出現在哪裡？</strong></p>
 <p>三種方法的共同物理問題相同，但求解對象不同：</p>
@@ -174,8 +173,7 @@
 </table></div>
 <p>原文報告的糙率範圍是 0.008–0.011，但未確認 Test 4 的個別 <span class="math-inline">\(n\)</span>；14 m 為水槽全長，原文計算出口的位置亦未完全確認。因此，<span class="math-inline">\(n=0.008\)</span> 與 <span class="math-inline">\(x_{\rm out}=14\)</span> m 是<strong>明列的教材採用假設</strong>。尾水 0.222 m 是邊界輸入，不是最後一個量測站的 0.223 m。</p>
 <p>三種方法都採不可壓縮、定密度、固定矩形斷面、無側向入流及深度平均的描述。沒有求解空氣夾帶、垂向滾流或紊流輸運方程。standard-step 與 SV 採靜水壓；B 修正的來源則在第 5 節推導。</p>
-<p><a id="hydraulics"></a></p>
-<h2 id="2">2. 摩阻、比能與比力</h2>
+<h2 id="hydraulics"><span id="2"></span>2. 摩阻、比能與比力</h2>
 <h3 id="21-manning">2.1 Manning 摩阻</h3>
 <p>對本例向下游的正流，Manning 公式及其反解為</p>
 <div class="math-display" tabindex="0" role="region" aria-label="公式，可左右捲動">\[
@@ -212,8 +210,7 @@ M=\frac{SF}{B}=\frac{q^2}{gh}+\frac{h^2}{2}.
 \]</div>
 <p><span class="math-inline">\(SF\)</span> 的單位是 m³，<span class="math-inline">\(M\)</span> 的單位是 m²；本教材 <code>force()</code> 回傳後者。<span class="math-inline">\(M\)</span> 本身不是力，也不是能量。把它乘上 <span class="math-inline">\(\rho gB\)</span> 才得到此斷面的動量通量與壓力合力之和。</p>
 <p>水躍通常使機械能降低。若以很短的水平控制體包住理想化水躍，忽略體內底坡力及壁面摩阻積分，便可用前後比力相等來匹配，而不能同時要求前後比能相等。</p>
-<p><a id="standard-step"></a></p>
-<h2 id="3-standard-step">3. Standard-step：從能量方程到水躍定位</h2>
+<h2 id="standard-step"><span id="3-standard-step"></span>3. Standard-step：從能量方程到水躍定位</h2>
 <h3 id="31">3.1 先解水躍兩側的漸變流</h3>
 <p>令 <span class="math-inline">\(i\)</span> 位於上游、<span class="math-inline">\(i+1\)</span> 位於下游，<span class="math-inline">\(\Delta x=x_{i+1}-x_i&gt;0\)</span>。相鄰斷面的穩態能量式是</p>
 <div class="math-display" tabindex="0" role="region" aria-label="公式，可左右捲動">\[
@@ -356,8 +353,7 @@ print(solution[&quot;jump&quot;])
 輸出水躍前急流 + 水躍後緩流，保留同一 x 的兩個水深
 </code></pre>
 <p>本法預設水躍長度為零，沒有滾流區的空間結構。它能提供一個透明的穩態工程基準，但不能用其突跳線形去宣稱水躍長度為物理上的零。</p>
-<p><a id="saint-venant"></a></p>
-<h2 id="4-saint-venant">4. Saint-Venant：守恆律與有限體積計算</h2>
+<h2 id="saint-venant"><span id="4-saint-venant"></span>4. Saint-Venant：守恆律與有限體積計算</h2>
 <h3 id="41">4.1 從控制體寫出方程</h3>
 <p>對長度 <span class="math-inline">\(dx\)</span>、單位渠寬的水體，水量為 <span class="math-inline">\(h\,dx\)</span>。水量增加率等於流入減流出，故</p>
 <div class="math-display" tabindex="0" role="region" aria-label="公式，可左右捲動">\[
@@ -427,8 +423,7 @@ a^-=\min(0,u_L-c_L,u_R-c_R).
 <p>先走半步估計中點狀態，再用中點的通量與源項走完整一步。Basilisk 欄位雖儲存 <span class="math-inline">\(h,u\)</span>，<code>advance_saint_venant()</code> 會先更新 <span class="math-inline">\(h\)</span> 與 <span class="math-inline">\(hu\)</span>，再由新水深還原速度，並非把 <span class="math-inline">\(u\)</span> 當守恆量直接相加。<a href="https://basilisk.fr/src/predictor-corrector.h">官方時間積分原始碼</a>。</p>
 <p><code>update_checked()</code> 在兩階段都加入同一 Manning 動量源項。最後一步的全域收支使用實際中點通量與源項；若改用兩階段的算術平均，便會與這個 SV 方法的更新不一致。</p>
 <p>主要時間步限制來自波速：<span class="math-inline">\(\Delta t\)</span> 不超過各面 <span class="math-inline">\(\mathrm{CFL}\,\Delta x/\max(a^+,-a^-)\)</span> 的最小值。入口到出口有 512 個格心控制體，<span class="math-inline">\(\Delta x\approx0.0267480\)</span> m，CFL = 0.4。程式亦以顯式摩阻率限制時間步，並配合觀測／結束時刻縮短步長。CFL 限制是數值必要考量，不是「通過後即保證物理正確」的判準。</p>
-<p><a id="boussinesq"></a></p>
-<h2 id="5-boussinesq">5. Boussinesq：垂向加速度如何修正壓力</h2>
+<h2 id="boussinesq"><span id="5-boussinesq"></span>5. Boussinesq：垂向加速度如何修正壓力</h2>
 <h3 id="51-boussinesq">5.1 這裡的 Boussinesq 指什麼？</h3>
 <p>本章指自由水面流動的<strong>非靜水壓長波近似</strong>，不是密度變化只保留在浮力項的另一種 Boussinesq 近似。它嘗試在深度平均方程中保留垂向加速度對壓力的領先階影響，仍沒有完整求解二維或三維紊流。</p>
 <p>以下推導針對水平、不可穿透底床，以水平速度在水深方向近似均勻為起點。這是長波模型的閉合假設；在實際強烈滾流區，它不必成立。GC1991 的控制式與本節對應，見原文 p.1197，式 (1)–(4)。<a href="https://doi.org/10.1061/%28ASCE%290733-9429%281991%29117%3A9%281195%29">原論文 DOI</a>。</p>
@@ -505,8 +500,7 @@ B_c^{\rm steady}=\frac{q^2}{3}
 <p>這顯示修正與水面曲率及坡度平方有關。<strong>此式是連續、定常且定 <span class="math-inline">\(q\)</span> 條件下的恆等改寫</strong>；教材程式實際從局部 <span class="math-inline">\(u_j=q_j/h_j\)</span> 求導，不強迫節點 <span class="math-inline">\(q_j\)</span> 為常數，因此不能把兩種離散計算視為逐項相同。</p>
 <h3 id="56-b">5.6 B 修正何時消失？</h3>
 <p>若 <span class="math-inline">\(u\)</span> 在空間與時間都均勻，所有導數為零，完整與穩態修正都消失。若只在某一時刻剛好 <span class="math-inline">\(u_x=u_{xx}=0\)</span>，仍未必有 <span class="math-inline">\(u_{xt}=0\)</span>。關閉穩態 B 開關時，自訂程式的<strong>物理通量部分</strong>回到靜水壓，但它的 Rusanov 通量、人工輸運、網格與邊界離散仍與原生 SV 不同，兩者不會因此成為同一個數值方法。</p>
-<p><a id="custom"></a></p>
-<h2 id="6-m92">6. 自訂 M92：實際離散與人工輸運</h2>
+<h2 id="custom"><span id="6-m92"></span>6. 自訂 M92：實際離散與人工輸運</h2>
 <p>本節對照 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/gc1991-lab/core/custom_solver.c"><code>core/custom_solver.c</code></a>。它使用 Basilisk 的網格與事件時鐘，再由自己的陣列求解；不是 Basilisk 原生 Green–Naghdi，也不是原論文 two-four 算法的完整逐項複製。</p>
 <h3 id="61">6.1 節點與控制體</h3>
 <p>本例有 92 個間隔、93 個節點，<span class="math-inline">\(j=0,\ldots,92\)</span>，</p>
@@ -583,8 +577,7 @@ a_{\rm est}=\max_j\left[
 <p>把所有節點的質量更新乘上 <span class="math-inline">\(\ell_j\)</span> 再加總，內部共用面通量會抵消，只剩入口減出口。因此整體水量可守恆。</p>
 <p>但穩態離散質量式要求的是<strong>總面質量通量</strong>沿程一致。對本算法，該通量包含 Rusanov 與額外的人工輸運，並不等於某一個節點儲存的 <span class="math-inline">\(q_j\)</span>。在水躍內梯度很大時，數值輸運可以抵銷節點 <span class="math-inline">\(q_j\)</span> 的空間變化。</p>
 <p>所以「共用面通量守恆」與「局部 <span class="math-inline">\(q_j/h_j\)</span> 可當作可靠的實驗平均流速」是兩個不同問題。本教材 M92 曾觀察到局部節點 <span class="math-inline">\(q\)</span> 偏離入口約 45.6%，正是不能只憑全域收支通過來宣稱局部流速正確的原因。</p>
-<p><a id="conditions"></a></p>
-<h2 id="7">7. 邊界、初始條件與時間平均</h2>
+<h2 id="conditions"><span id="7"></span>7. 邊界、初始條件與時間平均</h2>
 <h3 id="71">7.1 入口指定兩項，緩流出口指定一項</h3>
 <p>本例急流入口兩個特徵都進入計算區，所以指定 <span class="math-inline">\(h_{\rm in}\)</span> 與 <span class="math-inline">\(u_{\rm in}\)</span>。緩流出口只有一項資訊由外部進入，故指定尾水 <span class="math-inline">\(h_{\rm out}\)</span>，另一項從域內相容關係估計。</p>
 <p>SV 與自訂模式都直接施加入口面通量</p>
@@ -663,8 +656,7 @@ P_q(t)-P_q(0)=\int_0^t\left(
 \]</div>
 <p>這裡 <span class="math-inline">\(V\)</span> 為每單位渠寬水量，單位 m²；<span class="math-inline">\(P_q\)</span> 單位 m³/s，乘上 <span class="math-inline">\(\rho B\)</span> 才是整段實際水平動量。SV 用中點階段的時間衝量，自訂模式用兩階段平均的衝量，與各自更新一致。所有邊界量都取<strong>實際採用的面通量</strong>。</p>
 <p>整體收支、正水深、完成指定時間和平均窗是檢查數值輸出的必要條件。若要主張穩態，還要查看前／後半平均、時間波動與流量趨勢，不能把「算到指定終止時間」直接當成穩態證明。</p>
-<p><a id="interpretation"></a></p>
-<h2 id="8">8. 結果、誤差與適用限制</h2>
+<h2 id="interpretation"><span id="8"></span>8. 結果、誤差與適用限制</h2>
 <h3 id="81">8.1 在哪裡與實驗比較？</h3>
 <p>實驗資料是 GC1991 Table 2 Test 4 的 14 個原始座標。<span class="math-inline">\(x=0.30\)</span> m 位於本計算入口 0.305 m 之外：圖上保留叉號，但不納入誤差。其餘 13 點的 RMSE 為</p>
 <div class="math-display" tabindex="0" role="region" aria-label="公式，可左右捲動">\[
@@ -741,8 +733,7 @@ P_q(t)-P_q(0)=\int_0^t\left(
 </tbody>
 </table></div>
 <p><code>reproduction passed</code> 指第一項，不代表 RMSE 很小，也不代表自訂模式的局部流速已驗證。一般可用 <span class="math-inline">\(z_b+h+u^2/(2g)\)</span> 作<strong>靜水壓工程總水頭指標</strong>；在 B 修正作用區，不能不加說明就把它當作完整非靜水壓機械能。用受數值輸運影響的局部 <span class="math-inline">\(q/h\)</span> 計算水躍內能量，更需要小心解釋。</p>
-<p><a id="code-map"></a></p>
-<h2 id="9">9. 從公式找到程式</h2>
+<h2 id="code-map"><span id="9"></span>9. 從公式找到程式</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
 <thead>
 <tr>
@@ -795,8 +786,7 @@ P_q(t)-P_q(0)=\int_0^t\left(
 </tbody>
 </table></div>
 <p>SV 的 <code>predictor-corrector.h</code>、<code>riemann.h</code> 與 <code>utils.h</code> 位於隨附固定 Basilisk 原始碼壓縮包內；安裝後可在本教材 <code>.tools/&lt;識別碼&gt;/basilisk/src/</code>（識別碼包含快照指紋、作業系統與架構） 對照閱讀。教材採用完整一致的快照，而不是任意混合目前網站上的標頭版本；來源指紋見 <a href="../../gc1991-lab/vendor/basilisk-source.json"><code>vendor/basilisk-source.json</code></a>。若要讀更完整的函式導覽，見<a href="code-guide.html">程式導讀</a>。</p>
-<p><a id="questions"></a></p>
-<h2 id="10">10. 自我檢核與參考解答</h2>
+<h2 id="questions"><span id="10"></span>10. 自我檢核與參考解答</h2>
 <p>先嘗試用公式回答，再查看下面的簡答。這些練習不用改 C 核心或重新跑參數矩陣。</p>
 <ol>
 <li>水平底床為什麼仍有摩阻損失？</li>
@@ -819,8 +809,7 @@ P_q(t)-P_q(0)=\int_0^t\left(
 <li>守恆更新使用相鄰格共用的總面通量，包含數值輸運；它不等於單一節點 <span class="math-inline">\(q_j\)</span>。內部通量相消仍可使全域收支閉合。</li>
 <li>不足以。RMSE 只評估指定座標的水深；水躍長度、局部流速及紊流需要各自的量測與數值不確定度證據。</li>
 </ol>
-<p><a id="references"></a></p>
-<h2 id="11_1">11. 來源與延伸閱讀</h2>
+<h2 id="references"><span id="11_1"></span>11. 來源與延伸閱讀</h2>
 <p>本章以原論文、官方方法文件及<strong>本教材實際原始碼</strong>交叉核對。公式推導與計算例由本教材重新整理，未重製原論文圖版或全文。</p>
 <ul>
 <li><strong>Gharangik, A. M. &amp; Chaudhry, M. H. (1991).</strong> Numerical simulation of hydraulic jump. <em>Journal of Hydraulic Engineering</em>, 117(9), 1195–1211. <a href="https://doi.org/10.1061/%28ASCE%290733-9429%281991%29117%3A9%281195%29">DOI</a>。p.1197 式 (1)–(4) 為深度平均 Boussinesq 控制式；p.1198 說明省略混合時間／空間導數的穩態迭代；pp.1198–1199 說明原論文的 MacCormack 與 two-four。其算法不能與本教材後續改寫的自訂核心混稱。</li>

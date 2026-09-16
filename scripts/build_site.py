@@ -51,6 +51,9 @@ def render_markdown(source):
                 f'<div class="math-display" tabindex="0" role="region" aria-label="公式，可左右捲動">\\[{html.escape(equation)}\\]</div>')
         else:
             rendered = rendered.replace(token, f'<span class="math-inline">\\({html.escape(equation)}\\)</span>')
+    # Give chapter links a visible heading target; retain generated aliases.
+    rendered = re.sub(r'<p><a id="([^"]+)"></a></p>\s*<h2 id="([^"]+)">',
+                      r'<h2 id="\1"><span id="\2"></span>', rendered)
     rendered = re.sub(r'(<h2[^>]*>本章導覽</h2>\s*<ul>.*?</ul>)',
                       r'<nav class="chapter-toc" aria-label="本章導覽">\1</nav>', rendered, flags=re.S)
     def rewrite(match):
@@ -76,8 +79,9 @@ def render_markdown(source):
 
 def guide_page(slug, title, source):
     style_version = hashlib.sha256((ROOT / 'assets/site.css').read_bytes()).hexdigest()[:12]
+    script_version = hashlib.sha256((ROOT / 'assets/site.js').read_bytes()).hexdigest()[:12]
     nav = ''.join(f'<a href="{key}.html"' + (' aria-current="page"' if key == slug else '') + f'>{name}</a>' for key, (name, _) in PAGES.items())
-    if slug == 'methods':
+    if slug in {'methods', 'install-windows'}:
         nav += '<a href="#main">本章導覽 ↑</a>'
     legacy = ''
     if slug in {'instructor', 'credits'}:
@@ -86,7 +90,7 @@ def guide_page(slug, title, source):
     if slug == 'methods':
         config = {'tex': {'inlineMath': [['\\(', '\\)']]}, 'svg': {'fontCache': 'local'}, 'options': {'enableMenu': False}}
         math = '<script>window.MathJax=' + json.dumps(config) + ';</script><script defer src="../../assets/vendor/mathjax/tex-svg.js"></script>'
-    return f'''<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：{title}。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css?v={style_version}"><script defer src="../../assets/site.js"></script>{math}</head><body>
+    return f'''<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：{title}。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css?v={style_version}"><script defer src="../../assets/site.js?v={script_version}"></script>{math}</head><body>
 <a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="{REPO}">GitHub ↗</a></nav></div></header>
 <div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / {title}</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2>{nav}<a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content">{legacy}{render_markdown(source)}<p class="doc-source">來源：GC1991 v1 教學教材 · <a href="{REPO}/blob/main/{source.relative_to(ROOT).as_posix()}">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>'''
 
@@ -102,7 +106,7 @@ def package_lab():
     archive = downloads / 'gc1991-lab-v1.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as output:
         for name in sorted([*manifest, 'CHECKSUMS.json']):
-            info = zipfile.ZipInfo('gc1991-lab/' + name, (2026, 9, 15, 0, 0, 0))
+            info = zipfile.ZipInfo('gc1991-lab/' + name, (2026, 9, 16, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             output.writestr(info, (LAB / name).read_bytes())

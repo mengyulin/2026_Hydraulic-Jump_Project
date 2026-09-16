@@ -30,11 +30,11 @@ scripts/check_site.py         靜態頁面／連結／下載檢查
 
 ## 教材修訂紀錄
 
-目前下載為 **v1／2026-09-15 方法文件修訂版**。依教師要求擴寫方法章，逐項核對方程與固定程式、執行文件中的計算例，再更新方法文件的校驗值；其餘 44 個教材檔案不變。詳見 [修訂紀錄](releases/2026-09-15-methods.md)。
+目前下載為 **v1／2026-09-16 Windows 安裝說明修訂版**。依教師要求重寫初學者操作流程，核對官方來源與教材腳本，補上逐步檢查及排錯。與前一版相比，只有 Windows 安裝文件改動，其餘 44 個教材檔案不變。詳見 [本次修訂紀錄](releases/2026-09-16-windows.md)；前次方法章擴充見 [2026-09-15 紀錄](releases/2026-09-15-methods.md)。
 
 - `downloads/gc1991-lab-v1.zip` 是目前接受版本；同目錄的 `zip-sha256.txt` 是其指紋。
-- `downloads/archive/` 保留 2026-09-14 的原版 ZIP 與原版校驗表。
-- 若日後變更計算核心、案例輸入或參考結果，須重新執行相應數值驗收；本次純方法文件擴充不重跑 CFD／參數矩陣。
+- `downloads/archive/` 保留 2026-09-14 與 2026-09-15 的 ZIP 及各版校驗表。
+- 若日後變更計算核心、案例輸入或參考結果，須重新執行相應數值驗收；文件修訂不改動或重算原始參考資料；平台安裝檢查只用既有固定案例驗證可重現性。
 
 ## 本機重建與預覽
 
@@ -59,6 +59,12 @@ Markdown 3.8.2 僅在建置時使用。網站為靜態 HTML，不需要網頁伺
 流程會檢查所有站內文件與錨點、核對目前接受的教材指紋、組裝 `_site/`，最後發布。發布目錄的最上層包含主首頁 `index.html`，因此網站首頁不會落到 `gc1991-lab/`。
 
 設定依據：[GitHub Pages 官方自訂工作流程文件](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。
+
+## Windows／WSL 安裝檢查
+
+`.github/workflows/check-wsl.yml` 是手動執行的檢查，在標準 `windows-2025` runner 安裝 Ubuntu 24.04，以 Linux 家目錄的一般使用者解壓並執行完整教材 ZIP。檢查包括安裝、三種既有方法、Jupyter API、教材核心及 Windows 端 localhost 連線。
+
+執行結果與未通過的步驟應保留，不能把「已建立檢查流程」當成通過。它也不能取代 Windows 11 桌面上的首次帳號設定、重開機、檔案總管與瀏覽器人工操作驗收。此流程僅 `workflow_dispatch` 觸發，不在每次文件編輯時自動重跑。
 
 ## 加入下一個工作項目
 
