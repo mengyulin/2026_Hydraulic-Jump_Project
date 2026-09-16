@@ -29,9 +29,9 @@ jobs:
       - name: Check the ZIP using a Linux home directory and ordinary user
         shell: pwsh
         run: |
-          $linuxWorkspace = (wsl -d Ubuntu-24.04 -u root -- wslpath -u $env:GITHUB_WORKSPACE).Trim()
+          $linuxWorkspace = (wsl -d Ubuntu-24.04 -u root --exec wslpath -u $env:GITHUB_WORKSPACE).Trim()
           if ($LASTEXITCODE -ne 0) { throw 'Cannot locate the checked-out kit from WSL.' }
-          wsl -d Ubuntu-24.04 -u root -- bash "$linuxWorkspace/scripts/check_wsl_kit.sh" "$linuxWorkspace"
+          wsl -d Ubuntu-24.04 -u root --exec bash "$linuxWorkspace/scripts/check_wsl_kit.sh" "$linuxWorkspace"
           if ($LASTEXITCODE -ne 0) { throw 'Teaching kit check failed.' }
       - name: Preserve verification evidence
         if: always()
