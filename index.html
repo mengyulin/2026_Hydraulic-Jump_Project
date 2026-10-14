@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>水躍學生專題｜Hydraulic Jump Project</title>
-<meta name="description" content="水躍學生專題入口：從 GC1991 三方法實驗出發，學習古典水理、Python、HEC-RAS 與 Basilisk，建立可重現的坡度轉折水躍研究。">
+<meta name="description" content="水躍學生專題入口：第一組深度平均模擬、第二組工程水理分析；使用共同 GC1991 案例，建立可重現的坡度轉折水躍研究。">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
 <script defer src="assets/site.js">
@@ -23,8 +23,9 @@
 </a>
 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button>
 <nav class="nav" id="site-nav" aria-label="主要導覽">
+<a href="#groups">兩組研究</a>
 <a href="#projects">工作項目</a>
-<a href="#research">研究問題</a>
+<a href="research-plan/comparison.html">共同比對</a>
 <a href="#roadmap">學期路線</a>
 <a href="#resources">學習資源</a>
 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">GitHub ↗</a>
@@ -42,9 +43,9 @@
 </h1>
 <p>用水理公式解釋水面，用共同案例比較模型。從水平渠道的入門實驗，逐步走向陡坡轉緩坡的水躍問題。</p>
 <div class="actions">
-<a class="button" href="gc1991-lab/index.html">開始 GC1991 實驗 <span aria-hidden="true">→</span>
+<a class="button" href="#groups">查看兩組研究 <span aria-hidden="true">→</span>
 </a>
-<a class="button secondary" href="#roadmap">查看學期路線</a>
+<a class="button secondary" href="gc1991-lab/index.html">開始 GC1991 實驗</a>
 </div>
 </div>
 <figure class="diagram">
@@ -98,7 +99,17 @@
 </div>
 </div>
 </section>
-<section id="projects" class="section">
+<section id="groups" class="section">
+<div class="wrap">
+<div class="section-title"><div><p class="eyebrow">Two teams / Shared cases</p><h2>兩個題目，一份共同證據</h2></div><p>第一組研究深度平均方程，第二組研究工程水理方法。從相同輸入出發，交換資料並共同解釋差異。</p></div>
+<div class="group-grid">
+<article class="group-card"><p class="eyebrow">第一組 · GROUP 01</p><h3>水躍之深度平均模擬</h3><p class="group-methods">Saint-Venant · Boussinesq 型 · 剪切淺水方程</p><p>比較不同方程的平均水面與能量描述，分辨物理修正、數值平滑與邊界條件的作用。</p><p class="small">SV／穩態 B 教材可用；SSWE 程式待教師交付。</p><a class="button" href="research-plan/group-1.html">第一組目標與工作 →</a></article>
+<article class="group-card"><p class="eyebrow">第二組 · GROUP 02</p><h3>水躍之工程水理分析</h3><p class="group-methods">Python standard step · HEC-RAS</p><p>以比能、比力與共軛水深解釋水面線，檢查工程設定與斷面間距對水躍定位的影響。</p><p class="small">Python 教材可用；HEC-RAS 配對案例待教師交付。</p><a class="button" href="research-plan/group-2.html">第二組目標與工作 →</a></article>
+</div>
+<div class="comparison-entry"><div><h3>兩組如何互相比對？</h3><p>共用 Test 4 輸入、原始量測站位與數值資料，先做 Python–SV 基準，再加入其餘可用方法。</p></div><a class="button secondary" href="research-plan/comparison.html">比對方式與 18 週時程 →</a></div>
+<p class="small muted" style="margin-top:18px">組別更新 2026.10.14。教師提供並驗收核心程式；學生重現、修改指定分析與輸入、製圖及解釋。</p>
+</div></section>
+<section id="projects" class="section tint">
 <div class="wrap">
 <div class="section-title">
 <div>
@@ -110,7 +121,7 @@
 <article class="work-feature">
 <div class="work-info">
 <span class="number">LAB 01</span>
-<span class="badge">教材已備妥 · macOS 已測</span>
+<span class="badge">固定三方法教材已備妥</span>
 <h3>GC1991 水躍實驗室</h3>
 <p>在同一個 Notebook 中，重現 Python standard-step、Basilisk Saint-Venant 與自訂模式，對照 Test 4 的實驗水面。</p>
 <div class="work-links">
@@ -143,7 +154,7 @@
 <span class="number">WORK 04</span>
 <span class="badge planned">完成共同基準後</span>
 <h3>坡度與尾水小型研究</h3>
-<p>用教師開放的案例進行 5–9 組受控比較，整理水躍位置、下游水深與總水頭損失。</p>
+<p>教師另版開放後，先做基準加兩個尾水變體，共 3 案例，整理水躍位置、下游水深與總水頭損失。</p>
 <p class="meta">Python / Basilisk · 資料與期末報告</p>
 </article>
 </div>
@@ -193,67 +204,72 @@
 <p class="eyebrow">03 / Semester roadmap</p>
 <h2>18 週，從重現到解釋</h2>
 </div>
-<p>依既有學期規劃安排，以週次表示。後續工作須等教師完成對應教材，再依課堂進度調整。</p>
+<p>兩組平行進行，在共同案例交會。週次由教師對照實際進度；後續案例須完成教師交付。</p>
 </div>
 <div class="table-wrap" tabindex="0" role="region" aria-label="18 週學期路線，可左右捲動">
-<table class="schedule">
-<thead>
-<tr>
+<table class="schedule team-schedule"><thead><tr>
 <th scope="col">週次</th>
-<th scope="col">學習與研究工作</th>
-<th scope="col">留下的成果</th>
-</tr>
-</thead>
-<tbody>
+<th scope="col">第一組　深度平均模擬</th>
+<th scope="col">第二組　工程水理分析</th>
+<th scope="col">共同交付</th>
+</tr></thead><tbody>
 <tr>
-<td>01–02</td>
-<td>認識問題、安裝環境、重現 GC1991 範例</td>
-<td>參考比較圖、輸入與輸出說明</td>
-</tr>
-<tr>
-<td>03–04</td>
-<td>閱讀 Python 水理公式，核對比能、比力與共軛水深</td>
-<td>手算與程式對照的 Notebook</td>
+<td>1–2</td>
+<td>重現 SV／B 型，認識模式差別</td>
+<td>重現 Python，認識 HEC-RAS 流程</td>
+<td>平台確認；輸入、座標、單位表</td>
 </tr>
 <tr>
-<td>05–06</td>
-<td>使用教師另行開放的案例，一次改一個參數</td>
-<td>預測、比較圖與變更紀錄</td>
+<td>3–4</td>
+<td>質量／動量、靜水壓、穩態 B 與剪切能概念</td>
+<td>比能／比力、共軛水深與標準步法手算</td>
+<td>一頁方程假設，交換解說</td>
 </tr>
 <tr>
-<td>07–08</td>
-<td>建立匹配的 HEC-RAS 案例，比較斷面間距</td>
-<td>期中 Python–HEC-RAS 比較</td>
+<td>5–6</td>
+<td>平均水面與診斷；教師準備 SSWE</td>
+<td>建立教師提供的 HEC-RAS 水平案例</td>
+<td>固定 C1，核對邊界與阻力</td>
 </tr>
 <tr>
-<td>09–10</td>
-<td>操作提供的 Basilisk 案例，閱讀邊界與數值設定</td>
-<td>基準與一組變例、診斷圖</td>
+<td>7–8</td>
+<td>解讀既有時間／網格證據；SSWE 就緒後重現</td>
+<td>指定的斷面間距對照與位置區間</td>
+<td>期中疊圖、位置定義、待解差異</td>
+</tr>
+<tr>
+<td>9–10</td>
+<td>已交付則加入 SSWE，否則深化 SV／B 分析</td>
+<td>改進讀檔／圖表與工程解釋</td>
+<td>固定量測點、RMSE 與水頭差規則</td>
 </tr>
 <tr>
 <td>11–12</td>
-<td>比較共同基準，完成教師指定的敏感度與驗證練習</td>
-<td>三模型比較與獨立的驗證說明</td>
+<td>新案例版中的已驗收模式</td>
+<td>新案例版中的核准尾水變動</td>
+<td>C2 共 3 案例；未交付則完成 C1 分析</td>
 </tr>
 <tr>
 <td>13–14</td>
-<td>完成小型坡度／尾水矩陣</td>
-<td>5–9 組可追溯案例與結果圖</td>
+<td>綜合方程、平滑與時間平均的作用</td>
+<td>綜合邊界、離散與工程假設的作用</td>
+<td>完整比較表；就緒且時間允許才延伸</td>
 </tr>
 <tr>
 <td>15–16</td>
-<td>做一項有目的的 Python 分析改動，整理主要發現</td>
-<td>改動前後比較、報告草稿</td>
+<td>深度平均報告；重現第二組分析</td>
+<td>工程分析報告；重現第一組分析</td>
+<td>缺項／失敗／限制表，共同結論初稿</td>
 </tr>
 <tr>
 <td>17–18</td>
-<td>交換案例重跑，完成報告與簡報</td>
-<td>程式、輸入、圖表與重現指南</td>
+<td>報告與簡報定稿</td>
+<td>報告與簡報定稿</td>
+<td>兩份報告、共同資料庫與重現指南</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 </div>
-<p class="small muted" style="margin-top:18px">本學期重點是可重現的比較與水理解釋。新閉合公式、機器學習及大規模三維 CFD 不列為必做成果。</p>
+<p class="small muted" style="margin-top:18px"><a href="research-plan/comparison.html#gates">查看共同交付與完成判準 →</a>　未交付新案例時先完成固定基準；新閉合公式、機器學習及大規模三維 CFD 不列為必做成果。</p>
 </div>
 </section>
 <section id="resources" class="section tint">
@@ -317,7 +333,7 @@
 <div class="wrap footer-inner">
 <div>
 <strong>Hydraulic Jump Project</strong>
-<p>Prof. Lin · 水躍學生專題 · 內容更新 2026.09.14</p>
+<p>Prof. Lin · 水躍學生專題 · 內容更新 2026.10.14</p>
 </div>
 <div>
 <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project">專案原始碼</a> · <a href="guides/gc1991/credits.html">資料來源與授權說明</a>

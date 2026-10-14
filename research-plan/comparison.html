@@ -1,0 +1,291 @@
+<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>共同比對與 18 週時程｜水躍學生專題</title><meta name="description" content="共同比對與 18 週時程：18 週大學部水躍專題的研究目標、工作內容、預期成果與共同比對方式。"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><script defer src="../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../gc1991-lab/index.html">GC1991 實驗室</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2><a href="group-1.html">第一組　水躍之深度平均模擬</a><a href="group-2.html">第二組　水躍之工程水理分析</a><a href="comparison.html" aria-current="page">共同比對與 18 週時程</a><a href="#contents">本頁導覽 ↑</a><a href="../guides/gc1991/methods.html">方程與方法教材</a></nav><main id="main" class="doc-content"><h1 id="18">共同比對與 18 週時程</h1>
+<p><strong>兩組共用 · 更新 2026-10-14</strong></p>
+<p><a href="group-1.html">第一組「水躍之深度平均模擬」</a>與<a href="group-2.html">第二組「水躍之工程水理分析」</a>研究同一渠道與邊界下的水面、水躍位置及能量變化。共同產出一份可讀資料庫與比較圖，各自撰寫有不同重點的報告。</p>
+<p><strong>起點：GC1991 Test 4 水平渠道。</strong> 教師提供並驗收核心程式與案例，學生重現、手算核對、修改指定的分析／繪圖及已開放的輸入。不預設較複雜模式較準，也不以模型間一致取代實驗驗證。</p>
+<h2 id="contents"><span id="_1"></span>本頁導覽</h2>
+<ul>
+<li><a href="#cases">案例與共同輸入</a></li>
+<li><a href="#workflow">比對流程</a></li>
+<li><a href="#metrics">共同指標與解讀</a></li>
+<li><a href="#deliverables">交換資料與成果</a></li>
+<li><a href="#schedule">18 週分工</a></li>
+<li><a href="#gates">交付與完成判準</a></li>
+</ul>
+<h2 id="cases"><span id="_2"></span>案例與共同輸入</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>階段</th>
+<th>案例</th>
+<th>何時開始</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C0</td>
+<td>古典矩形水躍手算，共軛水深、比力與能量損失</td>
+<td>兩組共同完成；無摩擦條件本身不能唯一決定水躍位置</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>固定 GC1991 Test 4 水平渠道</td>
+<td>Python／SV／B 型可先做；HEC-RAS 配對由教師提供</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>同一渠道的小型尾水研究</td>
+<td>教師另版開放並驗收輸入後，做基準加兩個變體，共 3 案例</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>陡坡至緩坡的共同合成案例</td>
+<td>正常水深、坡床程式與 HEC-RAS 配對檢查完成後才延伸</td>
+</tr>
+</tbody>
+</table></div>
+<p>C2 順利且時間允許才擴為至多 5 案例。SSWE 依交付狀態加入 C1 或指定的獨立案例；無法匹配幾何與阻力時另表呈現。沒有觀測資料的坡度轉折案例標為合成研究。</p>
+<h3 id="c1">C1 固定輸入表</h3>
+<p>下列是<strong>既有教學設定</strong>，不表示已完整恢復原論文的個別試驗條件。原實驗阻力與出口站位仍有待查核。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>量</th>
+<th>共同設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幾何與座標</td>
+<td>水平矩形渠道，B = 0.46 m，底床 z = 0，x = 0.305–14.0 m，向下游為正</td>
+</tr>
+<tr>
+<td>重力與阻力</td>
+<td>g = 9.81 m/s²，Manning n = 0.008；完整水力半徑 R = Bh/(B + 2h)</td>
+</tr>
+<tr>
+<td>上游</td>
+<td>h = 0.043 m，u = 2.737 m/s；單寬流量 q = 0.117691 m²/s</td>
+</tr>
+<tr>
+<td>HEC-RAS 流量</td>
+<td>總流量 Q = Bq = 0.05413786 m³/s，不以 q 代入 Q</td>
+</tr>
+<tr>
+<td>下游</td>
+<td>h = 0.222 m；各方法的實際邊界處理另列</td>
+</tr>
+<tr>
+<td>量測</td>
+<td>原始座標的 13 個域內水深點；不平移曲線或挑除不吻合點</td>
+</tr>
+<tr>
+<td>Python 基準</td>
+<td>standard-step dx = 0.005 m</td>
+</tr>
+<tr>
+<td>SV 基準</td>
+<td>N512，計算至 1200 s，平均 1000–1200 s</td>
+</tr>
+<tr>
+<td>B 型基準</td>
+<td>M92/B-on，計算至 300 s，平均 200–300 s</td>
+</tr>
+</tbody>
+</table></div>
+<p>物理條件一致不要求不同方法使用相同格數；各方法的離散、時間步、平均窗、版本及損失處理仍須記錄。設定與限制詳見<a href="../guides/gc1991/methods.html">既有方法教材</a>。</p>
+<h2 id="workflow"><span id="_3"></span>比對流程</h2>
+<ol>
+<li><strong>對齊輸入。</strong> 教師指定案例與可修改範圍；第二組彙整輸入表，第一組核對 SI 單位、座標、Q／q 與阻力。</li>
+<li><strong>各組先重現。</strong> 第一組做 SV／B 型，第二組做 Python；HEC-RAS／SSWE 經教師交付後加入。</li>
+<li><strong>先建立 Python–SV 基準。</strong> 確認共同資料讀取與位置定義，再擴為各可用模式的比較。</li>
+<li><strong>交換資料、各自製圖。</strong> 兩組用同一份數值剖面與量測表，獨立產生同一張疊圖及誤差表。</li>
+<li><strong>依序解釋差異。</strong> 先查輸入與邊界，再查數值與取樣，最後討論方程、閉合及量測不確定性。</li>
+<li><strong>交叉重現。</strong> 每組依對方說明重現一份案例或分析流程，共同確認資料，再各自提出研究解釋。</li>
+</ol>
+<h2 id="metrics"><span id="_4"></span>共同指標與解讀</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>比較量</th>
+<th>共同做法</th>
+<th>解讀限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>水深／水位剖面</td>
+<td>輸出 x、底床 z、h、水位 eta；在相同原量測站位插值，列逐點誤差、RMSE 及樣本數</td>
+<td>不比圖片像素，不以水平平移改善吻合</td>
+</tr>
+<tr>
+<td>水躍位置</td>
+<td>各報原生定義：Python 匹配點、HEC-RAS 相鄰斷面區間、動力模式的既定指標</td>
+<td>Fr = 1、x50、實驗 roller toe 不能當成同一個量</td>
+</tr>
+<tr>
+<td>共用 x50 指標</td>
+<td>教師在新比較前固定參考水深、搜尋區間及取樣法；HEC-RAS 仍保留斷面包絡</td>
+<td>x50 只是操作性指標；多重或無交點記「不可唯一判定」</td>
+</tr>
+<tr>
+<td>下游水深</td>
+<td>比共同的內部觀測斷面，保留位置與不確定性</td>
+<td>指定的尾水不是獨立預測；遠端水深不自動等於共軛水深</td>
+</tr>
+<tr>
+<td>工程水頭差</td>
+<td>同一對外部斷面，採共同報表定義 H_eng = z + h + u²/(2g)</td>
+<td>全河段損失含摩擦，不能直接稱局部水躍損失</td>
+</tr>
+<tr>
+<td>模式能量與收支</td>
+<td>另列實際的能量、通量與源項；保留 SSWE 剪切能及 B 型壓力功</td>
+<td>工程水頭不能替代完整模式能量；數值平滑不等於物理耗散</td>
+</tr>
+<tr>
+<td>時間與解析度</td>
+<td>工程穩態解對照已接受的晚期平均；列平均窗與變動，閱讀教師驗收證據</td>
+<td>平台重現與數值檢查不等於實驗驗證</td>
+</tr>
+</tbody>
+</table></div>
+<p>若找不到共同的近似靜水壓、小剪切外部斷面，工程水頭僅作診斷。原始 q、數值面通量及 q/h 的限制分別註記；自訂模式在突變區的局部速度尚未物理驗證。跳長與滾流長可討論其定義和模型能力，<strong>不以數值突升寬度當作實驗滾流長</strong>。</p>
+<h2 id="deliverables"><span id="_5"></span>交換資料與成果</h2>
+<p>每次交換包含案例說明、原始輸出、可讀剖面表、摘要及繪圖 Notebook。每張圖有單位、圖例、案例 ID、資料來源與產圖方法。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>資料類別</th>
+<th>最少欄位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>追溯</td>
+<td>case_id、run_id、組別、方法、軟體／程式版本</td>
+</tr>
+<tr>
+<td>輸入</td>
+<td>幾何、邊界、阻力形式與參數、數值設定</td>
+</tr>
+<tr>
+<td>剖面</td>
+<td>x、z、h、eta、q 或 Q，以及各欄單位</td>
+</tr>
+<tr>
+<td>時間與定位</td>
+<td>時刻／平均區間、位置定義與區間、穩態／變動說明</td>
+</tr>
+<tr>
+<td>證據與狀態</td>
+<td>量測來源、樣本數、檢查狀態、缺項或失敗原因</td>
+</tr>
+</tbody>
+</table></div>
+<p>缺少的量記 N/A，不填零。保留無水躍、數值失敗及未達穩態案例。最終交付 <strong>兩份研究報告與簡報、一份共同比較資料庫、一份重現指南</strong>；合理結論也可以是現有證據不足以判定差異原因。</p>
+<h2 id="schedule"><span id="18_1"></span>18 週分工</h2>
+<p>週次為學期內相對階段，由教師對照目前進度，不以本次更新日重新計算。每週短會；第 4、8、12、16、18 週共同檢視圖表與可重現資料。</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>週次</th>
+<th>第一組　深度平均模擬</th>
+<th>第二組　工程水理分析</th>
+<th>共同交付</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–2</td>
+<td>重現 SV／B 型，認識模式差別</td>
+<td>重現 Python，認識 HEC-RAS 流程</td>
+<td>平台確認；輸入、座標、單位表</td>
+</tr>
+<tr>
+<td>3–4</td>
+<td>質量／動量、靜水壓、穩態 B 與剪切能概念</td>
+<td>比能／比力、共軛水深與標準步法手算</td>
+<td>一頁方程假設，交換解說</td>
+</tr>
+<tr>
+<td>5–6</td>
+<td>平均水面與診斷；教師準備 SSWE</td>
+<td>建立教師提供的 HEC-RAS 水平案例</td>
+<td>固定 C1，核對邊界與阻力</td>
+</tr>
+<tr>
+<td>7–8</td>
+<td>解讀既有時間／網格證據；SSWE 就緒後重現</td>
+<td>指定的斷面間距對照與位置區間</td>
+<td>期中疊圖、位置定義、待解差異</td>
+</tr>
+<tr>
+<td>9–10</td>
+<td>已交付則加入 SSWE，否則深化 SV／B 分析</td>
+<td>改進讀檔／圖表與工程解釋</td>
+<td>固定量測點、RMSE 與水頭差規則</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td>新案例版中的已驗收模式</td>
+<td>新案例版中的核准尾水變動</td>
+<td>C2 共 3 案例；未交付則完成 C1 分析</td>
+</tr>
+<tr>
+<td>13–14</td>
+<td>綜合方程、平滑與時間平均的作用</td>
+<td>綜合邊界、離散與工程假設的作用</td>
+<td>完整比較表；就緒且時間允許才延伸</td>
+</tr>
+<tr>
+<td>15–16</td>
+<td>深度平均報告；重現第二組分析</td>
+<td>工程分析報告；重現第一組分析</td>
+<td>缺項／失敗／限制表，共同結論初稿</td>
+</tr>
+<tr>
+<td>17–18</td>
+<td>報告與簡報定稿</td>
+<td>報告與簡報定稿</td>
+<td>兩份報告、共同資料庫與重現指南</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="gates"><span id="_6"></span>交付與完成判準</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>交付點</th>
+<th>完成證據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G0 共同基準</td>
+<td>手算與程式核對、輸入表、可執行環境</td>
+</tr>
+<tr>
+<td>G1 工程配對</td>
+<td>第二組 Python–HEC-RAS 匯出資料及設定差異表；待教師案例</td>
+</tr>
+<tr>
+<td>G2 動力模式</td>
+<td>第一組 SV／B 型重現與診斷；SSWE 另經教師交付驗收</td>
+</tr>
+<tr>
+<td>G3 共同報表</td>
+<td>同案例與觀測點的各可用模式比較，缺項列原因</td>
+</tr>
+<tr>
+<td>G4 小型研究</td>
+<td>教師另版開放後的 3 案例尾水研究，保留結果或失敗分類</td>
+</tr>
+<tr>
+<td>G5 結案</td>
+<td>兩份報告、共享資料與指南；另一組可重現至少一份案例或分析</td>
+</tr>
+</tbody>
+</table></div>
+<p>G0–G5 是交付點，與第一／第二組編號無關。教師案例延遲時，先完成已提供程式的重現與解釋，縮減案例數，保留待完成項；不轉嫁核心開發。全套新閉合公式、機器學習、大規模 CFD 與完整 GN 精度研究不列為本學期必做成果。</p><p class="doc-source">研究規劃更新：2026-10-14 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/docs/research-plan/comparison.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>

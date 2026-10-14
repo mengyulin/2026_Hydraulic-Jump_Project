@@ -1,0 +1,79 @@
+<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第一組　水躍之深度平均模擬｜水躍學生專題</title><meta name="description" content="第一組　水躍之深度平均模擬：18 週大學部水躍專題的研究目標、工作內容、預期成果與共同比對方式。"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><script defer src="../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../gc1991-lab/index.html">GC1991 實驗室</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2><a href="group-1.html" aria-current="page">第一組　水躍之深度平均模擬</a><a href="group-2.html">第二組　水躍之工程水理分析</a><a href="comparison.html">共同比對與 18 週時程</a><a href="#contents">本頁導覽 ↑</a><a href="../guides/gc1991/methods.html">方程與方法教材</a></nav><main id="main" class="doc-content"><h1 id="_1">水躍之深度平均模擬</h1>
+<p><strong>第一組 · 18 週大學部專題 · 更新 2026-10-14</strong></p>
+<p>用教師提供的 Python 操作介面與 Basilisk 程式，研究不同深度平均方程如何描述水面、水躍位置與能量變化。先重現 Saint-Venant 與現有 Boussinesq 型範例，再於教師交付後加入剪切淺水方程（SSWE）。</p>
+<p><strong>現在可以開始：</strong> 固定 GC1991 Test 4 的 SV／B 型教材已備妥。SSWE 目前有理論與文獻路線，程式尚待教師建立及驗收。</p>
+<h2 id="contents"><span id="_2"></span>本頁導覽</h2>
+<ul>
+<li><a href="#objectives">研究目標</a></li>
+<li><a href="#work">工作內容</a></li>
+<li><a href="#outcomes">預期成果</a></li>
+<li><a href="#exchange">與第二組如何比對</a></li>
+<li><a href="#start">本週先做什麼</a></li>
+</ul>
+<h2 id="objectives"><span id="_3"></span>研究目標</h2>
+<ol>
+<li>說明 Saint-Venant、Boussinesq 型與剪切淺水模式保留哪些物理量，以及壓力、速度分布與耗散的假設。</li>
+<li>使用共同案例，比較各模式的平均水面、過渡位置與能量描述。</li>
+<li>分辨物理修正、數值平滑、邊界條件及尚未達穩態造成的差異，提出有證據支持的解釋。</li>
+</ol>
+<p>核心問題是：<strong>加入非靜水壓或剪切相關項後，哪些可觀測量改變？這些改變是否超過數值與取樣的不確定性？</strong></p>
+<h2 id="work"><span id="_4"></span>工作內容</h2>
+<div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
+<thead>
+<tr>
+<th>工作</th>
+<th>學生要做的事</th>
+<th>教師提供與確認</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1-1 方程理解</td>
+<td>製作狀態量、守恆式、壓力／剪切假設與耗散項比較表</td>
+<td>選讀教材與符號說明；完整推導作延伸閱讀</td>
+</tr>
+<tr>
+<td>G1-2 SV 基準</td>
+<td>執行固定 Test 4，提取平均水面、收支與時間紀錄</td>
+<td>已驗收的 Saint-Venant 核心、設定與參考輸出</td>
+</tr>
+<tr>
+<td>G1-3 B 型比較</td>
+<td>執行 M92/B-on，與 SV 比較；解讀教師提供的 B-off 證據</td>
+<td>GC1991 穩態 B 型修正與數值輸運的說明</td>
+</tr>
+<tr>
+<td>G1-4 剪切淺水</td>
+<td>理解剪切能與附加狀態；程式交付後重現一個案例</td>
+<td>SSWE 方程／閉合、額外初始與邊界資料、已測程式及參考輸出</td>
+</tr>
+<tr>
+<td>G1-5 綜合比較</td>
+<td>匯出共同物理量，與第二組交換資料，整理差異與限制</td>
+<td>共同座標、觀測站位、平均區間與比較定義</td>
+</tr>
+</tbody>
+</table></div>
+<p>現有 B 型程式是 <strong>GC1991 穩態 Boussinesq 型修正</strong>，不等於完整非定常 SGN。學生先使用這份已交付教材；不需自行撰寫 C 核心，也不需重跑既有未通過的細網格或強稀疏波研究。</p>
+<p>SSWE 的剪切能、耗散係數與額外邊界資料須有來源，不能默認為零或任意調整以降低同一組量測的 RMSE。若其阻力形式與 Manning 不同，要另列差異；同名或同值參數不一定代表相同物理阻力。</p>
+<h2 id="outcomes"><span id="_5"></span>預期成果</h2>
+<ul>
+<li><strong>方程比較表：</strong> 區分 SV、現有穩態 B 與計畫中的 SSWE，列出各自能描述的量與限制。</li>
+<li><strong>計算與分析 Notebook：</strong> 可重現 SV／B 型結果，附輸入、版本、平均區間及診斷紀錄。</li>
+<li><strong>SSWE 案例紀錄：</strong> 教師交付驗收後，加入一個案例及額外狀態／參數說明；未交付時列待完成。</li>
+<li><strong>研究報告與簡報：</strong> 說明水面差異、時間平均、數值平滑及物理解釋的證據與限制。</li>
+</ul>
+<p>最低核心成果是 SV／B 型的重現、方程比較與跨組分析。SSWE 建置由教師負責，未交付的核心不轉成學生從零開發或成績負擔。較貼近單一水面資料，不足以驗證內部流速、滾流或完整能量耗散。</p>
+<h2 id="exchange"><span id="_6"></span>與第二組如何比對</h2>
+<p><a href="group-2.html">第二組「水躍之工程水理分析」</a>負責 Python 標準步法與 HEC-RAS。先以 <strong>Python standard-step–SV</strong> 建立共同基準，再加入 B 型、HEC-RAS 及已交付的 SSWE。</p>
+<p>第一組覆核共用輸入的單位、座標及流量，交付各模式的數值剖面與平均資訊；兩組各自讀取同一份交換資料，產生同一張水深疊圖。比較位置時保留各方法的定義，比較工程水頭時另列模式額外能量。</p>
+<p>完整輸入、指標、交付欄位及週次見<a href="comparison.html">共同比對與 18 週時程</a>。</p>
+<h2 id="start"><span id="_7"></span>本週先做什麼</h2>
+<ol>
+<li>進入 <a href="../gc1991-lab/index.html">GC1991 實驗室</a>，依安裝指南跑通固定範例。</li>
+<li>閱讀<a href="../guides/gc1991/methods.html">方程與方法</a>，整理 SV 與現有 B 型的一頁差異表。</li>
+<li>交付一張 SV／B 型水面圖與一份輸入／平均區間表，再與第二組交換。</li>
+</ol>
+<p>週次依實際教學進度對應；組別調整不代表重新開始學期。每週短會各帶一張圖、一個解釋與一個待釐清問題。</p><p class="doc-source">研究規劃更新：2026-10-14 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/docs/research-plan/group-1.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>

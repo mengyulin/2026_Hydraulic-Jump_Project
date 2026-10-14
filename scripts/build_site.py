@@ -7,6 +7,7 @@ from pathlib import Path
 import hashlib
 import html
 import json
+import os
 import re
 import shutil
 import zipfile
@@ -28,9 +29,16 @@ PAGES = {
     'credits': ('資料來源與授權', 'THIRD_PARTY_NOTICES.md'),
 }
 SOURCE_TO_PAGE = {(LAB / path).resolve(): slug for slug, (_, path) in PAGES.items()}
+PLANS = {
+    'group-1': '第一組　水躍之深度平均模擬',
+    'group-2': '第二組　水躍之工程水理分析',
+    'comparison': '共同比對與 18 週時程',
+}
+PLAN_SOURCE_TO_PAGE = {(ROOT / 'docs/research-plan' / f'{slug}.md').resolve():
+                       ROOT / 'research-plan' / f'{slug}.html' for slug in PLANS}
 
 
-def render_markdown(source):
+def render_markdown(source, output_dir=GUIDES):
     text = source.read_text()
     # Protect TeX before Markdown handles underscores, escapes and table pipes.
     # Leave fenced/inline code verbatim: dollar signs there are ordinary code.
@@ -63,13 +71,15 @@ def render_markdown(source):
         path, separator, fragment = link.partition('#')
         target = (source.parent / path).resolve()
         if target in SOURCE_TO_PAGE:
-            url = SOURCE_TO_PAGE[target] + '.html'
+            target = GUIDES / (SOURCE_TO_PAGE[target] + '.html')
+        elif target in PLAN_SOURCE_TO_PAGE:
+            target = PLAN_SOURCE_TO_PAGE[target]
         elif target == LAB / 'README.md':
-            url = '../../gc1991-lab/index.html'
-        elif attr == 'href' and target.suffix in {'.py', '.c', '.h', '.patch', '.ipynb'}:
+            target = LAB / 'index.html'
+        if attr == 'href' and target.suffix in {'.py', '.c', '.h', '.patch', '.ipynb'}:
             url = REPO + '/blob/main/' + target.relative_to(ROOT).as_posix()
         else:
-            url = '../../' + target.relative_to(ROOT).as_posix()
+            url = Path(os.path.relpath(target, output_dir)).as_posix()
         if separator:
             url += '#' + fragment
         return f'{attr}="{html.escape(url, quote=True)}"'
@@ -91,8 +101,16 @@ def guide_page(slug, title, source):
         config = {'tex': {'inlineMath': [['\\(', '\\)']]}, 'svg': {'fontCache': 'local'}, 'options': {'enableMenu': False}}
         math = '<script>window.MathJax=' + json.dumps(config) + ';</script><script defer src="../../assets/vendor/mathjax/tex-svg.js"></script>'
     return f'''<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}｜GC1991 水躍實驗室</title><meta name="description" content="GC1991 水躍教學教材：{title}。"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../../assets/site.css?v={style_version}"><script defer src="../../assets/site.js?v={script_version}"></script>{math}</head><body>
-<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#projects">全部工作項目</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="{REPO}">GitHub ↗</a></nav></div></header>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../../index.html#groups">兩組研究</a><a href="../../gc1991-lab/index.html">GC1991 實驗室</a><a href="quickstart.html">操作指南</a><a href="{REPO}">GitHub ↗</a></nav></div></header>
 <div class="wrap"><p class="breadcrumb"><a href="../../index.html">專題首頁</a> / <a href="../../gc1991-lab/index.html">GC1991 實驗室</a> / {title}</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="教材文件"><h2>GC1991 教材文件</h2>{nav}<a href="../../downloads/gc1991-lab-v1.zip" download>下載完整教材 ↓</a></nav><main id="main" class="doc-content">{legacy}{render_markdown(source)}<p class="doc-source">來源：GC1991 v1 教學教材 · <a href="{REPO}/blob/main/{source.relative_to(ROOT).as_posix()}">閱讀 Markdown 原文</a> · <a href="../../gc1991-lab/index.html">回到實驗室</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../../index.html">回到專題首頁 ↑</a></div></footer></body></html>'''
+
+
+def plan_page(slug, title):
+    source = ROOT / 'docs/research-plan' / f'{slug}.md'
+    nav = ''.join(f'<a href="{key}.html"' + (' aria-current="page"' if key == slug else '') + f'>{name}</a>' for key, name in PLANS.items())
+    return f'''<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}｜水躍學生專題</title><meta name="description" content="{title}：18 週大學部水躍專題的研究目標、工作內容、預期成果與共同比對方式。"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><script defer src="../assets/site.js"></script></head><body>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../gc1991-lab/index.html">GC1991 實驗室</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2>{nav}<a href="#contents">本頁導覽 ↑</a><a href="../guides/gc1991/methods.html">方程與方法教材</a></nav><main id="main" class="doc-content">{render_markdown(source, ROOT / 'research-plan')}<p class="doc-source">研究規劃更新：2026-10-14 · <a href="{REPO}/blob/main/docs/research-plan/{slug}.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>'''
 
 
 def package_lab():
@@ -124,7 +142,7 @@ def stage_site():
     stage.mkdir()
     for file in ('index.html', '.nojekyll'):
         shutil.copy2(ROOT / file, stage / file)
-    for folder in ('assets', 'guides', 'downloads'):
+    for folder in ('assets', 'guides', 'research-plan', 'downloads'):
         shutil.copytree(ROOT / folder, stage / folder)
     manifest = json.loads((LAB / 'CHECKSUMS.json').read_text())
     for name in [*manifest, 'CHECKSUMS.json', 'index.html']:
@@ -138,6 +156,9 @@ if __name__ == '__main__':
     GUIDES.mkdir(parents=True, exist_ok=True)
     for slug, (title, relative) in PAGES.items():
         (GUIDES / f'{slug}.html').write_text(guide_page(slug, title, LAB / relative))
+    (ROOT / 'research-plan').mkdir(exist_ok=True)
+    for slug, title in PLANS.items():
+        (ROOT / 'research-plan' / f'{slug}.html').write_text(plan_page(slug, title))
     package_lab()
     stage_site()
-    print(f'Rendered {len(PAGES)} linked Chinese guide pages.')
+    print(f'Rendered {len(PAGES)} guide pages and {len(PLANS)} research-plan pages.')

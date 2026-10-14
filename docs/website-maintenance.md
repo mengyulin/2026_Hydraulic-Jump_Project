@@ -12,6 +12,8 @@ README.md                     GitHub repository 首頁說明
 assets/                       全站樣式、導覽與本地 MathJax
 gc1991-lab/                    原教學工作項目，新增 index.html 入口
 guides/gc1991/                 從既有 Markdown 產生的九份網頁
+docs/research-plan/            兩組研究規劃與共同比對的可編輯 Markdown
+research-plan/                 從上述規劃產生的三份學生網頁
 downloads/                    固定教材 ZIP 與 SHA-256
 scripts/build_site.py         文件轉換、教材打包與發布內容組裝
 scripts/check_site.py         靜態頁面／連結／下載檢查
@@ -19,6 +21,10 @@ scripts/check_site.py         靜態頁面／連結／下載檢查
 ```
 
 所有站內連結使用相對路徑，支援 GitHub 專案網址的 `/2026_Hydraulic-Jump_Project/` 前綴。首頁不轉址到實驗室。
+
+兩組的目標、工作、成果與比對規則維護在 `docs/research-plan/`，再由原建置指令產生 `research-plan/`；不要只修改產生後的 HTML。首頁包含兩組入口與學期表，週次若變更應同步更新首頁。研究端 `org/student_two_group_plan.org` 和 `org/student_research_map.org` 是規劃依據；網站保留可獨立維護的學生版本，不依賴本機研究資料夾。
+
+組別自 2026-10-14 起為第一組「水躍之深度平均模擬」、第二組「水躍之工程水理分析」。這些頁面、網站導覽與首頁不屬於封存的 45 個教材檔案；更新規劃不需要改動 `CHECKSUMS.json`、核心程式或參考結果。
 
 ## 修改內容
 

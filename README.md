@@ -8,12 +8,19 @@
 
 ## 現階段工作
 
+組別與研究規劃更新於 2026-10-14：
+
+- **[第一組　水躍之深度平均模擬](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/group-1.html)**：Saint-Venant、Boussinesq 型與待教師交付的剪切淺水方程。
+- **[第二組　水躍之工程水理分析](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/group-2.html)**：Python standard step 與 HEC-RAS。
+- **[共同比對與 18 週時程](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/comparison.html)**：共用案例、指標、資料交換與完成判準。
+
 | 工作項目 | 狀態 | 內容 |
 |---|---|---|
-| GC1991 水平渠道實驗 | 教材已備妥；macOS 已測，Windows／WSL 待驗收 | 一本 Notebook 比較 standard-step、Saint-Venant、自訂 M92 |
+| GC1991 水平渠道實驗 | macOS 與 Windows Server／WSL 自動驗收通過；Windows 11 桌面操作待驗收 | 一本 Notebook 比較 standard-step、Saint-Venant、自訂 M92 |
 | 古典水理與坡度轉折 | 待教師提供案例 | 水理公式、急／緩流分支與共同幾何 |
 | HEC-RAS 工程比較 | 待教師提供案例 | 匹配輸入、mixed-flow 與斷面間距 |
-| 坡度／尾水小型研究 | 完成共同基準後 | 5–9 組受控案例及可重現報告 |
+| 剪切淺水計算 | 待教師建立與驗收核心 | 額外狀態量、閉合參數與共同案例比較 |
+| 尾水小型研究 | 共同基準完成且教師另版開放後 | 先做 3 案例；時間與案例就緒才擴至 5 案例或坡度延伸 |
 
 完整 18 週路線、學習資源與交付要求見[主首頁](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/)。
 

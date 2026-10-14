@@ -983,3 +983,22 @@ summary {
 .hero h1 {
   text-wrap:balance;
 }
+
+/* Two-group student research plans. */
+.group-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.group-card { border:1px solid var(--line); border-top:3px solid var(--blue); padding:30px; border-radius:4px; display:flex; flex-direction:column; align-items:flex-start; }
+.group-card:nth-child(2) { border-top-color:var(--teal); }
+.group-card h3 { font-size:1.55rem; }
+.group-card .group-methods { color:var(--blue); font-size:.88rem; margin:12px 0 18px; }
+.group-card p:not(.eyebrow):not(.group-methods) { color:var(--muted); }
+.group-card .small { padding:14px 0 22px; margin-top:auto; }
+.comparison-entry { display:flex; align-items:center; justify-content:space-between; gap:30px; background:var(--pale); padding:25px 30px; margin-top:24px; }
+.comparison-entry p { color:var(--muted); font-size:.94rem; margin-top:10px; }
+.comparison-entry .button { flex-shrink:0; }
+.team-schedule td:nth-child(2) { width:auto; }
+@media(max-width:760px) {
+  .group-grid { grid-template-columns:1fr; }
+  .group-card { padding:24px; }
+  .comparison-entry { flex-direction:column; align-items:flex-start; padding:24px; }
+  .team-schedule { min-width:780px; }
+}
