@@ -1,0 +1,115 @@
+{
+  "version": "v1.3",
+  "date": "2026-10-22",
+  "status": "local_checks_passed_WSL_and_HEC_runtime_pending",
+  "local_platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "local_python": "3.14.5",
+  "fresh_setup_passed": true,
+  "unit_tests_passed": 6,
+  "windows_csv_test": "Synthetic UTF-8 BOM/CRLF CSV and CRLF project inputs; three spacings; not HEC output",
+  "environment_passed": true,
+  "is_wsl": false,
+  "require_wsl_rejects_non_wsl": true,
+  "notebook_runs": [
+    {
+      "notebook": "p0_group_a.ipynb",
+      "passed": true,
+      "code_cells": 8,
+      "seconds": 6.280213834019378
+    },
+    {
+      "notebook": "p0_group_b.ipynb",
+      "passed": true,
+      "code_cells": 6,
+      "seconds": 1.3390100840479136
+    }
+  ],
+  "launchers": [
+    {
+      "notebook": "p0_group_a.ipynb",
+      "shell_launcher": true,
+      "notebook_api": true,
+      "slope_kernel": true,
+      "windows_localhost_tested": false
+    },
+    {
+      "notebook": "p0_group_b.ipynb",
+      "shell_launcher": true,
+      "notebook_api": true,
+      "slope_kernel": true,
+      "windows_localhost_tested": false
+    }
+  ],
+  "P0_reproduction": [
+    {
+      "method": "SS",
+      "max_depth_difference_m": 0.0,
+      "tolerance_m": 1e-08,
+      "passed": true
+    },
+    {
+      "method": "SV",
+      "max_depth_difference_m": 1.0000056338554941e-12,
+      "tolerance_m": 0.0002,
+      "passed": true
+    },
+    {
+      "method": "B",
+      "max_depth_difference_m": 9.331442007987079e-10,
+      "tolerance_m": 1e-05,
+      "passed": true
+    }
+  ],
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "jupyterlab": "4.6.4",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "Linux_Python312_wheel_availability": {
+    "passed": true,
+    "critical_packages": {
+      "numpy": {
+        "version": "2.5.4",
+        "wheel": "numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+      },
+      "scipy": {
+        "version": "1.18.1",
+        "wheel": "scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+      },
+      "matplotlib": {
+        "version": "3.11.2",
+        "wheel": "matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+      },
+      "jupyterlab": {
+        "version": "4.6.4",
+        "wheel": "jupyterlab-4.6.4-py3-none-any.whl"
+      },
+      "nbclient": {
+        "version": "0.11.0",
+        "wheel": "nbclient-0.11.0-py3-none-any.whl"
+      }
+    },
+    "scope": "pip target-wheel resolution on macOS; dependency environment markers may use the host. Not a Linux installation or runtime test."
+  },
+  "same_basilisk_snapshot_as_GC1991": true,
+  "basilisk_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+  "numerical_core_unchanged_from_v1_2": {
+    "lab.py": "84c20d4b31172d4c1c848a85b88ce82fcd5cf34be6f90028b0da66845951bcdd",
+    "b_operator.py": "bc69a444b6618b8757cca96f744149fb18c199be0877fd5566bee205a1cf75be",
+    "case_tools.py": "bda9954ab26fe8ff921d758db74d7697d404a2da882454352730a3bbb1b129a4",
+    "hec_tools.py": "ba4586fb140f6f8bcdf85d5c60d49f5b015c1f2e11287d9b0f6aebee456b3989",
+    "postprocess.py": "514e014114ab206a79962f556cfc30203d1634f5b2c770b7fdd7aeeced1c615a",
+    "requirements.txt": "790d13818f1025f57661fda883653f98852e35cfeff346d67e7bc3a326a554f6"
+  },
+  "WSL_runtime_verified": false,
+  "Windows_native_Python_verified": false,
+  "HEC_engine_verified": false,
+  "limits": [
+    "No active Windows/WSL runtime used; macOS clean install does not certify WSL.",
+    "Windows Explorer transfer, Windows localhost browser access and HEC-RAS 6.6 execution remain pending.",
+    "Numerical reproduction is not physical validation or grid convergence."
+  ]
+}

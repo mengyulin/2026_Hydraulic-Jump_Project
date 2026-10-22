@@ -1,0 +1,17 @@
+<p class="box">兩組均沿用原WSL／Ubuntu；第二組在Windows計算HEC。請依<a href="start.html#exchange">檔案交換步驟</a>保留同一次工作資料夾與原始配對輸入。</p>
+<p class="lead">這是計算前的核對表。第一次使用HEC-RAS請依<a href="p0_group_b.html#step-5">P0示範步驟5–9</a>開檔、計算、匯出及繪圖。</p>
+<p>目前提供6.6原生輸入與靜態檢查，Windows實機開檔／計算仍待教師預試；完整狀態集中在<a href="verification.html">驗證頁</a>。</p>
+<h2>P0與各變體都要核對</h2>
+<div class="scroll"><table><thead><tr><th>項目</th><th>本專題要求</th><th>查核來源</th></tr></thead><tbody>
+<tr><td>版本／單位</td><td>HEC-RAS 6.6；SI／Metric</td><td>About、單位設定與運算紀錄</td></tr>
+<tr><td>斷面</td><td>寬0.46 m垂直側壁，主槽邊界0與0.46</td><td>幾何編輯器、sections.csv</td></tr>
+<tr><td>斷面方向</td><td>River Station沿下游遞減；教材x沿下游遞增</td><td>入口RS30，出口RS0</td></tr>
+<tr><td>流量／阻力</td><td>總流量Q；案例指定Manning n；Cc=Ce=0</td><td>expected.json及原生輸入</td></tr>
+<tr><td>上游／下游</td><td>Normal Depth填實際S1；Known W.S.填出口水面高程</td><td>該案例expected.json</td></tr>
+<tr><td>流態</td><td>Mixed，保留兩端邊界</td><td>Steady Flow Analysis</td></tr>
+<tr><td>摩阻平均</td><td>Average Friction Slope</td><td>Options → Friction Slope Methods</td></tr>
+<tr><td>容許值</td><td>Standard Step與Critical Tol各0.00001 m；Max Error Tol 0.0001 m；最多100次；Flow Tol Ratio 0.000001</td><td>Options → Set Calculation Tolerances</td></tr>
+<tr><td>結果與警告</td><td>保存實際原生輸出、計算訊息與臨界水深替代</td><td>Compute記錄、輸出表</td></tr>
+<tr><td>比較來源</td><td>真正HEC匯出與paired_ss.csv配對</td><td>保留原表及CSV，不能把Python值當HEC結果</td></tr>
+</tbody></table></div>
+<p>填寫隨包的<a href="../templates/hec_acceptance.org" download>HEC實機驗收表</a>。精確P0輸入與逐步介面操作僅在<a href="p0_group_b.html">完整示範</a>維護，這裡不另複製數值說明。</p>

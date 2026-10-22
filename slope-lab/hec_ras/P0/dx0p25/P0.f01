@@ -1,0 +1,11 @@
+Flow Title=P0 fixed discharge and tailwater
+Program Version=6.60
+Number of Profiles= 1
+Profile Names=P0
+River Rch & RM=SlopeChannel,Main            ,30
+.0541379
+Boundary for River Rch & Prof#=SlopeChannel,Main            , 1
+Up Type= 3
+Up Slope=0.0086825363565124943
+Dn Type= 1
+Dn Known WS=0.16765584239734929

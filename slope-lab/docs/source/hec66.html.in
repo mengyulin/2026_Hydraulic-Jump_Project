@@ -1,0 +1,24 @@
+<p class="lead">本頁說明如何在 HEC-RAS 6.6 計算坡度變化矩形渠道。HEC-RAS 是 Hydrologic Engineering Center's River Analysis System；本案只使用一維定常混合流功能。</p>
+<p>先讀<a href="problem.html">渠道與邊界條件</a>、<a href="group_b.html">第二組完整流程</a>。P0長30 m、寬0.46 m，流量固定；入口為超臨界正常水深，出口為指定次臨界尾水。</p>
+<div class="box note"><strong>教師課前檢查：</strong>輸入檔已做文字欄位與幾何回讀檢查，但目前尚未在HEC-RAS 6.6實際開啟及計算。請先以P0完成本頁檢查，再發給學生。這個狀態與Python程式的數值重現分開記錄。</div>
+<h2>1. 哪些檔案要一起保留？</h2>
+{{HEC_FILES}}
+<p>將 <code>hec_ras/P0/</code> 複製到Windows工作資料夾，先開啟 <code>dx0p5/P0.prj</code>，再依序做 <code>dx0p25</code>、<code>dx0p125</code>。這些名稱分別表示0.5、0.25、0.125 m斷面間距。</p>
+<h2>2. 核對幾何與單位</h2>
+<ol><li>Project使用SI Units（公尺、秒及立方公尺每秒）。河道名為SlopeChannel，河段名為Main。</li><li>River Station從入口30遞減到出口0；本教材的 \(x\) 則從0增加到30。相鄰河段長度為 \(\Delta x\)。</li><li>每個斷面為垂直側壁矩形：橫向站距0與0.46 m，兩個底點同高，壁頂比渠底高2 m。</li><li>Bank Stations（主槽左右邊界）為0與0.46，沒有額外灘地輸水；各區 \(n\) 為該案例值，收縮／擴張係數 \(C_c=C_e=0\)。</li></ol>
+<p>可用下式核對斷面計算，\(h\) 為當地水深：</p>
+\[A=0.46h,\qquad P_w=0.46+2h,\qquad R=\frac{0.46h}{0.46+2h}.\]
+<h2>3. 核對流量與邊界</h2>
+<p>Steady Flow Data（定常流資料）填<strong>總流量 \(Q\)</strong>，不是單位寬流量 \(q\)。P0文字檔實際儲存 \(Q=0.0541379\,\mathrm{m^3/s}\)，完整捨入資訊在 <code>expected.json</code>。</p>
+<ul><li>上游選 Normal Depth（正常水深），填入上游實際坡度 \(S_1\)。P0為 \(0.008682536356512494\)，不是0.868。</li><li>下游選 Known W.S.（指定水面高程），填 \(z_b(L)+h_{\mathrm{out}}\)。P0出口床高為0，因此填 \(0.1676558423973493\,\mathrm{m}\)。</li></ul>
+<p>個人變體請讀其 <code>expected.json</code>，不要把P0尾水直接複製到需要改尾水的P2系列。</p>
+<h2>4. 核對求解選項</h2>
+<p>Steady Flow Analysis選Mixed（混合流），讓程式處理超臨界與次臨界流段。Options → Friction Slope Methods選<strong>Average Friction Slope</strong>，其目的是與Python使用相同的算術平均：</p>
+\[\bar S_f=\frac{S_{f,i}+S_{f,i+1}}{2}.\]
+<p>它與Average Conveyance（平均輸水能力）不同。核對下列容許值並保存實際畫面：Standard Step Tol與Critical Tol皆為 \(10^{-5}\,\mathrm{m}\)，Max Error Tol為 \(10^{-4}\,\mathrm{m}\)，最大試算次數100，Flow Tol Ratio為 \(10^{-6}\)。容許值描述求解器停止的條件，不代表結果一定有同樣的物理準確度。</p>
+<h2>5. 計算後檢查與匯出</h2>
+<p>按Compute後保存計算訊息、warnings（警告）、實際版本及原生結果。確認入口為超臨界、出口為次臨界，檢查是否有斷面被改用臨界水深。P0的Python跳接約在 \(x=12.16\,\mathrm{m}\)，先比較HEC相鄰斷面形成的區間，不要求粗斷面給出同樣多位小數。</p>
+<p>依<a href="group_b.html">第二組操作頁</a>匯出River Station、水面高程、福祿數及總流量，再用比較器核對。保留原始表格，別只留下加工後的CSV。</p>
+<details><summary>選用：以Windows控制器執行相同計畫</summary><pre>powershell -File scripts\run_hec66.ps1 -Project hec_ras\P0\dx0p125\P0.prj</pre><p>此腳本透過已安裝HEC-RAS的COM控制器（Windows軟體自動化介面）執行並保存返回訊息。製作環境未實測此控制器；若介面不相容，直接使用HEC-RAS圖形介面的Compute即可。它不取代上述水理檢查。</p></details>
+<p>完成後填寫 <code>templates/hec_acceptance.org</code>。需保留專案四種輸入檔、原生輸出、版本與運算證據、匯出表及比較圖。</p>
+<p class="small">查考：<a href="https://www.hec.usace.army.mil/confluence/rasdocs/ras1dtechref/6.6/overview-of-optional-capabilities/mixed-flow-regime-calculations">USACE混合流說明</a>、<a href="https://www.hec.usace.army.mil/confluence/rasdocs/rasum/6.6/performing-a-steady-flow-analysis/performing-steady-flow-calculations/simulation-options">6.6計算選項</a>。輸入格式來源及尚未完成的實機驗證見<a href="sources.html">來源附錄</a>。</p>

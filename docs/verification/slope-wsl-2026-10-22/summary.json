@@ -1,0 +1,59 @@
+{
+  "status": "passed_with_explicit_scope",
+  "WSL_runtime_verified": true,
+  "group_A_P0_Python_verified": true,
+  "group_B_P0_Python_verified": true,
+  "windows_localhost_HTTP_verified": true,
+  "windows_HEC_inputs_roundtrip_verified": true,
+  "GC1991_preserved_and_rerun": true,
+  "HEC_engine_verified": false,
+  "manual_Windows_browser_verified": false,
+  "run_url": "https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/39723045628",
+  "run_id": 39723045628,
+  "commit": "20bd8333cc35606f0ca58b098ee0f0ffd75eae0e",
+  "branch": "codex/slope-wsl-acceptance-20261022",
+  "windows": {
+    "WindowsProductName": "Windows Server 2025 Datacenter",
+    "WindowsVersion": "2009",
+    "OsBuildNumber": "26100",
+    "OsArchitecture": "64-bit"
+  },
+  "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "inputs": {
+    "gc1991-lab-v1.zip": {
+      "sha256": "870dd75d333641555c92f5f69e84cb95db713430d62bda871c05fb6cf2cac6fc",
+      "sealed_files": 45
+    },
+    "slope-lab-v1.3.zip": {
+      "sha256": "ebe3e6f52893f3606f6df45cc78c442efc92deaee29a732e6a4b386179b81e80",
+      "sealed_files": 241
+    }
+  },
+  "P0_depth_checks": [
+    {
+      "method": "ss",
+      "N": null,
+      "max_depth_difference_m": 0.0,
+      "tolerance_m": 1e-08,
+      "passed": true
+    },
+    {
+      "method": "sv",
+      "N": 512,
+      "max_depth_difference_m": 1.0000056338554941e-12,
+      "tolerance_m": 0.0002,
+      "passed": true
+    },
+    {
+      "method": "b",
+      "N": 1024,
+      "max_depth_difference_m": 9.331544703616856e-10,
+      "tolerance_m": 1e-05,
+      "passed": true
+    }
+  ],
+  "evidence_scope": "Windows Server runner with WSL2/Ubuntu24.04, same ordinary user and distro; not every student PC or HEC engine acceptance.",
+  "student_site_published_at_acceptance": false,
+  "publication_note": "Historical acceptance-time publication status; subsequent public release authorized on 2026-10-22. Numerical and platform evidence unchanged."
+}

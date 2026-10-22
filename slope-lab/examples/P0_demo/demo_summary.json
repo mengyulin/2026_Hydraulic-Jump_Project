@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-21",
+  "A_metrics": [
+    {
+      "method": "SS",
+      "SS_xJ_m": 12.160061201102373,
+      "x50_unique_m": 12.160061201102373,
+      "upstream_h_m": 0.07067283325671113,
+      "downstream_h_m": 0.16765584239734932,
+      "peak_h_m": null,
+      "peak_x_m": null,
+      "tail_wavelength_m": null,
+      "tail_efold_m": null,
+      "integrity": "passed_integrity",
+      "steady_screen": true
+    },
+    {
+      "method": "SV",
+      "SS_xJ_m": null,
+      "x50_unique_m": 12.171743769401086,
+      "upstream_h_m": 0.07067278692062831,
+      "downstream_h_m": 0.16765269897012838,
+      "peak_h_m": null,
+      "peak_x_m": null,
+      "tail_wavelength_m": null,
+      "tail_efold_m": null,
+      "integrity": "passed_integrity",
+      "steady_screen": false
+    },
+    {
+      "method": "B",
+      "SS_xJ_m": null,
+      "x50_unique_m": 12.208691089825178,
+      "upstream_h_m": 0.07064713498673236,
+      "downstream_h_m": 0.16766058632452738,
+      "peak_h_m": 0.17987698599140803,
+      "peak_x_m": 12.4179686781471,
+      "tail_wavelength_m": 0.5182246868676774,
+      "tail_efold_m": null,
+      "integrity": "passed_integrity",
+      "steady_screen": true
+    }
+  ],
+  "reproduction": [
+    {
+      "method": "SS",
+      "max_depth_difference_m": 0.0,
+      "tolerance_m": 1e-08,
+      "passed": true
+    },
+    {
+      "method": "SV",
+      "max_depth_difference_m": 1.0000056338554941e-12,
+      "tolerance_m": 0.0002,
+      "passed": true
+    },
+    {
+      "method": "B",
+      "max_depth_difference_m": 9.331442007987079e-10,
+      "tolerance_m": 1e-05,
+      "passed": true
+    }
+  ],
+  "B_SS": [
+    {
+      "dx_m": 0.5,
+      "sections": 61.0,
+      "xJ_m": 12.180341940137595,
+      "h1_m": 0.07146939412146047,
+      "h2_m": 0.16622772828430116
+    },
+    {
+      "dx_m": 0.25,
+      "sections": 121.0,
+      "xJ_m": 12.165266678663585,
+      "h1_m": 0.07140456659992359,
+      "h2_m": 0.16634320203030664
+    },
+    {
+      "dx_m": 0.125,
+      "sections": 241.0,
+      "xJ_m": 12.161187409251767,
+      "h1_m": 0.07138747954097074,
+      "h2_m": 0.16637366030762357
+    }
+  ],
+  "B_paired": [
+    {
+      "dx_m": 0.5,
+      "sections": 61.0,
+      "Q_written_m3_s": 0.0541379,
+      "SS_xJ_m": 12.18035373923206
+    },
+    {
+      "dx_m": 0.25,
+      "sections": 121.0,
+      "Q_written_m3_s": 0.0541379,
+      "SS_xJ_m": 12.165278986574691
+    },
+    {
+      "dx_m": 0.125,
+      "sections": 241.0,
+      "Q_written_m3_s": 0.0541379,
+      "SS_xJ_m": 12.16119489269866
+    }
+  ],
+  "HEC_engine_run": false,
+  "HEC_comparisons": [],
+  "scope": "Newly executed P0 walkthroughs. Python reproduction only; no actual HEC result.",
+  "executed_notebook_sha256": {
+    "p0_group_a.ipynb": "532de6c3c6efe70096883b3c12e8eb4c9b6d27a42bb95849bb1d5ce5f5b9a41f",
+    "p0_group_b.ipynb": "4fc57547c4fbdea01b36d074faba0e7e459b1e941a395a524f3cda3953b88364"
+  }
+}

@@ -1,0 +1,75 @@
+<p class="lead">本頁從「你已在 Windows／WSL 完成 GC1991」開始。兩組都沿用原來的 Ubuntu，在新資料夾安裝坡度套件，再用 Windows 瀏覽器操作。第二組的 HEC-RAS 6.6 另在 Windows 執行。</p>
+<div class="box"><strong>保留已完成的作業：</strong><code>~/gc1991-lab</code> 繼續保留；本次建立 <code>~/slope-lab</code>。沿用的是 WSL／Ubuntu 與系統工具，新套件有自己的 Python 環境、編譯工具及 Notebook。不要覆蓋舊資料夾，也不要複製舊 <code>.venv</code> 或 <code>.tools</code>。</div>
+<nav aria-label="安裝步驟"><ol><li><a href="#existing">確認既有 Ubuntu</a></li><li><a href="#download">下載並解壓新教材</a></li><li><a href="#setup">安裝與環境檢查</a></li><li><a href="#p0">啟動兩組 P0</a></li><li><a href="#exchange">第二組：與 HEC-RAS 交換檔案</a></li><li><a href="#next-class">下次上課與關閉</a></li><li><a href="#help">問題排除</a></li><li><a href="#acceptance">助教相容性驗收</a></li><li><a href="#alternatives">其他電腦的替代流程</a></li></ol></nav>
+<h2 id="existing">1. 確認既有 Ubuntu，不重新安裝 WSL</h2>
+<p><strong>執行位置：一般 PowerShell。</strong>先儲存 GC1991 Notebook，停止原本的 Jupyter 服務。開啟 PowerShell，查看你原來的 Ubuntu 名稱：</p>
+<pre>wsl --list --verbose</pre>
+<p>列表的 VERSION 應是 2。假設 NAME 是 <code>Ubuntu-24.04</code>，再輸入：</p>
+<pre>wsl -d Ubuntu-24.04</pre>
+<p>若 NAME 是 <code>Ubuntu</code>，改用 <code>wsl -d Ubuntu</code>，不要另外安裝一份。看到 <code>student@電腦名稱:…$</code> 表示已進入 Ubuntu；之後的 Bash 指令都在這裡執行。每次只複製一行，按 Enter，等命令完成再繼續。</p>
+<p><strong>執行位置：Ubuntu。</strong>確認系統 Python 與編譯工具：</p>
+<pre>cd ~
+python3 --version
+command -v cc make awk ar unzip</pre>
+<p>Python 需 3.10 以上；原課程 Ubuntu 24.04 的 Python 3.12 適用。下方應列出五個工具的路徑。已完成 GC1991 的同學通常已具備這些工具。<strong>本步完成：</strong>能進入原 Ubuntu、版本足夠、五個工具都找得到。</p>
+<h2 id="download">2. 把坡度教學包放進 Ubuntu 家目錄</h2>
+<ol><li>由課程首頁下載完整 <strong>slope-lab-v1.3.zip</strong>，保存到 Windows「下載」。離線閱讀本頁的同學，這就是你已取得的完整 ZIP。</li><li>確認完整檔名，不要保留重複下載產生的 <code>(1)</code>，也不要改成 <code>.zip.zip</code>。先不要在 Windows「下載」直接解壓。</li><li>在 Ubuntu 依序執行以下三行，以 Windows 檔案總管開啟 Linux 家目錄。</li></ol>
+<pre>cd ~
+pwd
+explorer.exe .</pre>
+<p><code>pwd</code> 應是 <code>/home/你的Linux帳號</code>。最後一行的句點不可省略。開出的檔案總管路徑類似 <code>\\wsl.localhost\Ubuntu-24.04\home\student</code>；把 ZIP 從 Windows「下載」<strong>複製</strong>到這裡。</p>
+<p><strong>回到 Ubuntu，先確認檔案及資料夾：</strong></p>
+<pre>cd ~
+ls -l slope-lab-v1.3.zip
+ls -d slope-lab</pre>
+<p>最後一行若顯示 <code>No such file or directory</code>，表示還沒有坡度資料夾，可以首次解壓。若已存在，<strong>不要覆蓋</strong>，先依下方「已有舊版坡度套件」保留舊作業。首次安裝接著執行：</p>
+<pre>unzip slope-lab-v1.3.zip
+cd ~/slope-lab
+ls</pre>
+<p>應看到 <code>setup.sh</code>、<code>start_lab.sh</code>、<code>p0_group_a.ipynb</code>、<code>p0_group_b.ipynb</code> 與 <code>cases</code>。ZIP 已有 slope-lab 這一層。Linux 完整路徑須用英文字元且無空白；不要在 <code>/mnt/c/</code>、OneDrive 或 Windows 桌面編譯。</p>
+<details><summary>已有舊版坡度套件，如何保留作業？</summary><p>先儲存並關閉舊服務。保留原資料夾，另選尚不存在的版本資料夾：</p><pre>cd ~
+mkdir slope-v1.3-work
+unzip slope-lab-v1.3.zip -d slope-v1.3-work
+cd ~/slope-v1.3-work/slope-lab</pre><p>若 mkdir 提示已存在，換一個新名稱。之後本頁所有 <code>cd ~/slope-lab</code> 都改用這個新路徑。每個資料夾各跑一次 setup；不能搬用舊編譯檔。</p></details>
+<h2 id="setup">3. 安裝新套件，再檢查執行環境</h2>
+<p><strong>執行位置：Ubuntu 的 slope-lab 資料夾。</strong>第一次需要網路下載 Python 套件；不要在 setup 前加 sudo。</p>
+<pre>bash setup.sh</pre>
+<p>安裝器會核對隨附 Basilisk 原始碼，在本套件 <code>.tools</code> 編譯工具與 SV／B 核心，在 <code>.venv</code> 安裝 NumPy／SciPy／Jupyter，註冊 <strong>Slope Channel Lab</strong> 核心，最後執行快速測試。編譯期間訊息可能暫停，詳細記錄在 <code>.tools/build.log</code> 與 <code>.tools/solvers/build.log</code>。</p>
+<p><strong>完成判準：</strong>最後看到 <code>Installation checks passed.</code>，沒有 Traceback 或編譯失敗。再執行：</p>
+<pre>.venv/bin/python scripts/check_environment.py --require-wsl --output runs/environment.json</pre>
+<p>看到 <code>Environment checks passed.</code>，且結果中的 <code>is_wsl</code> 為 true。此檢查包含 Python 套件、編譯器與 B 共用程式庫可否載入；<strong>它不等於已跑完 P0 或 HEC-RAS</strong>。第一次先由助教完成第8步的 P0 驗收。</p>
+<h2 id="p0">4. 依組別啟動 P0，只選一條</h2>
+<p><strong>執行位置：Ubuntu。</strong>兩組不必另裝 Windows Python；下列指令擇一。</p>
+<div class="scroll"><table><thead><tr><th>組別</th><th>啟動指令</th><th>接著閱讀</th></tr></thead><tbody><tr><td>第一組：標準步法／聖維南／Boussinesq 型</td><td><code>bash start_lab.sh p0_group_a.ipynb</code></td><td><a href="p0_group_a.html">第一組 P0 九步示範</a></td></tr><tr><td>第二組：Python 標準步法／HEC-RAS 6.6</td><td><code>bash start_lab.sh p0_group_b.ipynb</code></td><td><a href="p0_group_b.html">第二組 P0 十步示範</a></td></tr></tbody></table></div>
+<ol><li>啟動後終端機持續執行是正常的，請保持開啟。</li><li>複製這次顯示、含 <code>token=</code> 的完整 <code>http://localhost:…</code> 或 <code>http://127.0.0.1:…</code> 網址，貼到 Windows 的 Edge／Chrome。連接埠未必是 8888。</li><li>在 Jupyter 左側開啟所屬組別 P0 Notebook；核心選 <strong>Slope Channel Lab</strong>，不是 GC1991 Lab。</li><li>依示範由上往下按 Shift+Enter；<code>[*]</code> 表示計算中，變成數字後才進下一格。不要把 Notebook 的 Python 程式貼到 Ubuntu。</li></ol>
+<p><strong>完成判準：</strong>第一組出現 SS／SV／B 圖與重現核對；第二組先得到三種間距的 Python 圖與本次 <code>HEC_projects</code>。尚未算 HEC 時顯示「待完成真實HEC匯出」是正常的。</p>
+<h2 id="exchange">5. 第二組：Ubuntu 與 Windows HEC-RAS 的檔案交換</h2>
+<p>Windows 負責 HEC-RAS 6.6；Ubuntu 負責 Python 計算與繪圖。每次 P0 Notebook 的步驟1都會建立不同的 <code>runs/P0_B_八碼</code>。<strong>記下這次實際八碼</strong>，三個間距使用同一次工作資料夾。</p>
+<ol><li>先完成 <a href="p0_group_b.html#step-4">第二組示範步驟1–4</a>，產生 <code>HEC_projects</code> 和空的 <code>HEC_exports</code>。</li><li>另開一個 Ubuntu 終端機（保留 Jupyter 那個視窗），執行 <code>cd ~/slope-lab</code> 及 <code>explorer.exe .</code>。檔案總管進入 <code>runs → P0_B_實際八碼</code>。</li><li>在 Windows 本機建立例如 <code>C:\HJ\P0_B_同一八碼</code>。把整個 <strong>HEC_projects</strong> 資料夾複製進去；另建 <code>HEC_exports</code> 與 <code>HEC_raw</code> 資料夾。若 C:\HJ 無建立權限，改用學校允許、無中文空白且非 OneDrive 的本機路徑。</li><li>在 HEC-RAS 6.6 用 File → Open Project，開啟 Windows 複本 <code>HEC_projects\dx0p5\P0.prj</code>。三種間距資料夾為 <code>dx0p5</code>、<code>dx0p25</code>、<code>dx0p125</code>。每次均核對單位、Mixed 與邊界，再計算；詳細設定只在 <a href="p0_group_b.html#step-5">P0 示範步驟5–6</a> 說明。</li><li>把原始匯出表、版本與計算訊息存進 Windows <code>HEC_raw</code>。依<a href="p0_group_b.html#step-7">示範步驟7</a>整理四欄 UTF-8 CSV，存到 Windows <code>HEC_exports</code>。</li><li>三個 CSV 分別命名 <code>P0_dx0p5.csv</code>（61筆）、<code>P0_dx0p25.csv</code>（121筆）、<code>P0_dx0p125.csv</code>（241筆），另各有一列表頭。檔案總管開啟「副檔名」顯示，避免存成 <code>.csv.csv</code> 或其實是 .xlsx。</li><li>將三個 CSV <strong>複製回原 Ubuntu 工作資料夾的 HEC_exports</strong>。將 Windows 的整個 <code>HEC_raw</code> 及計算後的 <code>HEC_projects</code> 一起複製回來，後者改放新資料夾 <code>HEC_computed_windows</code>；保留原 <code>HEC_projects</code> 作配對輸入，不覆寫它。</li><li>回到原 Notebook，從<a href="p0_group_b.html#step-8">步驟8</a>讀取 CSV、繪圖與比較。不要重跑步驟1而產生另一個八碼；若曾關閉核心，依步驟8的復原說明連回原資料夾。</li></ol>
+<pre>Ubuntu：runs/P0_B_實際八碼/
+  HEC_projects/           原始配對輸入與 paired_ss.csv
+  HEC_exports/            三個真正的 HEC CSV
+  HEC_raw/                原表、版本、計算訊息與警告
+  HEC_computed_windows/   Windows 計算後的完整專案
+  paths.json             本次路徑紀錄</pre>
+<p>不只複製 .prj；它需要同資料夾的 .g01、.f01、.p01 等檔案。<code>paired_ss.csv</code> 永遠是 Python 基準，不能代填 HEC 輸出。<strong>完成判準：</strong>Notebook 顯示已完成 3／3 個 HEC 間距，且保留真正的計算來源；若有錯誤，先核對八碼、站號、單位、小數位與流量。</p>
+<h2 id="next-class">6. 下次上課與結束操作</h2>
+<p>下次從原 Ubuntu 進入 <code>~/slope-lab</code>，執行第4步對應指令即可，不需重跑 setup。P0 完成後，第一組改開 <code>bash start_lab.sh student_lab.ipynb</code>，第二組改開 <code>bash start_lab.sh group_b.ipynb</code>，進行個人案例。</p>
+<p>結束時先在 Notebook 按 Ctrl+S，再回到服務終端機按 Ctrl+C；若詢問是否關閉則輸入 y。只關閉瀏覽器不會停止計算服務。<code>runs</code> 與已儲存 Notebook 是作業；<code>.venv</code>／<code>.tools</code> 是本機環境，不必交作業。</p>
+<h2 id="help">7. 依停住的位置排除問題</h2>
+<ul><li><strong>找不到 Ubuntu：</strong>在 PowerShell 核對原發行版 NAME；不要為了名稱不同另裝一份。</li><li><strong>工具不齊：</strong>在 Ubuntu 執行 <code>sudo apt-get update</code>，再執行 <code>sudo apt-get install -y build-essential gawk python3 python3-venv unzip</code>；成功後回新套件重跑 setup。</li><li><strong>Python 套件或網路錯誤：</strong>保留錯誤訊息，修正網路後重跑 setup；不要以系統 pip 修改 GC1991 環境。</li><li><strong>核心仍是 GC1991 Lab：</strong>關閉舊服務，從 slope-lab 啟動，選 Slope Channel Lab。缺 SciPy 通常表示用錯 Python 環境或 setup 未完成。</li><li><strong>網址無法連線：</strong>確認服務仍開著，複製本次完整網址與 token。不要固定使用8888，也不要直接打開 .ipynb。</li><li><strong>「Moved folder」或編譯失敗：</strong>確認 Linux 路徑只有英文且無空白，在該資料夾重跑 setup，不搬用別人的 .tools。</li><li><strong>找不到 HEC CSV：</strong>確認檔案在 Ubuntu 同一次八碼資料夾；Windows 複本不會自動同步回來。</li><li><strong>B fixed-point failed／水面多重交越：</strong>前者保留 bootstrap、newton.json 與 metadata.json 給助教；後者可能是模型結果，不是安裝問題。不要靠改物理參數掩蓋失敗，也不要把 null 當成零。</li></ul>
+<h2 id="acceptance">8. 助教在 Windows／WSL 上的驗收</h2>
+<p>相同 Basilisk 來源與工具支持沿用環境；舊 GC1991 通過不代表新坡度套件已驗收。本版的本機檢查與尚待 WSL 實跑項目見<a href="verification.html">驗證範圍</a>。</p>
+<p>在完成 setup 的 Ubuntu 套件目錄執行以下命令。P0 輸出資料夾須尚不存在；重試時換新名稱，保留前次結果。</p>
+<pre>.venv/bin/python scripts/check_environment.py --require-wsl --output runs/environment.json
+.venv/bin/python scripts/verify_p0.py --output runs/P0_WSL_acceptance_01</pre>
+<p>第二行會真正重算 SS／SV／B，保存平台、設定、最大水深差與圖表。通過時顯示 <code>P0 reproduction passed</code>；再用第4–5步實際驗收兩份 Notebook、Windows 瀏覽器連線、三份 HEC 計算與檔案回傳，填寫 <a href="../templates/windows_wsl_acceptance.org">Windows／WSL 驗收表</a>。HEC 沒有執行時必須保持「待完成」。</p>
+<h2 id="alternatives">9. 替代流程：不是目前班級的主要路線</h2>
+<details><summary>macOS</summary><p>需 Python 3.10+ 與 Apple Command Line Tools。在英文無空白路徑解壓，執行 <code>bash setup.sh</code> 及第4步指令。環境檢查省略 <code>--require-wsl</code>；HEC 仍須移到 Windows 計算。</p></details>
+<details><summary>第二組 Windows 原生 Python（沒有沿用 WSL 時才使用）</summary><p>需另裝 Windows Python 3.10+ 與 HEC-RAS 6.6。將另一份乾淨套件解壓到例如 C:\HJ\slope-lab，不與 WSL 共用 .venv；在 PowerShell 執行：</p><pre>cd C:\HJ\slope-lab
+.\setup_group_b.ps1
+.\start_group_b.ps1 p0_group_b.ipynb</pre><p>若學校不允許 PowerShell 腳本，可使用等效指令，不需永久變更執行政策：</p><pre>py -3 -m venv .venv
+.venv\Scripts\python.exe -m pip install "numpy&gt;=2,&lt;3" "matplotlib&gt;=3.8,&lt;4" "jupyterlab&gt;=4.2,&lt;5"
+.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name slope-lab --display-name "Slope Channel Lab"
+.venv\Scripts\python.exe -m jupyterlab --no-browser --ip=127.0.0.1 p0_group_b.ipynb</pre><p>此路線只做第二組 Python 部分；不能在 Windows 原生環境編譯 SV／B。此替代流程仍需 Windows 實機確認。</p></details>
+<p class="small">2026-10-22 核對官方資料：<a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands">Microsoft：WSL 指令與發行版名稱</a>、<a href="https://learn.microsoft.com/en-us/windows/wsl/filesystems">Microsoft：檔案系統與 explorer.exe</a>、<a href="https://learn.microsoft.com/en-us/windows/wsl/networking">Microsoft：Windows 存取 WSL 的 localhost</a>。本頁檔名、核心與成功訊息以本套件程式為準。</p>

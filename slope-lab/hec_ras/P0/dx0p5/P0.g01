@@ -1,0 +1,807 @@
+Geom Title=P0 dx=0.5m
+Program Version=6.60
+Viewing Rectangle= -1 , 1 , 31 , -1
+
+River Reach=SlopeChannel    ,Main            
+Reach XY= 2
+               0              30               0               0
+Rch Text X Y=0,15
+Reverse River Text= 0
+
+Type RM Length L Ch R = 1 ,30,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=0 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.116933.0000000.1169328.4600000.1169328.46000002.116933
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,29.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=0.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.112592.0000000.1125915.4600000.1125915.46000002.112592
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,29,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=1 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.108250.0000000.1082502.4600000.1082502.46000002.108250
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,28.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=1.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.103909.0000000.1039090.4600000.1039090.46000002.103909
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,28,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=2 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.099568.0000000.0995677.4600000.0995677.46000002.099568
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,27.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=2.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.095226.0000000.0952264.4600000.0952264.46000002.095226
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,27,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=3 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.090885.0000000.0908852.4600000.0908852.46000002.090885
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,26.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=3.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.086544.0000000.0865439.4600000.0865439.46000002.086544
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,26,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=4 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.082203.0000000.0822026.4600000.0822026.46000002.082203
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,25.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=4.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.077861.0000000.0778614.4600000.0778614.46000002.077861
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,25,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.073520.0000000.0735201.4600000.0735201.46000002.073520
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,24.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=5.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.069179.0000000.0691788.4600000.0691788.46000002.069179
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,24,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=6 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.064838.0000000.0648376.4600000.0648376.46000002.064838
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,23.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=6.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.060496.0000000.0604963.4600000.0604963.46000002.060496
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,23,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=7 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.056155.0000000.0561550.4600000.0561550.46000002.056155
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,22.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=7.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.051814.0000000.0518138.4600000.0518138.46000002.051814
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,22,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=8 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.047472.0000000.0474725.4600000.0474725.46000002.047472
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,21.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=8.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.043131.0000000.0431312.4600000.0431312.46000002.043131
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,21,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=9 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.038790.0000000.0387900.4600000.0387900.46000002.038790
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,20.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=9.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.034449.0000000.0344487.4600000.0344487.46000002.034449
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,20,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=10 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.030107.0000000.0301074.4600000.0301074.46000002.030107
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,19.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=10.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.025766.0000000.0257662.4600000.0257662.46000002.025766
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,19,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=11 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.021425.0000000.0214249.4600000.0214249.46000002.021425
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,18.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=11.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.017282.0000000.0172823.4600000.0172823.46000002.017282
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,18,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=12 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.014191.0000000.0141913.4600000.0141913.46000002.014191
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,17.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=12.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.012587.0000000.0125871.4600000.0125871.46000002.012587
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,17,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=13 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.012034.0000000.0120344.4600000.0120344.46000002.012034
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,16.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=13.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.011680.0000000.0116805.4600000.0116805.46000002.011680
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,16,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=14 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.011327.0000000.0113265.4600000.0113265.46000002.011327
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,15.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=14.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.010973.0000000.0109726.4600000.0109726.46000002.010973
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,15,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=15 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.010619.0000000.0106186.4600000.0106186.46000002.010619
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,14.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=15.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.010265.0000000.0102647.4600000.0102647.46000002.010265
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,14,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=16 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.009911.0000000.0099107.4600000.0099107.46000002.009911
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,13.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=16.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.009557.0000000.0095568.4600000.0095568.46000002.009557
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,13,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=17 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.009203.0000000.0092028.4600000.0092028.46000002.009203
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,12.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=17.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.008849.0000000.0088489.4600000.0088489.46000002.008849
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,12,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=18 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.008495.0000000.0084949.4600000.0084949.46000002.008495
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,11.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=18.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.008141.0000000.0081409.4600000.0081409.46000002.008141
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,11,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=19 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.007787.0000000.0077870.4600000.0077870.46000002.007787
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,10.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=19.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.007433.0000000.0074330.4600000.0074330.46000002.007433
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,10,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=20 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.007079.0000000.0070791.4600000.0070791.46000002.007079
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,9.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=20.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.006725.0000000.0067251.4600000.0067251.46000002.006725
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,9,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=21 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.006371.0000000.0063712.4600000.0063712.46000002.006371
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,8.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=21.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.006017.0000000.0060172.4600000.0060172.46000002.006017
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,8,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=22 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.005663.0000000.0056633.4600000.0056633.46000002.005663
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,7.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=22.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.005309.0000000.0053093.4600000.0053093.46000002.005309
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,7,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=23 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.004955.0000000.0049554.4600000.0049554.46000002.004955
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,6.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=23.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.004601.0000000.0046014.4600000.0046014.46000002.004601
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,6,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=24 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.004247.0000000.0042474.4600000.0042474.46000002.004247
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,5.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=24.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.003893.0000000.0038935.4600000.0038935.46000002.003893
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=25 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.003540.0000000.0035395.4600000.0035395.46000002.003540
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,4.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=25.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.003186.0000000.0031856.4600000.0031856.46000002.003186
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,4,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=26 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.002832.0000000.0028316.4600000.0028316.46000002.002832
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,3.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=26.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.002478.0000000.0024777.4600000.0024777.46000002.002478
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,3,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=27 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.002124.0000000.0021237.4600000.0021237.46000002.002124
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,2.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=27.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.001770.0000000.0017698.4600000.0017698.46000002.001770
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,2,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=28 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.001416.0000000.0014158.4600000.0014158.46000002.001416
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,1.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=28.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.001062.0000000.0010619.4600000.0010619.46000002.001062
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,1,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=29 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.000708.0000000.0007079.4600000.0007079.46000002.000708
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,0.5,0.5,0.5,0.5
+BEGIN DESCRIPTION:
+x=29.5 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.000354.0000000.0003540.4600000.0003540.46000002.000354
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Type RM Length L Ch R = 1 ,0,0,0,0
+BEGIN DESCRIPTION:
+x=30 m downstream; analytic cosine slope; vertical rectangle.
+END DESCRIPTION:
+#Sta/Elev= 4
+.00000002.000000.0000000.0000000.4600000.0000000.46000002.000000
+#Mann= 3 ,0,0
+.0000000.0080000.0000000.0000000.0080000.0000000.4600000.0080000.0000000
+Bank Sta=0,0.46
+XS Rating Curve= 0 ,0
+XS HTab Horizontal Distribution= 5 , 5 , 5
+Exp/Cntr=0,0
+
+Use User Specified Reach Order=0
+GIS Ratio Cuts To Invert=-1
+GIS Limit At Bridges=0
+Composite Channel Slope=5

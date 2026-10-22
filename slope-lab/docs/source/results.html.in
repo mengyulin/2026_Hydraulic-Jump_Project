@@ -1,0 +1,41 @@
+<p class="lead">計算完成後，先確認算的是同一個問題，再判斷曲線與指標。不要只挑最平滑或最接近某條參考線的結果。</p>
+<p>本頁適用標準步法（SS）、聖維南淺水方程（SV）、定常壓力近似 Boussinesq 模型（B）與 HEC-RAS。每張圖至少標示案例、方法、網格或斷面間距，以及 SI 單位。</p>
+<h2 id="results-files">1. 每次執行會留下什麼？</h2>
+{{OUTPUT_TABLE}}
+<p>CSV 是逗號分隔的表格文字，可用試算表或 Python 讀取；JSON 是參數與摘要的結構化文字；DAT 是原程式輸出的數值表。<code>passed_integrity</code> 表示檔案、正水深與指定收支檢查通過；<code>steady_screen</code> 是另外的定常篩檢。<strong>這兩種「通過」都不等於物理模型已經驗證。</strong></p>
+<h2 id="results-profile">2. 先畫完整水面，再看局部</h2>
+<p>完整圖畫 \(0\le x\le30\,\mathrm{m}\) 的 \(\eta=z_b+h\)，附上床面；局部圖放大水躍與波尾。所有方法保留真實座標，先不把曲線水平平移來對齊，也不先平滑波動。這樣才看得出位置與波形的差異。</p>
+<figure><img src="../reference/P0_comparison.png" alt="P0標準步法、SV與B的完整水面及水躍局部比較"><figcaption>圖2　P0 已有數值基準。圖例 SS 為標準步法，SV 為聖維南模型，B 為本套件的定常壓力近似；Bed 是渠底。SV曲線為時段平均，B曲線為離散固定點經原程式續算後的水面。</figcaption></figure>
+<p>圖中的 B 波峰隨網格改變，是學生要研究的現象。標準步法的垂直跳接、SV 的跨格上升及 B 的波列來自不同的模型與離散方式，不能只用「哪條比較漂亮」選答案。</p>
+<h2 id="results-position">3. 水躍位置怎麼定義？先說清楚才比較</h2>
+<ul><li><strong>標準步法：</strong>\(x_{J,\mathrm{SS}}\) 是兩條有效分支比力相等的位置。</li><li><strong>HEC-RAS：</strong>報告相鄰超臨界與次臨界斷面形成的區間，不憑連線圖虛構一個更精細的精確位置。</li><li><strong>SV／B：</strong>本套件用水深越過共同參考高度的位置，作為數值比較指標。</li></ul>
+<p>先取該案例標準步法的躍前、躍後水深 \(h_{1,\mathrm{SS}},h_{2,\mathrm{SS}}\)，定義：</p>
+\[h_\alpha=h_{1,\mathrm{SS}}+\alpha\left(h_{2,\mathrm{SS}}-h_{1,\mathrm{SS}}\right),\qquad \alpha=0.1,0.5,0.9.\]
+<p>\(x_{50}\) 是水深由低向高穿越 \(h_{0.5}\) 的位置。若有且只有一個交越，摘要欄位 <code>x50_unique_m</code> 才有數值。若水面波動使它上穿多次，所有交點保留，而唯一位置記為 <code>null</code>，表示未定義。N/A（not applicable／not available）在這裡表示該指標不適用或證據不足，<strong>不是零</strong>。</p>
+<p>只有10%與90%上穿點都唯一時，才報：</p>
+\[L_{10\text{–}90}=x_{90}-x_{10}.\]
+<p>這是數值水面<strong>上升段寬度</strong>，不直接等於真實水躍或翻滾區長度。程式另保留「第一個交越」供補充描述，但不能拿它冒充原本要求的唯一交越。</p>
+<h2 id="results-depth">4. 水深、波峰、峰距與波尾</h2>
+<p>外側平均水深固定在相對於標準步法位置的兩個空間窗取樣，以減少直接比較波峰造成的混淆：</p>
+\[
+\bar h_{\mathrm{up}}=\frac{1}{1\,\mathrm{m}}\int_{x_{J,\mathrm{SS}}-3\,\mathrm{m}}^{x_{J,\mathrm{SS}}-2\,\mathrm{m}}h(x)\,\mathrm{d}x,\qquad
+\bar h_{\mathrm{down}}=\frac{1}{1\,\mathrm{m}}\int_{x_{J,\mathrm{SS}}+5\,\mathrm{m}}^{x_{J,\mathrm{SS}}+6\,\mathrm{m}}h(x)\,\mathrm{d}x.
+\]
+<p>這是共同取樣規則，不保證下游窗已完全沒有波。B 波動分析窗為：</p>
+\[x\in\left[x_{J,\mathrm{SS}},\ \min\left(x_{J,\mathrm{SS}}+8\,\mathrm{m},L-1\,\mathrm{m}\right)\right].\]
+<p>本套件報的是<strong>水深 \(h\) 的峰</strong>，不是水面高程 \(\eta\) 的峰。令第 \(k\) 個水深峰及其後的谷值為 \(h_{p,k},h_{v,k}\)，可定義：</p>
+\[A_k=h_{p,k}-h_{v,k},\qquad \Lambda_k=x_{p,k+1}-x_{p,k},\qquad
+\ell_{d,k}=\frac{x_{p,k+1}-x_{p,k}}{\ln(A_k/A_{k+1})}.\]
+<p>\(A_k\) 為峰谷差，\(Lambda_k\) 為相鄰峰距；大寫 \(\Lambda\) 與數值耗散倍率小寫 \(\lambda\) 不同。衰減尺度 \(ell_d\) 只有在振幅往下游減少時才有意義。</p>
+<p>程式用局部三點拋物線估計峰位與峰高，辨認峰谷差至少 \(10^{-5}\,\mathrm{m}\) 的波；排除第一峰後計算後續峰距的中位數。至少辨認四組峰谷、且第二組之後的振幅單調下降，才報衰減尺度的中位數。條件不足就報 N/A，仍可繳交峰谷序列與原因。</p>
+<h2 id="results-stability">5. 「穩定」有三種不同意思</h2>
+<ol><li><strong>重現性：</strong>同樣程式、同樣輸入能否重現既有數值結果？</li><li><strong>時間穩定性：</strong>晚一點取樣，平均水面是否仍在移動或波動？</li><li><strong>解析度穩定性：</strong>減小網格或時間步，位置、水深與波形是否變化減少？</li></ol>
+<p>SV 可以比較200–250與250–300秒的平均，並查看時間標準差。P0 的 SV512 已重現既有結果，但局部仍有時間波動；不要把平均水面寫成每一瞬間完全不變的水面。B 的小殘差與短續算只檢查固定點維持性，不能替代網格比較。</p>
+<p>可先用下面兩個量整理粗、細網格差異：</p>
+\[\delta x=\left|x_{50,\mathrm{fine}}-x_{50,\mathrm{coarse}}\right|,\qquad
+\epsilon_h=\frac{\left|\bar h_{\mathrm{fine}}-\bar h_{\mathrm{coarse}}\right|}{\left|\bar h_{\mathrm{fine}}\right|}\times100\%.\]
+<p>如果唯一 \(x_{50}\) 不存在，\(\delta x\) 也不能照算。位置 \(0.05\,\mathrm{m}\)、外側平均水深 \(2\%\) 是本專題的工程討論尺度，不是對所有波峰的硬性及格線，也不是實驗驗證門檻。兩層網格差小只能支持趨勢較穩定，不能證明完全收斂。</p>
+<h2 id="results-discuss">6. 報告要怎麼下結論？</h2>
+<p>可以寫：「尾水增加時，兩種方法都預測水躍向上游移；加密後位置差縮小，但 B 第一峰仍增加，因此位置趨勢比局部波峰更穩定。」不要只寫「誤差很大」；先說差的是位置、水深、峰高或相位，分母與取樣區間是什麼。</p>
+<p>本案沒有實驗真值，所以方法之間的差叫<strong>模型差異</strong>。工程水頭 \(H=z_b+h+u^2/(2g)\) 可供比較，但不是完整 B 模型的守恆能量。SV 表格中的 \(q\) 是平均水深乘平均速度，水量守恆要另外看原程式的通量收支。</p>
+<div class="exercise"><strong>繳交前自查：</strong>圖的縱軸是 \(h\) 還是 \(\eta\)？你用哪一種水躍位置定義？N/A 是因多重交越還是波峰不足？你說的「較穩定」是對時間、網格，還是只對重現性而言？</div>

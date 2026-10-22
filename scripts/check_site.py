@@ -69,6 +69,23 @@ def main():
     digest = (SITE / 'downloads/zip-sha256.txt').read_text().split()[0]
     assert hashlib.sha256(archive.read_bytes()).hexdigest() == digest
     assert not list(SITE.rglob('.git')) and not list(SITE.rglob('.venv'))
+    from integrate_slope import verify_source
+    slope_manifest = verify_source()
+    # Source/ZIP stay sealed; web-only prose may differ. Tutorial code does not.
+    for slug in ['p0_group_a', 'p0_group_b']:
+        original = (ROOT/'slope-lab/docs'/f'{slug}.html').read_text()
+        online = (SITE/'slope-lab/docs'/f'{slug}.html').read_text()
+        blocks = lambda text: re.findall(r'<pre><code>(.*?)</code></pre>', text, flags=re.S)
+        assert blocks(original) == blocks(online), slug
+    math_count = 0
+    for path in (SITE/'slope-lab/docs').rglob('*.html'):
+        content = path.read_text()
+        assert 'class="katex-error"' not in content
+        math_count += content.count('encoding="application/x-tex"')
+    css = SITE/'slope-lab/vendor/katex/dist/katex.min.css'
+    for relative in re.findall(r'url\(([^)]+)\)', css.read_text()):
+        assert (css.parent/relative.strip('\\"\\\'')).is_file(), relative
+    print(f'Slope layer: {len(slope_manifest)} sealed files; {math_count} LaTeX expressions; P0 code cells preserved.')
     print(f'PASS: {len(pages)} pages, {count} local references, {display_count} display equations, {len(manifest)} sealed teaching files and ZIP checksum.')
 
 

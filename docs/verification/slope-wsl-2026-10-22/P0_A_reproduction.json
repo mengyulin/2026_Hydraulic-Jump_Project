@@ -1,0 +1,20 @@
+[
+  {
+    "method": "SS",
+    "max_depth_difference_m": 0.0,
+    "tolerance_m": 1e-08,
+    "passed": true
+  },
+  {
+    "method": "SV",
+    "max_depth_difference_m": 1.0000056338554941e-12,
+    "tolerance_m": 0.0002,
+    "passed": true
+  },
+  {
+    "method": "B",
+    "max_depth_difference_m": 9.331544703616856e-10,
+    "tolerance_m": 1e-05,
+    "passed": true
+  }
+]

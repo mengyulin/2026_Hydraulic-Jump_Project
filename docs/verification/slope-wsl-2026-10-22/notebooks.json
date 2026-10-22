@@ -1,0 +1,14 @@
+[
+  {
+    "notebook": "p0_group_a.ipynb",
+    "passed": true,
+    "code_cells": 8,
+    "seconds": 8.61598911499999
+  },
+  {
+    "notebook": "p0_group_b.ipynb",
+    "passed": true,
+    "code_cells": 6,
+    "seconds": 3.303712370000028
+  }
+]

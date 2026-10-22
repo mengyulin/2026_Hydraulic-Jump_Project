@@ -1,44 +1,29 @@
-# 水躍學生專題 · Hydraulic Jump Project
+# 水躍學生專題
 
-從古典水理、共同案例與可重現計算出發，研究渠道由陡坡轉為緩坡時的水躍，並比較 Python、HEC-RAS 與 Basilisk 的工程計算。
+目前主題是**坡度變化矩形渠道的水躍**。兩組各五人，以P0為共同基準，再各自研究上游坡度、尾水、轉換長度、下游坡度或Manning粗糙度。
 
-**[學生專題網站](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/)** · **[GC1991 實驗室](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/gc1991-lab/)**
+- **第一組：** Python標準步法、聖維南淺水方程與定常壓力近似Boussinesq型模型。
+- **第二組：** Python標準步法與HEC-RAS 6.6一維定常混合流。
 
-網站首頁為主資料夾的 `index.html`。`gc1991-lab/` 是整個學生專題的第一項工作；其中保留原本的 Notebook、程式、資料與教材。
+[學生網站](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/)提供線上講義、P0逐步示範、個人操作單及成果繳交格式。程式在學生電腦執行，網站提供閱讀與下載。
 
-## 現階段工作
+## 從這裡開始
 
-組別與研究規劃更新於 2026-10-14：
+1. [問題設定](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/slope-lab/docs/problem.html)與[三種方法](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/slope-lab/docs/methods.html)。
+2. [下載教學包v1.3](downloads/slope-lab-v1.3.zip)，沿用已完成GC1991的WSL／Ubuntu，依包內安裝頁加裝坡度套件。兩組皆在Ubuntu執行Python，HEC在Windows計算。
+3. [第一組P0示範](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/slope-lab/docs/p0_group_a.html)或[第二組P0示範](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/slope-lab/docs/p0_group_b.html)。
+4. 依組別頁與個人操作單進行低、高水準，再整理成果。
 
-- **[第一組　水躍之深度平均模擬](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/group-1.html)**：Saint-Venant、Boussinesq 型與待教師交付的剪切淺水方程。
-- **[第二組　水躍之工程水理分析](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/group-2.html)**：Python standard step 與 HEC-RAS。
-- **[共同比對與 18 週時程](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/research-plan/comparison.html)**：共用案例、指標、資料交換與完成判準。
+## 檢查範圍
 
-| 工作項目 | 狀態 | 內容 |
-|---|---|---|
-| GC1991 水平渠道實驗 | macOS 與 Windows Server／WSL 自動驗收通過；Windows 11 桌面操作待驗收 | 一本 Notebook 比較 standard-step、Saint-Venant、自訂 M92 |
-| 古典水理與坡度轉折 | 待教師提供案例 | 水理公式、急／緩流分支與共同幾何 |
-| HEC-RAS 工程比較 | 待教師提供案例 | 匹配輸入、mixed-flow 與斷面間距 |
-| 剪切淺水計算 | 待教師建立與驗收核心 | 額外狀態量、閉合參數與共同案例比較 |
-| 尾水小型研究 | 共同基準完成且教師另版開放後 | 先做 3 案例；時間與案例就緒才擴至 5 案例或坡度延伸 |
+Windows Server 2025／WSL 2／Ubuntu 24.04 已通過同一帳號的 GC1991 接續安裝、兩組 P0 Python、Windows 連線與檔案往返。見[實際驗收紀錄](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/verification/slope-wsl/)。
 
-完整 18 週路線、學習資源與交付要求見[主首頁](https://mengyulin.github.io/2026_Hydraulic-Jump_Project/)。
+Python三模式已通過P0既有結果重現；重現不等於物理驗證或波形收斂。B波動仍是學生研究內容。HEC-RAS 6.6輸入已準備，但 **HEC-RAS 6.6 實際開檔／計算仍待驗收**，未提供代填的HEC結果。
 
-## 學生第一次使用
+[GC1991](gc1991-lab/README.md)及原下載ZIP保留作水平渠道驗證教材。原程式、實驗資料與參考結果不因網站整合而變更。
 
-1. [下載 GC1991 教材 ZIP](downloads/gc1991-lab-v1.zip)，解壓縮至英文且不含空白的路徑。
-2. 閱讀 [Windows／WSL](gc1991-lab/docs/install-windows.md) 或 [macOS](gc1991-lab/docs/install-macos.md) 安裝指南。
-3. 在 `gc1991-lab/` 執行 `bash setup.sh`，再執行 `bash start_lab.sh`。
-4. 開啟 `student_lab.ipynb`，選擇 **GC1991 Lab** 核心並依序執行。
+## 維護
 
-若從 GitHub **Code → Download ZIP** 下載整個 repository，請進入其中的 `gc1991-lab/` 才執行安裝；主資料夾是網站與專題入口。
+詳見[網站維護說明](docs/website-maintenance.md)。坡度教材的封存v1.3來源位於 <code>slope-lab/</code>；網站導覽與去重版本由 <code>scripts/integrate_slope.py</code> 和 <code>docs/slope-site/</code> 在建置時產生，下載ZIP保持原版。
 
-GC1991 固定教材使用水平底床，尚未涵蓋坡度轉折。程式重現成功不等同實驗驗證；詳見[方法與限制](gc1991-lab/docs/methods.md)。
-
-## 網站維護
-
-- [網站編輯、重建與發布](docs/website-maintenance.md)
-- [來源與建置紀錄](docs/site-record.md)
-- [GC1991 原始材料與第三方授權](gc1991-lab/THIRD_PARTY_NOTICES.md)
-
-本 repository 未替教師原創程式或文件指定新的概括授權。Basilisk 與網站公式元件各保留隨附聲明。
+本次經教師核准正式發布，內容與驗收範圍見[2026-10-22 發布紀錄](docs/releases/2026-10-22-slope-wsl.md)。先前[審閱稿紀錄](docs/releases/2026-10-22-slope-integration.md)保留供追溯。

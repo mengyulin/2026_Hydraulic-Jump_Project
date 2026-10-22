@@ -1,0 +1,16 @@
+<p class="box"><strong>第一次操作：</strong><a href="p0_demo.html">先跟做P0完整示範</a>，附獨立Notebook、實際Python輸出與逐步判讀。</p>
+<p class="lead">這是一份給大學生使用的水理專題教材。你將用同一條坡度改變的矩形渠道，學習設定計算問題、比較水理方法，並判讀水躍與水面波動。</p>
+<div class="box"><strong>第一次閱讀請從這裡開始：</strong><a href="handbook.html">完整教學講義</a>依序說明問題、方程式、案例與結果判讀；可離線閱讀，也可用瀏覽器列印。你不需要先讀任何研究對話或舊報告。</div>
+<h2>學完後，你應該能做什麼？</h2>
+<ul><li>說清楚渠道幾何、流量、粗糙度與兩端邊界條件。</li><li>解釋標準步法、聖維南淺水方程與本套件 Boussinesq 型模型的差異。</li><li>在條件一致的前提下，比較水躍位置、外側水深及波動。</li><li>分辨物理條件改變與網格、時間步、數值耗散的影響。</li></ul>
+<h2>建議閱讀與操作順序</h2>
+<ol><li><a href="problem.html">問題設定</a>：先看渠道示意圖、P0參數、正常水深與兩端邊界。</li><li><a href="methods.html">三種方法</a>：理解 SS、SV、B 的全名、方程式與能算出的量。</li><li><a href="design.html">案例與分工</a>：確認自己的三個條件，以及一次只改什麼。</li><li><a href="start.html">安裝與第一次執行</a>：從既有GC1991的Windows／WSL環境加裝坡度套件，先完成P0。</li><li><a href="group_a.html">第一組操作</a>或<a href="group_b.html">第二組操作</a>：照步驟完成個人案例與敏感度對照。</li><li><a href="results.html">結果判讀</a>與<a href="submission.html">成果繳交</a>：把可重跑的證據整理成報告。</li></ol>
+<h2>本教材使用的名稱</h2>
+{{METHOD_TABLE}}
+<p>第一組有五人，使用 SS／SV／B；第二組有五人，使用 Python SS／HEC-RAS。學生代號 B1–B5 不代表他們使用 B 模型。數值參數與符號可隨時查閱<a href="glossary.html">縮寫與符號表</a>。</p>
+<h2>選擇你的操作單</h2>
+{{ASSIGNMENT_LINKS}}
+<h2>教材與程式的範圍</h2>
+<p>本版為<strong>v1.3 Windows／WSL接續安裝版</strong>，數值核心、案例、Notebook 程式碼與既有數值參考維持 v1。文字由問題設定開始重寫，方程式以 LaTeX 排版，所需字型隨包附上。B 水面波動是否隨解析度穩定，仍是學生的研究問題。</p>
+<p>Python 部分已有 P0 重現與起步檢查；HEC-RAS 6.6 輸入檔已準備，但仍待 Windows 實機開檔與計算。請教師先依<a href="hec66.html">HEC-RAS操作頁</a>完成檢查。詳細狀態見<a href="verification.html">驗證範圍與已知限制</a>。</p>
+<p class="small">查考資料：<a href="sources.html">程式來源與授權</a>。本套件保留既有數值參考，不以文件改寫替代新的計算或物理驗證。</p>

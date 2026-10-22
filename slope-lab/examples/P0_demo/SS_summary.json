@@ -1,0 +1,60 @@
+{
+  "SS_xJ_m": 12.160061201102373,
+  "SS_h1_m": 0.07138274572187457,
+  "SS_h2_m": 0.16638210013199084,
+  "x50_unique_m": 12.160061201102373,
+  "x10_unique_m": 12.160061201102373,
+  "x90_unique_m": 12.160061201102373,
+  "all_upcrossings_m": {
+    "0.1": [
+      12.160061201102373
+    ],
+    "0.5": [
+      12.160061201102373
+    ],
+    "0.9": [
+      12.160061201102373
+    ]
+  },
+  "first_x50_supplementary_m": 12.160061201102373,
+  "rise_width_unique_m": 0.0,
+  "upstream_window_m": [
+    9.160061201102373,
+    10.160061201102373
+  ],
+  "downstream_window_m": [
+    17.160061201102373,
+    18.160061201102373
+  ],
+  "upstream_mean_h_m": 0.07067283325671113,
+  "downstream_mean_h_m": 0.16765584239734932,
+  "wave_window_m": [
+    12.160061201102373,
+    20.160061201102373
+  ],
+  "extrema": [],
+  "amplitude_floor_m": 1e-05,
+  "first_peak_h_m": null,
+  "first_peak_x_m": null,
+  "tail_wavelength_m": null,
+  "tail_amplitude_efold_m": null,
+  "wavelength_samples_m": [],
+  "note": "N/A is null. First crossing is supplementary. h peaks, not eta peaks. No physical roller or breaking validation.",
+  "method": "ss",
+  "state_kind": "steady",
+  "checks": {
+    "jump": {
+      "x_m": 12.160061201102373,
+      "bracket_m": [
+        12.15,
+        12.175
+      ],
+      "y1_m": 0.07138274572187457,
+      "y2_m": 0.16638210013199084,
+      "Fr1": 1.970238838219885,
+      "energy_loss_m": 0.018046879549672823,
+      "relative_force_residual": 7.769393811273723e-16
+    },
+    "energy_residual_m": 1.1206956044597371e-13
+  }
+}

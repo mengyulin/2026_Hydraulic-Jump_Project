@@ -1,0 +1,220 @@
+{
+  "SS_xJ_m": 12.160061201102373,
+  "SS_h1_m": 0.07138274572187457,
+  "SS_h2_m": 0.16638210013199084,
+  "x50_unique_m": 12.208691089825178,
+  "x10_unique_m": 12.065268170459884,
+  "x90_unique_m": 12.297290876867631,
+  "all_upcrossings_m": {
+    "0.1": [
+      12.065268170459884
+    ],
+    "0.5": [
+      12.208691089825178
+    ],
+    "0.9": [
+      12.297290876867631
+    ]
+  },
+  "first_x50_supplementary_m": 12.208691089825178,
+  "rise_width_unique_m": 0.23202270640774714,
+  "upstream_window_m": [
+    9.160061201102373,
+    10.160061201102373
+  ],
+  "downstream_window_m": [
+    17.160061201102373,
+    18.160061201102373
+  ],
+  "upstream_mean_h_m": 0.07064713498673236,
+  "downstream_mean_h_m": 0.16766058632452738,
+  "wave_window_m": [
+    12.160061201102373,
+    20.160061201102373
+  ],
+  "extrema": [
+    {
+      "peak_x_m": 12.4179686781471,
+      "peak_h_m": 0.17987698599140803,
+      "trough_x_m": 12.669396049368299,
+      "trough_h_m": 0.16491910821324846,
+      "amplitude_m": 0.014957877778159573
+    },
+    {
+      "peak_x_m": 12.932101966129435,
+      "peak_h_m": 0.1681936034196288,
+      "trough_x_m": 13.191074072339385,
+      "trough_h_m": 0.16755043791215796,
+      "amplitude_m": 0.0006431655074708442
+    },
+    {
+      "peak_x_m": 13.450326652997113,
+      "peak_h_m": 0.16768183512760745,
+      "trough_x_m": 13.70887225260714,
+      "trough_h_m": 0.16765511458813073,
+      "amplitude_m": 2.672053947672115e-05
+    }
+  ],
+  "amplitude_floor_m": 1e-05,
+  "first_peak_h_m": 0.17987698599140803,
+  "first_peak_x_m": 12.4179686781471,
+  "tail_wavelength_m": 0.5182246868676774,
+  "tail_amplitude_efold_m": null,
+  "wavelength_samples_m": [
+    0.5182246868676774
+  ],
+  "note": "N/A is null. First crossing is supplementary. h peaks, not eta peaks. No physical roller or breaking validation.",
+  "method": "b",
+  "state_kind": "fixed_point_native_endpoint",
+  "checks": {
+    "levels": [
+      {
+        "N": 128,
+        "passed": true,
+        "iterations": [
+          {
+            "iteration": 0,
+            "residual_Linf": 9.916260091576608e-08,
+            "dt": 0.004512532132352349,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 1,
+            "residual_Linf": 9.744328331425314e-10,
+            "dt": 0.004512532132352358
+          }
+        ]
+      },
+      {
+        "N": 256,
+        "passed": true,
+        "iterations": [
+          {
+            "iteration": 0,
+            "residual_Linf": 0.016256790955474602,
+            "dt": 0.0019622605405975485,
+            "step_scale": 0.5
+          },
+          {
+            "iteration": 1,
+            "residual_Linf": 0.007948437837693233,
+            "dt": 0.001954266733069456,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 2,
+            "residual_Linf": 0.004556986369219317,
+            "dt": 0.0019556044115855843,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 3,
+            "residual_Linf": 3.1342214390389514e-05,
+            "dt": 0.001960616122764817,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 4,
+            "residual_Linf": 8.356983851812031e-10,
+            "dt": 0.0019606234315381883
+          }
+        ]
+      },
+      {
+        "N": 512,
+        "passed": true,
+        "iterations": [
+          {
+            "iteration": 0,
+            "residual_Linf": 0.034322337416190216,
+            "dt": 0.0005030682077993286,
+            "step_scale": 0.5
+          },
+          {
+            "iteration": 1,
+            "residual_Linf": 0.018113843920515967,
+            "dt": 0.000497169061573555,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 2,
+            "residual_Linf": 0.011189231021040826,
+            "dt": 0.0004939610183567759,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 3,
+            "residual_Linf": 8.197248508913773e-05,
+            "dt": 0.0004966636859259914,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 4,
+            "residual_Linf": 3.722763226160497e-09,
+            "dt": 0.0004966740233193214
+          }
+        ]
+      },
+      {
+        "N": 1024,
+        "passed": true,
+        "iterations": [
+          {
+            "iteration": 0,
+            "residual_Linf": 0.13410566362919746,
+            "dt": 8.33527820094089e-05,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 1,
+            "residual_Linf": 0.08887803116250859,
+            "dt": 7.637530153644584e-05,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 2,
+            "residual_Linf": 0.0034833140965572548,
+            "dt": 7.812545982029373e-05,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 3,
+            "residual_Linf": 3.058661138422014e-06,
+            "dt": 7.81626897387933e-05,
+            "step_scale": 1.0
+          },
+          {
+            "iteration": 4,
+            "residual_Linf": 5.2129789200605625e-11,
+            "dt": 7.816270770663242e-05
+          }
+        ]
+      }
+    ],
+    "h_residual_ms": 9.49474573196476e-12,
+    "q_residual_m2s2": 5.2129789200605625e-11,
+    "native_dt": 7.816270770663242e-05,
+    "native": {
+      "actual_time": 0.1,
+      "steps": 1280.0,
+      "rejected": 0.0,
+      "dx": 0.029296875,
+      "weight": 0.05000000000000019,
+      "mass_error_max": 1.783802395040275e-15,
+      "momentum_error_max": 3.7890930777041225e-15,
+      "mass_impulse": 1.0988511099635593e-17,
+      "momentum_impulse": -4.513896082509588e-15,
+      "source_impulse": -2.0118720270190297e-14,
+      "filter_energy_rate_integral": -4.4979278270724783e-07,
+      "min_stage_h": 0.07058874775733978,
+      "max_filter_rate": 0.01248219153032767,
+      "final_volume": 3.8484553727684077,
+      "final_momentum": 3.5323939610872945
+    },
+    "root_endpoint_difference_m": 7.624678666218188e-10,
+    "max_depth_sd_m": 1.852909541539029e-08,
+    "block_depth_change_m": 4.964084698855231e-13,
+    "steady_screen": true,
+    "time_note": "Relaxation time; short root maintenance, not arbitrary-start transient convergence."
+  }
+}

@@ -1,0 +1,110 @@
+#+title: 坡度變化渠道的三種方法：方程式閱讀稿
+#+date: 2026-10-21
+#+language: zh-TW
+
+* 先說明計算問題
+
+考慮長30 m、寬0.46 m的矩形渠道，流量固定，上游陡而下游緩。
+坡度在以12 m為中心的有限長度區間平滑改變；出口床高為零。
+入口指定依實際上游坡度算出的正常水深與流量，出口指定尾水深。
+我們比較水躍位置、外側水深及水面波動；本案沒有實驗真值。
+
+完整的問題設定、示意圖、參數表與練習請讀
+[[file:handbook.html][獨立教學講義]]。本檔保留可直接編輯的LaTeX方程式。
+
+* 座標與符號
+
+\(x\) 是向下游增加的座標，\(z_b\) 是渠底高程，\(h\) 是當地水深，
+\(\eta\) 是水面高程；\(W\) 是渠寬，\(Q\) 是總流量，\(q\) 是單位寬流量，
+\(u\) 是深度平均速度，\(g\) 是重力加速度，\(n\) 是Manning粗糙係數。
+
+\[
+\eta=z_b+h,\qquad q=\frac{Q}{W}=hu,\qquad
+A=Wh,\qquad R=\frac{Wh}{W+2h}.
+\]
+
+\(A\) 是通水面積，\(R\) 是水力半徑。摩阻坡度為：
+
+\[
+S_f=\left(\frac{nQ}{A R^{2/3}}\right)^2.
+\]
+
+* 標準步法（Standard-step method，SS）
+
+假設定常流量，在相鄰斷面以工程水頭與摩阻損失求水深。
+本案收縮及擴張係數固定為零，速度分布修正係數取1。
+
+\[
+H=z_b+h+\frac{q^2}{2gh^2},\qquad
+H_i-H_{i+1}=\Delta x_i\,\frac{S_{f,i}+S_{f,i+1}}{2}.
+\]
+
+超臨界淺水分支從入口往下游算，次臨界深水分支從尾水往上游算。
+在有效重疊範圍找單位寬比力相等的位置：
+
+\[
+M=\frac{h^2}{2}+\frac{q^2}{gh},\qquad M(h_1)=M(h_2).
+\]
+
+這是忽略水躍內有限長度床坡與摩阻積分的局部跳接。
+它預測位置與共軛水深，不預測真實翻滾區長度。
+
+* 聖維南淺水方程（Saint-Venant equations，SV）
+
+SV用深度平均、水量與動量守恆描述非穩態流動，採靜水壓近似：
+
+\[
+\frac{\partial h}{\partial t}+\frac{\partial q}{\partial x}=0,
+\]
+\[
+\frac{\partial q}{\partial t}
++\frac{\partial}{\partial x}\left(\frac{q^2}{h}+\frac{gh^2}{2}\right)
+=-gh\frac{\partial z_b}{\partial x}
+-\frac{gn^2q|q|}{hR^{4/3}}.
+\]
+
+右側分別為床坡重力作用與Manning摩阻。有限體積法以相鄰單元通量
+更新水量及動量；本套件平均200–300秒水面，但仍要檢查時間波動。
+水躍跨越數格的上升寬度受到離散方法影響，不直接等於物理水躍長度。
+
+* 定常壓力近似Boussinesq型模型（B）
+
+B是本套件的模型簡稱，不是學生第二組的意思。
+它在動量式加入部分非靜水壓修正，但省略完整非穩態壓力的時間導數。
+用 \(\tau\) 表示尋找定常解的鬆弛推進時間，不能直接解讀為完整物理波傳時間。
+
+\[
+\frac{\partial h}{\partial\tau}+\frac{\partial q}{\partial x}=0,
+\]
+\[
+\frac{\partial q}{\partial\tau}
++\frac{\partial}{\partial x}\left(\frac{q^2}{h}+\frac{gh^2}{2}+\Pi_B\right)
+=-ghz_{b,x}-P_{b,B}z_{b,x}-\frac{gn^2q|q|}{hR^{4/3}},
+\]
+\[
+\mathcal A=uu_xz_{b,x}+u^2z_{b,xx},\qquad
+\mathcal C=u_x^2-uu_{xx},
+\]
+\[
+\Pi_B=\frac{h^2}{2}\mathcal A+\frac{h^3}{3}\mathcal C,\qquad
+P_{b,B}=h\mathcal A+\frac{h^2}{2}\mathcal C.
+\]
+
+下標 \(x,xx\) 表示一次、二次空間微分。
+\(\Pi_B,P_{b,B}\) 是除以密度後的壓力修正，單位分別為
+\(\mathrm{m^3/s^2}\)、\(\mathrm{m^2/s^2}\)；
+輔助量 \(\mathcal A\) 與通水面積 \(A\) 不同。
+
+模型沒有獨立的破波、含氣或紊流翻滾閉合，波動的網格敏感度留待研究。
+B off只關閉同一程式的非靜水壓項，仍不等同於採用另一通量／重建的獨立SV。
+
+* 數值操作的意義
+
+SV有 \(N\) 個單元；B有 \(N\) 個區間及 \(N+1\) 個節點。
+本案 \(\Delta x=L/N\)。B耗散倍率 \(\lambda\) 預設1，濾波係數
+\(\kappa=0.03\) 固定。比較1024格的 \(\lambda=1\) 與2048格的
+\(\lambda=2\)，近似固定 \(\lambda\Delta x\)，但不是精確固定物理黏性。
+
+B由粗網格啟動，再逐級求原程式的離散固定點，最後短續算檢查維持性。
+小殘差與重現通過不等於物理驗證或波形完全收斂。
+不可把Manning粗糙係數調大來隱藏未解釋的波動。

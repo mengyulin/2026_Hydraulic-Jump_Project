@@ -1,0 +1,60 @@
+{
+  "status": "passed_with_explicit_scope",
+  "target": "Windows Server 2025 + WSL 2 + Ubuntu 24.04",
+  "branch": "codex/slope-wsl-acceptance-20261022",
+  "remote": "mengyulin/2026_Hydraulic-Jump_Project",
+  "would_upload": [
+    ".github/workflows/check-wsl.yml",
+    "scripts/check_slope_wsl.sh",
+    "scripts/check_slope_wsl.py",
+    "downloads/slope-lab-v1.3.zip"
+  ],
+  "scope": [
+    "Install and execute GC1991 as ordinary user",
+    "Install slope v1.3 beside GC1991 in same WSL distro",
+    "Require WSL diagnostic; compute P0 SS/SV/B with frozen tolerances",
+    "Execute both unmodified P0 notebooks and save output",
+    "Check both launchers from Windows PowerShell via localhost",
+    "Round-trip actual HEC input files through Windows, compare hashes",
+    "Reopen and rerun GC1991; prove original inputs/results/packages unchanged"
+  ],
+  "not_included": [
+    "No merge to main",
+    "No GitHub Pages deployment",
+    "No HEC-RAS 6.6 engine claim",
+    "No interactive Windows GUI claim"
+  ],
+  "inputs": {
+    "gc1991-lab-v1.zip": {
+      "sha256": "870dd75d333641555c92f5f69e84cb95db713430d62bda871c05fb6cf2cac6fc",
+      "bytes": 9914815
+    },
+    "slope-lab-v1.3.zip": {
+      "sha256": "ebe3e6f52893f3606f6df45cc78c442efc92deaee29a732e6a4b386179b81e80",
+      "bytes": 12032656
+    }
+  },
+  "authorization": "User explicitly approved isolated test branch and Actions; homepage publication remains prohibited.",
+  "test_commit": "20bd8333cc35606f0ca58b098ee0f0ffd75eae0e",
+  "base_main": "ee36820097a01d9b25fd579300d19b1ea3bea329",
+  "runs": [
+    {
+      "id": 39722177092,
+      "html_url": "https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/39722177092",
+      "head_sha": "6f90f9738be2b2ab12ce84722a4f60c37a1c46d5",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 39723045628,
+      "html_url": "https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/39723045628",
+      "head_sha": "20bd8333cc35606f0ca58b098ee0f0ffd75eae0e",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "first_run_diagnosis": "All P0/Windows checks passed; final harness counted GC comparison plot directory as a fourth solver. Fixed metadata-based solver counting; no kit or numerical changes.",
+  "successful_run_id": 39723045628,
+  "successful_run_url": "https://github.com/mengyulin/2026_Hydraulic-Jump_Project/actions/runs/39723045628",
+  "record_scope": "Historical plan and permission for acceptance runs only. Subsequent website publication separately authorized on 2026-10-22."
+}

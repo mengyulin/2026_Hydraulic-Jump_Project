@@ -93,9 +93,9 @@ def guide_page(slug, title, source):
     nav = ''.join(f'<a href="{key}.html"' + (' aria-current="page"' if key == slug else '') + f'>{name}</a>' for key, (name, _) in PAGES.items())
     if slug in {'methods', 'install-windows'}:
         nav += '<a href="#main">本章導覽 ↑</a>'
-    legacy = ''
+    legacy = '<p class="notice">本頁為GC1991水平渠道驗證教材。當前坡度渠道專題請由<a href="../../slope-lab/index.html">P0教材入口</a>開始；兩套案例設定分開。</p>'
     if slug in {'instructor', 'credits'}:
-        legacy = '<div class="notice">以下保留 v1 教材的原始發行紀錄；其中「尚未發布」描述當時狀態。目前網站入口位於主專題首頁，網站維護方式見 <a href="' + REPO + '/blob/main/docs/website-maintenance.md">網站維護說明</a>。原始材料的授權聲明維持不變。</div>'
+        legacy += '<div class="notice">以下保留 v1 教材的原始發行紀錄；其中「尚未發布」描述當時狀態。目前網站入口位於主專題首頁，網站維護方式見 <a href="' + REPO + '/blob/main/docs/website-maintenance.md">網站維護說明</a>。原始材料的授權聲明維持不變。</div>'
     math = ''
     if slug == 'methods':
         config = {'tex': {'inlineMath': [['\\(', '\\)']]}, 'svg': {'fontCache': 'local'}, 'options': {'enableMenu': False}}
@@ -109,8 +109,8 @@ def plan_page(slug, title):
     source = ROOT / 'docs/research-plan' / f'{slug}.md'
     nav = ''.join(f'<a href="{key}.html"' + (' aria-current="page"' if key == slug else '') + f'>{name}</a>' for key, name in PLANS.items())
     return f'''<!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}｜水躍學生專題</title><meta name="description" content="{title}：18 週大學部水躍專題的研究目標、工作內容、預期成果與共同比對方式。"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><script defer src="../assets/site.js"></script></head><body>
-<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../gc1991-lab/index.html">GC1991 實驗室</a></nav></div></header>
-<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2>{nav}<a href="#contents">本頁導覽 ↑</a><a href="../guides/gc1991/methods.html">方程與方法教材</a></nav><main id="main" class="doc-content">{render_markdown(source, ROOT / 'research-plan')}<p class="doc-source">研究規劃更新：2026-10-14 · <a href="{REPO}/blob/main/docs/research-plan/{slug}.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>'''
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../slope-lab/index.html">坡度教材</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2>{nav}<a href="#contents">本頁導覽 ↑</a><a href="../slope-lab/docs/methods.html">方程與方法教材</a><a href="../slope-lab/docs/p0_demo.html">P0操作示範</a></nav><main id="main" class="doc-content">{render_markdown(source, ROOT / 'research-plan')}<p class="doc-source">研究規劃整合：2026-10-22 · <a href="{REPO}/blob/main/docs/research-plan/{slug}.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>'''
 
 
 def package_lab():
@@ -161,4 +161,6 @@ if __name__ == '__main__':
         (ROOT / 'research-plan' / f'{slug}.html').write_text(plan_page(slug, title))
     package_lab()
     stage_site()
+    from integrate_slope import integrate
+    integrate()
     print(f'Rendered {len(PAGES)} guide pages and {len(PLANS)} research-plan pages.')

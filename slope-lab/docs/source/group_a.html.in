@@ -1,0 +1,43 @@
+<p class="box"><strong>第一次操作：</strong><a href="p0_group_a.html">先跟做P0完整示範</a>，附獨立Notebook、實際Python輸出與逐步判讀。</p>
+<p class="lead">第一組的任務是在相同渠道條件下，比較三種方法：標準步法（Standard-step method，SS）、聖維南淺水方程（Saint-Venant，SV）及定常壓力近似的 Boussinesq 型模型（B）。</p>
+<p>共同基準 P0 是長30 m、寬0.46 m、上游陡而下游緩的矩形渠道；流量固定，入口採正常水深，出口採指定尾水。先讀<a href="problem.html">完整問題設定</a>與<a href="methods.html">方程式說明</a>。本頁假設你已完成<a href="start.html">安裝</a>，不要求自行修改求解器。</p>
+<h2>步驟1：開啟筆記本並重現 P0</h2>
+<p>在套件根目錄執行 <code>bash start_lab.sh</code>，開啟 <code>student_lab.ipynb</code>，選擇 Slope Channel Lab 核心。Notebook 的每個灰色程式區塊稱為一個 cell；由上往下逐個執行（Shift+Enter），不要先跳到畫圖格。</p>
+<ol><li>設定 <code>STUDENT_ID</code> 為自己的代號，例如 A1；保持 <code>CASE_ID = "P0"</code>。</li><li>先讀印出的流量、兩段坡度、入口與出口水深，與問題設定表比較。</li><li>執行 SS、SV512、B1024。數字512、1024表示網格解析度；SS另用斷面間距。</li><li>查看完整與局部水面圖，以及輸出資料夾。不要只留下Notebook畫面。</li></ol>
+<p>Notebook 為 P0 明確指定原先的 uniform 初場，全渠開始時先用入口水深；個人變體則採連接兩端水深的平滑 tanh 初場。這是初始狀態的選擇，不會改變持續施加的兩端邊界。</p>
+<p>若要執行四項完整重現比對（SS、SV512、B1024與B2048），在套件根目錄使用：</p>
+<pre>.venv/bin/python scripts/verify_p0.py --output runs/my_p0_check --fine</pre>
+<p><code>--output</code> 後面是新結果資料夾，必須尚未存在。再次執行請改成 <code>my_p0_check_v2</code>，保留第一次的記錄。</p>
+<h2>步驟2：計算自己的兩個變體</h2>
+<p>依<a href="design.html">分工表</a>選擇 PnL 與 PnH。例如 A1 做 P1L、P1H；其中 n 是系列編號，不是 Manning 粗糙係數。最容易的方式是更改 Notebook 的 <code>CASE_ID</code> 並從頭執行。每案先用 \(N=512\) 檢查，再做主要解析度。</p>
+<pre># 以下以 P1L 為例，請改成自己負責的案例
+.venv/bin/python lab.py run --case P1L --method ss --dx 0.125
+.venv/bin/python lab.py run --case P1L --method ss --dx 0.05
+.venv/bin/python lab.py run --case P1L --method ss --dx 0.025
+.venv/bin/python lab.py run --case P1L --method sv --N 1024
+.venv/bin/python lab.py run --case P1L --method sv --N 2048
+.venv/bin/python lab.py run --case P1L --method b --N 1024
+.venv/bin/python lab.py run --case P1L --method b --N 2048</pre>
+<p><code>--method</code> 選方法；<code>--dx</code> 是標準步法斷面間距，單位m；<code>--N</code> 是SV單元數或B區間數。命令列預設使用平滑初場。每次產生新的 <code>runs/</code> 子資料夾，不會覆寫舊計算。</p>
+<h2>步驟3：選一個個人變體，做四項控制對照</h2>
+<p>先完成該案的主要計算，再只改下面指定的數值設定。CFL是控制時間步的 Courant–Friedrichs–Lewy 參數；\(\lambda\) 控制B的數值耗散，\(\kappa=0.03\) 維持不變。解釋見<a href="design.html#design-numerics">數值設定</a>。</p>
+<pre># 1. SV 的 CFL 由0.4減半為0.2
+.venv/bin/python lab.py run --case P1L --method sv --N 2048 --cfl 0.2
+# 2. B 的 CFL 由0.1減半為0.05
+.venv/bin/python lab.py run --case P1L --method b --N 2048 --cfl 0.05
+# 3. 與 N1024、lambda1 配成近似固定 lambda*dx 的對照
+.venv/bin/python lab.py run --case P1L --method b --N 2048 --lam 2
+# 4. 同一個B程式關閉非靜水壓修正（B off）
+.venv/bin/python lab.py run --case P1L --method b --N 2048 --B 0</pre>
+<p>比較式為：</p>
+\[1\times\frac{30}{1024}=2\times\frac{30}{2048}.\]
+<p>因此第三項維持的是 \(\lambda\Delta x\)，不是把 Manning 的 \(n\) 加倍。若B波幅變化與這個對照相近，表示數值耗散值得注意；它仍不能證明真實水躍需要同樣的耗散量。</p>
+<h2>步驟4：畫圖、檢查時間與讀取指標</h2>
+<p>用 Notebook 的 <code>plot_compare</code> 將同一物理案例的資料夾放在一起，統一畫 \(\eta=z_b+h\)。SV預設算到300秒，畫200–300秒的平均；B是定常解搜尋與短續算後的結果。完整解讀見<a href="results.html">結果判讀</a>。</p>
+<p>先看 <code>metadata.json</code> 的狀態，再讀 <code>summary.json</code>。記錄唯一 \(x_{50}\)、外側平均水深、第一峰水深與位置、峰距及峰谷差序列。多重交越或峰數不足時，保留N/A並寫原因。</p>
+<h2>選做：改變初始水面的位置</h2>
+<pre>.venv/bin/python lab.py run --case P1L --method sv --N 2048 --initial tanh --center 16</pre>
+<p>此命令把平滑初場中心移到16 m，物理邊界不變。B的同名選項只改變粗網格啟動；不能宣稱已測過任意高網格初場的全局收斂。進階的 <code>--seed</code> 會指定一份先前的狀態作求根初值，請與教師確認比較目的後使用，並記錄來源。</p>
+<h2>遇到失敗怎麼辦？</h2>
+<p>若出現負水深、收支不通過或 <code>fixed-point failed</code>，先保留整個結果資料夾，核對案例、初場與設定，回到512起步檢查並請教師協助。不要把失敗曲線當成穩定解，也不要改粗糙度來排除安裝或數值問題。B有波峰本身不是執行失敗；要看它的指標與敏感度。</p>
+<div class="exercise"><strong>完成本頁的證據：</strong>自己的三條件表、三方法水面圖、位置與水深趨勢、兩層解析度，以及選定變體的四項控制對照。依<a href="submission.html">繳交格式</a>整理。</div>

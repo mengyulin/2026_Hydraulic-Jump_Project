@@ -1,0 +1,8 @@
+<p class="box"><strong>HEC-RAS 6.6 實際計算仍待驗收。</strong>已通過的範圍為 Python 計算及 HEC 輸入檔案交換；須取得真實 HEC 輸出後才能完成兩模式比對。</p>
+<p class="box">兩組均沿用原WSL／Ubuntu；第二組在Windows計算HEC。請依<a href="start.html#exchange">檔案交換步驟</a>保留同一次工作資料夾與原始配對輸入。</p>
+<p class="lead">本頁供完成P0後進行個人低、高水準。首次操作請使用<a href="p0_group_b.html">第二組P0完整示範</a>；不必同時閱讀兩份重複流程。</p>
+<h2>1. 選定案例</h2><p>依<a href="design.html">案例設計</a>確認自己的PnL與PnH；例如B2使用P2L、P2H。開啟group_b.ipynb，修改CASE_ID後由上往下執行。物理參數由案例JSON載入，不直接覆寫P0。</p>
+<h2>2. 重複三種斷面配對</h2><p>每個物理條件使用0.5、0.25、0.125 m間距，完成Python與HEC-RAS 6.6。每案輸出到新的工作資料夾；保留完整原生專案與計算紀錄。</p>
+<p>HEC步驟、匯出四欄CSV與回到Python製圖，依<a href="p0_group_b.html#step-5">P0示範步驟5起</a>重做。檔名與路徑必須改成真正的個人案例，不能只把P0輸出換名字。</p>
+<h2>3. 核對變更與配對來源</h2><p>每個專案讀expected.json與sections.csv，特別核對該案例的入口坡度與尾水高程。用paired_ss.csv作HEC文字輸入的Python基準；它仍是Python結果。</p><p>不要假設所有變體沿用P0尾水或入口水深。計算選項集中列在<a href="hec66.html">HEC核對表</a>；差異先查輸入、單位與設定，再討論加密。</p>
+<h2>4. 比較與繳交</h2><p>依<a href="results.html">結果判讀</a>保留水躍區間、水面差與警告，再比較三條件的趨勢。與同編號第一組同學交換原始數值資料；依<a href="submission.html">繳交格式</a>整理。</p>

@@ -1,0 +1,50 @@
+{
+  "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "python_prefix": "/home/hjslope/slope-lab/.venv",
+  "kit": "/home/hjslope/slope-lab",
+  "is_wsl": true,
+  "wsl_distro": "Ubuntu-24.04",
+  "packages": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "jupyterlab": "4.6.4",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "tools": {
+    "cc": "/usr/bin/cc",
+    "make": "/usr/bin/make",
+    "awk": "/usr/bin/awk",
+    "ar": "/usr/bin/ar",
+    "unzip": "/usr/bin/unzip"
+  },
+  "checks": {
+    "supported_system": true,
+    "python_310_or_newer": true,
+    "kit_virtualenv": true,
+    "simple_build_path": true,
+    "system_tools": true,
+    "packages_importable": true,
+    "dependency_versions": true,
+    "pinned_basilisk_source": true,
+    "notebook_kernel": true,
+    "B_library_loads": true
+  },
+  "errors": [],
+  "scope": "Environment and shared-library loading only; no P0 integration or HEC execution.",
+  "P0_executed": false,
+  "HEC_engine_executed": false,
+  "basilisk_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+  "library_suffix": ".so",
+  "binary_sha256": {
+    "sv": "d658596c0f26f3a347f14878fc1df85139e8cb6c5413614f3a0205bc34a3b819",
+    "b": "e56518aad49e0db50fed7fa9beecbf8ed0238c58dbb0194e3033e45e94332073",
+    "bridge.so": "dcec8bdd0460aafa592f0a4726bef942d0fc8ce3bfc2fb388f7d1aa96fb76511"
+  },
+  "environment_passed": true,
+  "require_wsl": true,
+  "passed": true
+}

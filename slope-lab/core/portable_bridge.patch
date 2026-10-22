@@ -1,0 +1,18 @@
+--- S3_8192/bridge.c
++++ slope_lab/bridge.c
+@@ -2,7 +2,6 @@
+ #include <stdlib.h>
+ #include <math.h>
+ #include <string.h>
+-#include <Accelerate/Accelerate.h>
+ #define sq(x) ((x)*(x))
+ #define cube(x) ((x)*(x)*(x))
+ #define min(a,b) ((a)<(b)?(a):(b))
+@@ -212,7 +211,3 @@
+  memcpy(y,a,nodes*sizeof(State));double mh,mq,si;operator(y,1,&mh,&mq,&si);
+  for(int k=1;k<nodes;k++){int j=(k-1)*10;result[j]=xa+(k-.5)*dx;result[j+1]=rus_h[k];result[j+2]=rus_q[k];result[j+3]=dflux[k].h;result[j+4]=dflux[k].q;result[j+5]=b_face[k].q;result[j+6]=speed_face[k];result[j+7]=eps_face[k];result[j+8]=.5*rusanov*speed_face[k]*dx;result[j+9]=eps_face[k]*dx;}
+ }
+-int band_solve(int dim,int band,double *ab,double *r) {
+- __CLPK_integer n=dim,kl=band,ku=band,nrhs=1,ldab=3*band+1,info=0;
+- __CLPK_integer *ipiv=malloc(n*sizeof(*ipiv));dgbsv_(&n,&kl,&ku,&nrhs,ab,&ldab,ipiv,r,&n,&info);free(ipiv);return info;
+-}

@@ -1,0 +1,14 @@
+Proj Title=P0 slope-channel teaching dx0.125
+Current Plan=p01
+Default Exp/Contr=0,0
+SI Units
+Geom File=g01
+Flow File=f01
+Plan File=p01
+Y Axis Title=Elevation (m)
+X Axis Title(PF)=Main Channel Distance (m)
+X Axis Title(XS)=Station (m)
+BEGIN DESCRIPTION:
+HEC-RAS 6.6; steady mixed; arithmetic friction slope; Cc=Ce=0.
+Native execution must be verified on HEC-RAS 6.6.
+END DESCRIPTION:

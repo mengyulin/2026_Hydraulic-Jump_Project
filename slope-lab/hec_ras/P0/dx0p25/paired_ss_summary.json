@@ -1,0 +1,63 @@
+{
+  "case_id": "P0",
+  "dx_requested_m": 0.25000000025,
+  "Q_m3s": 0.0541379,
+  "width_m": 0.46,
+  "n": 0.008,
+  "losses": {
+    "contraction": 0.0,
+    "expansion": 0.0
+  },
+  "yc_m": 0.11218618511671753,
+  "hin_m": 0.07067286783817084,
+  "hout_m": 0.1676558423973493,
+  "upstream_regime": "supercritical",
+  "downstream_regime": "subcritical",
+  "Fr_in": 2.000000009755094,
+  "Fr_out": 0.5473700515045654,
+  "status": "single_momentum_match",
+  "up_termination": {
+    "x_m": 21.723635149975568,
+    "depth_m": 0.11218618511671753,
+    "energy_residual_m": -2.6020852139652106e-18,
+    "Fr": 1.0,
+    "kind": "energy_balanced_critical_endpoint",
+    "last_regular_x_m": 21.5,
+    "requested_step_interval_m": [
+      21.5,
+      21.75
+    ]
+  },
+  "down_termination": {
+    "x_m": 8.767091510876355,
+    "depth_m": 0.11218618511671753,
+    "energy_residual_m": 2.1141942363467336e-18,
+    "Fr": 1.0,
+    "kind": "energy_balanced_critical_endpoint",
+    "last_regular_x_m": 9.0,
+    "requested_step_interval_m": [
+      8.75,
+      9.0
+    ]
+  },
+  "outlet_depth_from_upstream_m": null,
+  "outlet_depth_mismatch_m": null,
+  "inlet_depth_from_downstream_m": null,
+  "inlet_depth_mismatch_m": null,
+  "maximum_energy_residual_m": 1.0978761302848916e-13,
+  "internal_substeps": 0,
+  "jumps": [
+    {
+      "x_m": 12.165278986574691,
+      "bracket_m": [
+        12.0,
+        12.25
+      ],
+      "y1_m": 0.07140462821123811,
+      "y2_m": 0.16634323684353344,
+      "Fr1": 1.9693346707317798,
+      "energy_loss_m": 0.018010969314583347,
+      "relative_force_residual": 7.770949629951591e-16
+    }
+  ]
+}

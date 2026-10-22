@@ -1,0 +1,10 @@
+{
+  "gc1991-lab-v1.zip": {
+    "sha256": "870dd75d333641555c92f5f69e84cb95db713430d62bda871c05fb6cf2cac6fc",
+    "sealed_files": 45
+  },
+  "slope-lab-v1.3.zip": {
+    "sha256": "ebe3e6f52893f3606f6df45cc78c442efc92deaee29a732e6a4b386179b81e80",
+    "sealed_files": 241
+  }
+}

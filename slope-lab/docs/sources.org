@@ -1,0 +1,50 @@
+#+title: 來源、版本與保留範圍
+#+date: 2026-10-21
+
+* 程式來源
+reference/source_provenance.json 記錄教師專案相對路徑及 SHA256。
+核心 standard-step、SV、B、bed.h 為逐位元複製；橋接檔只去掉 Accelerate 的
+平台專屬線性反解，差異保存在 core/portable_bridge.patch。
+Python 介面、統一後處理、HEC 產生器、Notebook 與文件為本次新增。
+安裝器沿用 GC1991 教學包，僅更改幫助文件連結。
+
+* Basilisk
+固定官方來源封存於 vendor/basilisk-source.tar.gz，2026-09-08取得，
+SHA256 a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae。
+這是來源快照識別，不宣稱某個未查證 Darcs revision。
+來源：https://basilisk.fr/basilisk/basilisk.tar.gz
+安裝說明：https://basilisk.fr/src/INSTALL
+授權文件：../LICENSES/Basilisk-COPYING.txt；原始碼及既有聲明均保留。
+本包不對第三方來源另行宣告新的授權。
+
+* 封存數值參考
+- ss_P0_dx0025.csv：2026-10-21 學生案例規劃的 P0 SS。
+- sv_N512_T300.dat：2026-10-20 S3_VARIABLE_BED 的 SV512，T300／平均200–300。
+- b_N1024.dat、b_N2048.dat：2026-10-20 S3_B4096 的 lambda1／B on 離散根。
+這些檔案只用比對，不是預設初值；驗收程式重新計算所有受測模式。
+GC1991、S3、GN 舊資料夾及既有 gc1991_lab 完整保留，沒有改寫。
+
+* HEC-RAS 6.6
+由使用者指定6.6。格式參考為 USACE 官方 Example_Projects_7_0_2.zip 內
+Mixed Flow Regime Channel 的傳統文字檔（其中幾何與流量檔標示6.30）。
+僅以必要檔案查核基本語法，本包未附 HEC 引擎或該外部範例資料。
+本包標示6.60；真正相容性須以6.6實機開檔／計算驗收。
+
+官方下載：https://www.hec.usace.army.mil/software/hec-ras/download.aspx
+官方混合流技術說明：https://www.hec.usace.army.mil/confluence/rasdocs/ras1dtechref/6.6/overview-of-optional-capabilities/mixed-flow-regime-calculations
+官方計算選項：https://www.hec.usace.army.mil/confluence/rasdocs/rasum/6.6/performing-a-steady-flow-analysis/performing-steady-flow-calculations/simulation-options
+固定寬度及邊界代碼另核對原作者的格式文件：
+https://rivia.readthedocs.io/en/latest/api/generated/rivia.model.steady_flow.html
+本包不依賴 Rivia，不把程式格式文件當水躍物理驗證。
+
+* 可重現資訊
+每個 run 的 case.json、metadata.json、輸出雜湊、編譯資訊與原生檢查均保留。
+交付 ZIP 的 CHECKSUMS.json 供檔案完整性核對；不代表所有物理模型通過驗證。
+
+* v1.1教學文件
+2026-10-21改寫為大學生可獨立閱讀的教材；SS為標準步法，
+SV為聖維南淺水方程，B為本套件的定常壓力近似Boussinesq型模型。
+GC1991與S3是歷史案例識別碼，學生操作不以讀過其報告為前提。
+數值核心、物理案例、Notebook程式碼及既有數值參考保持v1內容。
+LaTeX以KaTeX0.19.0預先產生HTML與MathML，CSS及字型離線供應。
+授權：../LICENSES/KaTeX-LICENSE.txt；下載雜湊：../vendor/katex/provenance.json。

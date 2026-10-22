@@ -1,0 +1,25 @@
+#+title: P0操作示範的Python實算資料
+#+date: 2026-10-21
+
+* 來源與用途
+以p0_group_a.ipynb與p0_group_b.ipynb逐格執行產生。
+A：SS dx0.025、SV512（200–300 s平均）、B1024（原uniform啟動）。
+B：Python SS dx0.5/0.25/0.125，以及寫入HEC檔案值的配對SS。
+本資料夾沒有HEC引擎輸出。HEC圖表須由學生在6.6實機Compute後產生。
+
+* 可以檢查什麼
+A_metrics.csv：位置、水深與波峰指標；空欄表示不適用／無唯一值。
+B_peaks.csv：水深峰、谷、峰谷差；本次只有3個可辨峰，尾波衰減長度N/A。
+demo_summary.json：數值與三項逐點重現檢查。
+SS/SV/B_profile.csv與summary.json：各方法水面資料與指標定義。
+A_comparison與B_SS_comparison的PNG/PDF：兩份Notebook原始繪圖輸出。
+
+* 限制
+重現不等於實驗驗證或網格收斂。SV512嚴格定常篩檢仍不通過。
+B的定常解維持不代表波形網格獨立；單次B1024不能判定物理波尾。
+既有GC1991、S3、v1與v1.1資料保持不變。
+
+* 重跑
+依docs/p0_group_a.html與docs/p0_group_b.html逐格執行相同Notebook。
+結果寫入新的runs/P0_A_*或runs/P0_B_*，不覆寫此示範資料。
+完整教師執行紀錄在研究目錄results/teaching/SLOPE_LAB_P0_DEMO_2026-10-21/。

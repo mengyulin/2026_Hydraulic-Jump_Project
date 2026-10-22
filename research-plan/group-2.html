@@ -1,79 +1,76 @@
 <!doctype html><html lang="zh-Hant" class="guide-page"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第二組　水躍之工程水理分析｜水躍學生專題</title><meta name="description" content="第二組　水躍之工程水理分析：18 週大學部水躍專題的研究目標、工作內容、預期成果與共同比對方式。"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/site.css"><script defer src="../assets/site.js"></script></head><body>
-<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../gc1991-lab/index.html">GC1991 實驗室</a></nav></div></header>
-<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2><a href="group-1.html">第一組　水躍之深度平均模擬</a><a href="group-2.html" aria-current="page">第二組　水躍之工程水理分析</a><a href="comparison.html">共同比對與 18 週時程</a><a href="#contents">本頁導覽 ↑</a><a href="../guides/gc1991/methods.html">方程與方法教材</a></nav><main id="main" class="doc-content"><h1 id="_1">水躍之工程水理分析</h1>
-<p><strong>第二組 · 18 週大學部專題 · 更新 2026-10-14</strong></p>
-<p>用教師提供的 Python standard-step 程式與 HEC-RAS 案例，研究工程水理如何預測水面線、水躍位置及水頭變化，並解釋邊界條件與斷面配置造成的差異。</p>
-<p><strong>現在可以開始：</strong> 固定 GC1991 Test 4 的 Python 教材已備妥。HEC-RAS 的共用水平 mixed-flow 範例尚待教師交付。</p>
+<a class="skip" href="#main">跳到主要內容</a><header class="site-header"><div class="wrap header-inner"><a class="brand" href="../index.html"><span class="mark" aria-hidden="true">HJ</span><span><strong>水躍學生專題</strong><small>HYDRAULIC JUMP PROJECT</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">選單</button><nav class="nav" id="site-nav" aria-label="主要導覽"><a href="../index.html#groups">兩組研究</a><a href="comparison.html">共同比對</a><a href="comparison.html#schedule">18 週時程</a><a href="../slope-lab/index.html">坡度教材</a></nav></div></header>
+<div class="wrap"><p class="breadcrumb"><a href="../index.html">專題首頁</a> / 兩組研究規劃</p></div><div class="wrap doc-layout"><nav class="doc-nav" aria-label="兩組研究規劃"><h2>兩組研究規劃</h2><a href="group-1.html">第一組　水躍之深度平均模擬</a><a href="group-2.html" aria-current="page">第二組　水躍之工程水理分析</a><a href="comparison.html">共同比對與 18 週時程</a><a href="#contents">本頁導覽 ↑</a><a href="../slope-lab/docs/methods.html">方程與方法教材</a><a href="../slope-lab/docs/p0_demo.html">P0操作示範</a></nav><main id="main" class="doc-content"><h1 id="_1">第二組：水躍之工程水理分析</h1>
+<p><strong>B1–B5 · 五人各負責一個物理因子 · 整合稿 2026-10-22</strong></p>
+<p>本組比較 Python 標準步法與 HEC-RAS 6.6 的一維定常混合流。給定同一渠道、流量、粗糙度與尾水，研究水面線與水躍所在區間是否相近，以及差異如何隨斷面間距改變。</p>
+<p>本頁只列研究任務與分工。<a href="../slope-lab/docs/problem.html">問題與參數</a>、<a href="../slope-lab/docs/methods.html#method-ss">標準步法原理</a>與<a href="../slope-lab/docs/p0_group_b.html">HEC逐步操作</a>集中在教材。B1–B5是學生代號；本組不計算Boussinesq型B模型。</p>
 <h2 id="contents"><span id="_2"></span>本頁導覽</h2>
 <ul>
-<li><a href="#objectives">研究目標</a></li>
-<li><a href="#work">工作內容</a></li>
-<li><a href="#outcomes">預期成果</a></li>
-<li><a href="#exchange">與第一組如何比對</a></li>
-<li><a href="#start">本週先做什麼</a></li>
+<li><a href="#start">先完成P0</a></li>
+<li><a href="#work">五人分工</a></li>
+<li><a href="#objectives">每人需要完成的比較</a></li>
+<li><a href="#outcomes">成果與跨組交換</a></li>
 </ul>
-<h2 id="objectives"><span id="_3"></span>研究目標</h2>
+<h2 id="start"><span id="p0"></span>先完成P0</h2>
 <ol>
-<li>說明比能、比力、共軛水深與標準步法如何決定急流／緩流分支及水躍匹配位置。</li>
-<li>在相同物理輸入下，比較 Python 與 HEC-RAS 的水面線、位置判定及工程水頭變化。</li>
-<li>區分邊界條件、斷面間距、計算選項與工程假設造成的差異，提出適用範圍說明。</li>
+<li><a href="../downloads/slope-lab-v1.3.zip">下載v1.3教學包</a>，依<a href="../slope-lab/docs/start.html">GC1991接續安裝</a>沿用原WSL／Ubuntu執行Python；HEC-RAS 6.6在Windows運作。</li>
+<li>跟做<a href="../slope-lab/docs/p0_group_b.html">第二組P0示範</a>，用 <code>p0_group_b.ipynb</code> 計算三種斷面間距的Python水面並產生HEC專案。</li>
+<li>依<a href="../slope-lab/docs/start.html#exchange">檔案交換步驟</a>複製完整專案到Windows，再在HEC-RAS 6.6核對幾何、流量、邊界、Mixed及摩阻平均方式後Compute，保存版本與警告。</li>
+<li>匯出真正的HEC結果，回到Notebook完成配對圖、差值圖與水躍區間表。缺少HEC匯出時保留「待完成」。</li>
 </ol>
-<p>核心問題是：<strong>給定流量、渠道阻力與尾水後，兩種工程方法是否得到相近結果？若不同，差異來自哪個環節？</strong></p>
-<h2 id="work"><span id="_4"></span>工作內容</h2>
+<p>三份P0原生輸入與靜態檢查已備妥，<strong>HEC 6.6實機開檔／計算仍待教師或助教預試</strong>。這與Python數值重現分開；<code>paired_ss.csv</code> 是Python基準，不能當成HEC結果。</p>
+<h2 id="work"><span id="_3"></span>五人分工</h2>
 <div class="table-wrap" tabindex="0" role="region" aria-label="文件表格，可左右捲動"><table>
 <thead>
 <tr>
-<th>工作</th>
-<th>學生要做的事</th>
-<th>教師提供與確認</th>
+<th>同學</th>
+<th>研究因子</th>
+<th>個人案例</th>
+<th>操作單／跨組夥伴</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>G2-1 古典水理</td>
-<td>手算臨界水深、共軛水深、比力與能量損失，對照 Python 函式</td>
-<td>選讀教材、已知答案與單位／符號</td>
+<td>B1</td>
+<td>上游坡度與入口福祿數</td>
+<td>P0、P1L、P1H</td>
+<td><a href="../slope-lab/docs/assignments/B1.html">B1操作單</a>；對接A1</td>
 </tr>
 <tr>
-<td>G2-2 標準步法</td>
-<td>重現固定 Test 4，畫急流／緩流分支、比力差及匹配位置</td>
-<td>現有程式與基準；水躍用匹配處理，不跨躍使用光滑能量步進</td>
+<td>B2</td>
+<td>出口尾水</td>
+<td>P0、P2L、P2H</td>
+<td><a href="../slope-lab/docs/assignments/B2.html">B2操作單</a>；對接A2</td>
 </tr>
 <tr>
-<td>G2-3 HEC-RAS 配對</td>
-<td>建立相同渠道，記錄版本、計算設定及原始匯出水面線</td>
-<td>可執行的水平 mixed-flow 範例與邊界對應</td>
+<td>B3</td>
+<td>坡度轉換長度</td>
+<td>P0、P3L、P3H</td>
+<td><a href="../slope-lab/docs/assignments/B3.html">B3操作單</a>；對接A3</td>
 </tr>
 <tr>
-<td>G2-4 有限比較</td>
-<td>比較指定的兩組斷面間距；新案例版交付後才改尾水</td>
-<td>合理間距、允許輸入範圍及參考檢查</td>
+<td>B4</td>
+<td>下游坡度</td>
+<td>P0、P4L、P4H</td>
+<td><a href="../slope-lab/docs/assignments/B4.html">B4操作單</a>；對接A4</td>
 </tr>
 <tr>
-<td>G2-5 解釋與交付</td>
-<td>比較 Python／HEC-RAS，再與第一組 SV 基準比對</td>
-<td>共同比對規則與原始資料</td>
+<td>B5</td>
+<td>Manning粗糙係數</td>
+<td>P0、P5L、P5H</td>
+<td><a href="../slope-lab/docs/assignments/B5.html">B5操作單</a>；對接A5</td>
 </tr>
 </tbody>
 </table></div>
-<p>逐項核對流況、斷面順序、邊界、能量／動量係數及局部損失設定。兩個程式不能完全採用相同設定時，明列差異，避免將其誤認為方程效果。</p>
-<p>Manning n 使用共同指定值，代表渠道阻力；本學期不以增大 n 吸收所有水躍損失，也不以調整 n 使各條曲線重合。學生修改指定的 Python 分析、繪圖與經開放的案例輸入，不需從零建立求解器。</p>
-<h2 id="outcomes"><span id="_5"></span>預期成果</h2>
+<p>精確設定以<a href="../slope-lab/docs/design.html">案例設計表</a>與隨包JSON為準。改一個因子時，先檢查哪些邊界或正常水深會連動，不手改一組看似獨立的數字。</p>
+<h2 id="objectives"><span id="_4"></span>每人需要完成的比較</h2>
 <ul>
-<li><strong>HEC-RAS 案例：</strong> 可執行的專案檔、版本與輸入設定表，以及原始匯出資料。</li>
-<li><strong>Python 分析 Notebook：</strong> 手算核對、兩分支水面、比力匹配圖與可重現步驟。</li>
-<li><strong>工程比較圖表：</strong> Python–HEC-RAS 水面與位置比較，附斷面間距及核准變例的影響。</li>
-<li><strong>研究報告與簡報：</strong> 說明工程方法能預測的量、適用範圍與尚未釐清的差異。</li>
+<li>P0與低、高兩個變體，各用0.5、0.25、0.125 m斷面間距做Python／HEC比較。</li>
+<li>以每份HEC專案的 <code>paired_ss.csv</code> 作嚴格配對基準，因為它使用文字檔真正儲存的流量與床高。</li>
+<li>記錄HEC所有超臨界轉次臨界的斷面區間；不要把區間中點當成精確跳接位置。</li>
+<li>先核對輸入與設定，再研究加密。保留臨界水深替代與警告，不能先調粗糙度或尾水使曲線重合。</li>
 </ul>
-<p>最低完成範圍是固定水平案例的可重現工程比較。HEC-RAS 未交付時先完成 G2-1、G2-2 與交換資料格式，該項仍列待完成。坡度轉折須等教師補足正常水深、坡床程式與配對案例後再延伸。</p>
-<h2 id="exchange"><span id="_6"></span>與第一組如何比對</h2>
-<p><a href="group-1.html">第一組「水躍之深度平均模擬」</a>負責 SV、B 型與待交付的 SSWE。第二組先彙整共同輸入，第一組覆核；從 <strong>Python standard-step–SV</strong> 比較起步，再加入其餘可用方法。</p>
-<p>交換數值資料而非圖片。水深採相同量測站位；HEC-RAS 水躍位置保留相鄰斷面區間，Python 保留比力匹配點。兩組分別產生同一張疊圖，依輸入／邊界、數值／取樣、方程／閉合的順序解釋差異。</p>
-<p>完整輸入、指標、交付欄位及週次見<a href="comparison.html">共同比對與 18 週時程</a>。</p>
-<h2 id="start"><span id="_7"></span>本週先做什麼</h2>
-<ol>
-<li>進入 <a href="../gc1991-lab/index.html">GC1991 實驗室</a>，跑通固定 Python standard-step 範例。</li>
-<li>閱讀<a href="../guides/gc1991/methods.html">方程與方法</a>，完成一組古典水躍手算與程式核對。</li>
-<li>交付兩分支水面圖與共用輸入表，確認單寬流量 q 與 HEC-RAS 所需總流量 Q 的區別。</li>
-</ol>
-<p>週次依實際教學進度對應；組別調整不代表重新開始學期。每週短會各帶一張圖、一個解釋與一個待釐清問題。</p><p class="doc-source">研究規劃更新：2026-10-14 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/docs/research-plan/group-2.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>
+<p>完成P0後，用<a href="../slope-lab/docs/group_b.html">第二組個人案例流程</a>產生新專案。每次運算保留原始輸入、HEC原生輸出與匯出表；標準步法的零長度跳接不預測實際滾流長度。</p>
+<h2 id="outcomes"><span id="_5"></span>成果與跨組交換</h2>
+<p>每人交付：三條件的輸入表、三種斷面間距、配對水面／差值圖、HEC水躍區間與Python比力匹配位置、警告紀錄及差異解釋。</p>
+<p>與<a href="group-1.html">第一組</a>同編號夥伴交換數值剖面，加入SV／B結果作共同分析。比對定義、資料交換及週次見<a href="comparison.html">共同比對</a>；正式檔案與報告格式見<a href="../slope-lab/docs/submission.html">成果繳交</a>。</p><p class="doc-source">研究規劃整合：2026-10-22 · <a href="https://github.com/mengyulin/2026_Hydraulic-Jump_Project/blob/main/docs/research-plan/group-2.md">閱讀原文</a> · <a href="../index.html#groups">回到兩組入口</a></p></main></div><footer class="site-footer"><div class="wrap footer-inner"><strong>Hydraulic Jump Project</strong><a href="../index.html">回到專題首頁 ↑</a></div></footer></body></html>

@@ -1,0 +1,798 @@
+{
+  "passed": true,
+  "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "uid": 1000,
+  "ubuntu_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "HEC_engine_verified": false,
+  "interactive_Windows_browser_tested": false,
+  "GC1991_unchanged_after_slope_setup": true,
+  "environment": {
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "machine": "x86_64",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "python_prefix": "/home/hjslope/slope-lab/.venv",
+    "kit": "/home/hjslope/slope-lab",
+    "is_wsl": true,
+    "wsl_distro": "Ubuntu-24.04",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "matplotlib": "3.11.2",
+      "jupyterlab": "4.6.4",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.4.0"
+    },
+    "tools": {
+      "cc": "/usr/bin/cc",
+      "make": "/usr/bin/make",
+      "awk": "/usr/bin/awk",
+      "ar": "/usr/bin/ar",
+      "unzip": "/usr/bin/unzip"
+    },
+    "checks": {
+      "supported_system": true,
+      "python_310_or_newer": true,
+      "kit_virtualenv": true,
+      "simple_build_path": true,
+      "system_tools": true,
+      "packages_importable": true,
+      "dependency_versions": true,
+      "pinned_basilisk_source": true,
+      "notebook_kernel": true,
+      "B_library_loads": true
+    },
+    "errors": [],
+    "scope": "Environment and shared-library loading only; no P0 integration or HEC execution.",
+    "P0_executed": false,
+    "HEC_engine_executed": false,
+    "basilisk_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+    "library_suffix": ".so",
+    "binary_sha256": {
+      "sv": "d658596c0f26f3a347f14878fc1df85139e8cb6c5413614f3a0205bc34a3b819",
+      "b": "e56518aad49e0db50fed7fa9beecbf8ed0238c58dbb0194e3033e45e94332073",
+      "bridge.so": "dcec8bdd0460aafa592f0a4726bef942d0fc8ce3bfc2fb388f7d1aa96fb76511"
+    },
+    "environment_passed": true,
+    "require_wsl": true,
+    "passed": true
+  },
+  "P0": {
+    "passed": true,
+    "checks": [
+      {
+        "method": "ss",
+        "N": null,
+        "run": "runs/20261022T043822_P0_ss_15b66621",
+        "reference": "ss_P0_dx0025.csv",
+        "reference_sha256": "03170e26ef740ca095ad28f892a493f006effd19dbc380472e15d7ba1df95108",
+        "max_depth_difference_m": 0.0,
+        "tolerance_m": 1e-08,
+        "passed": true,
+        "wall_seconds": 0.5523941139999806,
+        "steady_screen": true,
+        "summary": {
+          "SS_xJ_m": 12.160061201102373,
+          "SS_h1_m": 0.07138274572187457,
+          "SS_h2_m": 0.16638210013199084,
+          "x50_unique_m": 12.160061201102373,
+          "x10_unique_m": 12.160061201102373,
+          "x90_unique_m": 12.160061201102373,
+          "all_upcrossings_m": {
+            "0.1": [
+              12.160061201102373
+            ],
+            "0.5": [
+              12.160061201102373
+            ],
+            "0.9": [
+              12.160061201102373
+            ]
+          },
+          "first_x50_supplementary_m": 12.160061201102373,
+          "rise_width_unique_m": 0.0,
+          "upstream_window_m": [
+            9.160061201102373,
+            10.160061201102373
+          ],
+          "downstream_window_m": [
+            17.160061201102373,
+            18.160061201102373
+          ],
+          "upstream_mean_h_m": 0.07067283325671113,
+          "downstream_mean_h_m": 0.16765584239734932,
+          "wave_window_m": [
+            12.160061201102373,
+            20.160061201102373
+          ],
+          "extrema": [],
+          "amplitude_floor_m": 1e-05,
+          "first_peak_h_m": null,
+          "first_peak_x_m": null,
+          "tail_wavelength_m": null,
+          "tail_amplitude_efold_m": null,
+          "wavelength_samples_m": [],
+          "note": "N/A is null. First crossing is supplementary. h peaks, not eta peaks. No physical roller or breaking validation."
+        },
+        "checks": {
+          "jump": {
+            "x_m": 12.160061201102373,
+            "bracket_m": [
+              12.15,
+              12.175
+            ],
+            "y1_m": 0.07138274572187457,
+            "y2_m": 0.16638210013199084,
+            "Fr1": 1.970238838219885,
+            "energy_loss_m": 0.018046879549672823,
+            "relative_force_residual": 7.769393811273723e-16
+          },
+          "energy_residual_m": 1.1206956044597371e-13
+        }
+      },
+      {
+        "method": "sv",
+        "N": 512,
+        "run": "runs/20261022T043823_P0_sv_31384cab",
+        "reference": "sv_N512_T300.dat",
+        "reference_sha256": "5e733d0d7709d5caff9b2f3a39b244bf55e49950190e7df72f8b3039c704f934",
+        "max_depth_difference_m": 1.0000056338554941e-12,
+        "tolerance_m": 0.0002,
+        "passed": true,
+        "wall_seconds": 3.578991578,
+        "steady_screen": false,
+        "summary": {
+          "SS_xJ_m": 12.160061201102373,
+          "SS_h1_m": 0.07138274572187457,
+          "SS_h2_m": 0.16638210013199084,
+          "x50_unique_m": 12.171743769401086,
+          "x10_unique_m": 12.11580605661354,
+          "x90_unique_m": 12.211641350363374,
+          "all_upcrossings_m": {
+            "0.1": [
+              12.11580605661354
+            ],
+            "0.5": [
+              12.171743769401086
+            ],
+            "0.9": [
+              12.211641350363374
+            ]
+          },
+          "first_x50_supplementary_m": 12.171743769401086,
+          "rise_width_unique_m": 0.09583529374983435,
+          "upstream_window_m": [
+            9.160061201102373,
+            10.160061201102373
+          ],
+          "downstream_window_m": [
+            17.160061201102373,
+            18.160061201102373
+          ],
+          "upstream_mean_h_m": 0.07067278692062831,
+          "downstream_mean_h_m": 0.16765269897012838,
+          "wave_window_m": [
+            12.160061201102373,
+            20.160061201102373
+          ],
+          "extrema": [],
+          "amplitude_floor_m": 1e-05,
+          "first_peak_h_m": null,
+          "first_peak_x_m": null,
+          "tail_wavelength_m": null,
+          "tail_amplitude_efold_m": null,
+          "wavelength_samples_m": [],
+          "note": "N/A is null. First crossing is supplementary. h peaks, not eta peaks. No physical roller or breaking validation."
+        },
+        "checks": {
+          "native": {
+            "max_mass_error": 9.71667191151937e-12,
+            "max_momentum_error": 2.0609292050721706e-11,
+            "max_inlet_error": 0.0,
+            "min_stage_h": 0.06495544369664998,
+            "mean_weight": 100.00000000008012,
+            "first_weight": 50.000000000024656,
+            "second_weight": 50.00000000004783,
+            "max_pressure_ratio": 0.0,
+            "pressure_failures": 0.0,
+            "active_fraction": 0.0
+          },
+          "block_depth_change_m": 0.0021024613709999945,
+          "max_depth_sd_m": 0.00114650045997,
+          "steady_screen": false
+        }
+      },
+      {
+        "method": "b",
+        "N": 1024,
+        "run": "runs/20261022T043826_P0_b_6c902723",
+        "reference": "b_N1024.dat",
+        "reference_sha256": "f3a55e683c1376ef959555539ec05d2e5001d9ec48e0158a1df77f90b8b2c449",
+        "max_depth_difference_m": 9.331544703616856e-10,
+        "tolerance_m": 1e-05,
+        "passed": true,
+        "wall_seconds": 2.0816805179999847,
+        "steady_screen": true,
+        "summary": {
+          "SS_xJ_m": 12.160061201102373,
+          "SS_h1_m": 0.07138274572187457,
+          "SS_h2_m": 0.16638210013199084,
+          "x50_unique_m": 12.208691089825203,
+          "x10_unique_m": 12.065268170459918,
+          "x90_unique_m": 12.297290876867658,
+          "all_upcrossings_m": {
+            "0.1": [
+              12.065268170459918
+            ],
+            "0.5": [
+              12.208691089825203
+            ],
+            "0.9": [
+              12.297290876867658
+            ]
+          },
+          "first_x50_supplementary_m": 12.208691089825203,
+          "rise_width_unique_m": 0.23202270640774003,
+          "upstream_window_m": [
+            9.160061201102373,
+            10.160061201102373
+          ],
+          "downstream_window_m": [
+            17.160061201102373,
+            18.160061201102373
+          ],
+          "upstream_mean_h_m": 0.07064713498673238,
+          "downstream_mean_h_m": 0.16766058632452738,
+          "wave_window_m": [
+            12.160061201102373,
+            20.160061201102373
+          ],
+          "extrema": [
+            {
+              "peak_x_m": 12.417968678147126,
+              "peak_h_m": 0.17987698599140783,
+              "trough_x_m": 12.669396049368316,
+              "trough_h_m": 0.16491910821324823,
+              "amplitude_m": 0.0149578777781596
+            },
+            {
+              "peak_x_m": 12.932101966129459,
+              "peak_h_m": 0.1681936034196288,
+              "trough_x_m": 13.19107407233944,
+              "trough_h_m": 0.16755043791215796,
+              "amplitude_m": 0.0006431655074708442
+            },
+            {
+              "peak_x_m": 13.450326652997568,
+              "peak_h_m": 0.1676818351276074,
+              "trough_x_m": 13.708872252607813,
+              "trough_h_m": 0.16765511458813062,
+              "amplitude_m": 2.672053947677666e-05
+            }
+          ],
+          "amplitude_floor_m": 1e-05,
+          "first_peak_h_m": 0.17987698599140783,
+          "first_peak_x_m": 12.417968678147126,
+          "tail_wavelength_m": 0.5182246868681091,
+          "tail_amplitude_efold_m": null,
+          "wavelength_samples_m": [
+            0.5182246868681091
+          ],
+          "note": "N/A is null. First crossing is supplementary. h peaks, not eta peaks. No physical roller or breaking validation."
+        },
+        "checks": {
+          "levels": [
+            {
+              "N": 128,
+              "passed": true,
+              "iterations": [
+                {
+                  "iteration": 0,
+                  "residual_Linf": 9.916260044207092e-08,
+                  "dt": 0.004512532132352349,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 1,
+                  "residual_Linf": 9.744173654806579e-10,
+                  "dt": 0.004512532132352358
+                }
+              ]
+            },
+            {
+              "N": 256,
+              "passed": true,
+              "iterations": [
+                {
+                  "iteration": 0,
+                  "residual_Linf": 0.01625679095548206,
+                  "dt": 0.001962260540597558,
+                  "step_scale": 0.5
+                },
+                {
+                  "iteration": 1,
+                  "residual_Linf": 0.007948437603671307,
+                  "dt": 0.0019542667335499973,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 2,
+                  "residual_Linf": 0.004556986493344729,
+                  "dt": 0.0019556044113086743,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 3,
+                  "residual_Linf": 3.134220387126987e-05,
+                  "dt": 0.0019606161228095526,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 4,
+                  "residual_Linf": 8.357408942682738e-10,
+                  "dt": 0.0019606234315382625
+                }
+              ]
+            },
+            {
+              "N": 512,
+              "passed": true,
+              "iterations": [
+                {
+                  "iteration": 0,
+                  "residual_Linf": 0.034322337415415335,
+                  "dt": 0.0005030682077993208,
+                  "step_scale": 0.5
+                },
+                {
+                  "iteration": 1,
+                  "residual_Linf": 0.018113842199609285,
+                  "dt": 0.000497169061403756,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 2,
+                  "residual_Linf": 0.011189227633697249,
+                  "dt": 0.0004939610185789905,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 3,
+                  "residual_Linf": 8.197278662611454e-05,
+                  "dt": 0.0004966636859378154,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 4,
+                  "residual_Linf": 3.7238184992169354e-09,
+                  "dt": 0.0004966740233192629
+                }
+              ]
+            },
+            {
+              "N": 1024,
+              "passed": true,
+              "iterations": [
+                {
+                  "iteration": 0,
+                  "residual_Linf": 0.13410566362805112,
+                  "dt": 8.33527820094052e-05,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 1,
+                  "residual_Linf": 0.08887797571477321,
+                  "dt": 7.637530155303519e-05,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 2,
+                  "residual_Linf": 0.00348332008536161,
+                  "dt": 7.81254597995025e-05,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 3,
+                  "residual_Linf": 3.0586119592369843e-06,
+                  "dt": 7.81626897386964e-05,
+                  "step_scale": 1.0
+                },
+                {
+                  "iteration": 4,
+                  "residual_Linf": 5.214517966728449e-11,
+                  "dt": 7.816270770663246e-05
+                }
+              ]
+            }
+          ],
+          "h_residual_ms": 9.50161431196965e-12,
+          "q_residual_m2s2": 5.214517966728449e-11,
+          "native_dt": 7.816270770663246e-05,
+          "native": {
+            "actual_time": 0.1,
+            "steps": 1280.0,
+            "rejected": 0.0,
+            "dx": 0.029296875,
+            "weight": 0.050000000000000065,
+            "mass_error_max": 1.3323803114417491e-15,
+            "momentum_error_max": 4.342260068030237e-15,
+            "mass_impulse": -1.126818915611902e-19,
+            "momentum_impulse": -4.529160404392105e-15,
+            "source_impulse": -2.014200819375826e-14,
+            "filter_energy_rate_integral": -4.497927827072414e-07,
+            "min_stage_h": 0.07058874775733977,
+            "max_filter_rate": 0.012482191530328129,
+            "final_volume": 3.848455372768405,
+            "final_momentum": 3.5323939610872945
+          },
+          "root_endpoint_difference_m": 7.624681719331505e-10,
+          "max_depth_sd_m": 1.5246407635272388e-08,
+          "block_depth_change_m": 4.967415367929107e-13,
+          "steady_screen": true,
+          "time_note": "Relaxation time; short root maintenance, not arbitrary-start transient convergence."
+        }
+      }
+    ],
+    "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "HEC_RAS_engine_verified": false,
+    "scope": "P0 implementation reproduction, not physical validation or B grid convergence."
+  },
+  "notebooks": [
+    {
+      "notebook": "p0_group_a.ipynb",
+      "passed": true,
+      "code_cells": 8,
+      "seconds": 8.61598911499999
+    },
+    {
+      "notebook": "p0_group_b.ipynb",
+      "passed": true,
+      "code_cells": 6,
+      "seconds": 3.303712370000028
+    }
+  ],
+  "HEC_file_roundtrip": {
+    "hec_engine_executed": false,
+    "windows_temporary_directory": "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\HJ-P0-017dd969-6c47-4060-8821-da361917fdab",
+    "files": 25,
+    "hashes_equal": true,
+    "original_inputs_preserved": true,
+    "scope": "Real Windows file copy of HEC inputs only; HEC-RAS 6.6 Compute and exports remain untested."
+  },
+  "launchers": [
+    {
+      "notebook": "p0_group_a.ipynb",
+      "kernel": "slope-lab",
+      "linux_api": true,
+      "windows_localhost_api": true,
+      "windows_lab_page_http200": true,
+      "interactive_browser_clicks_tested": false
+    },
+    {
+      "notebook": "p0_group_b.ipynb",
+      "kernel": "slope-lab",
+      "linux_api": true,
+      "windows_localhost_api": true,
+      "windows_lab_page_http200": true,
+      "interactive_browser_clicks_tested": false
+    }
+  ],
+  "GC1991_launcher_after_slope": {
+    "notebook": "student_lab.ipynb",
+    "kernel": "gc1991-lab",
+    "linux_api": true,
+    "windows_localhost_api": true,
+    "windows_lab_page_http200": true,
+    "interactive_browser_clicks_tested": false
+  },
+  "GC1991_rerun_after_slope": [
+    {
+      "method": "standard_step",
+      "case": {
+        "id": "test4",
+        "title": "GC1991 Test 4 — fixed teaching baseline",
+        "physical": {
+          "hin_m": 0.043,
+          "uin_m_s": 2.737,
+          "hout_m": 0.222,
+          "manning_n": 0.008,
+          "width_m": 0.46,
+          "gravity_m_s2": 9.81,
+          "bed_slope": 0.0,
+          "x0_m": 0.305,
+          "xout_m": 14.0
+        },
+        "standard_step": {
+          "dx_m": 0.005
+        },
+        "sv": {
+          "cells": 512,
+          "end_s": 1200.0,
+          "mean_start_s": 1000.0,
+          "CFL": 0.4,
+          "boundary_kind": 1
+        },
+        "custom": {
+          "intervals": 92,
+          "boussinesq": 1,
+          "scheme": 1,
+          "CFL": 0.1,
+          "kappa": 0.03,
+          "end_s": 300.0,
+          "mean_start_s": 200.0,
+          "max_dt_s": 1.0,
+          "source_mode": 0,
+          "strip_mode": 2,
+          "periodic": 0
+        }
+      },
+      "status": "passed",
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "interface_sha256": "ae48c2d2ba1a2e5e0d092a29b51aa82d0132871101e2c891e106a79c1019ddd0",
+      "observations_sha256": "330512a4fc91aca77a43ba3524d735cb096a05339383c3d194a83acbd2266b15",
+      "flow_seconds": 0.24119227199997795,
+      "source_sha256": {
+        "standard_step.py": "a7563201acb0656796f3374d96a9b916a2491fb1e527185d5e5029efa96b8855"
+      },
+      "checks": {
+        "finite_positive_profile": true,
+        "jump_difference_m": 0.0,
+        "passed": true
+      },
+      "rmse_m": 0.052216245788547826,
+      "observation_count": 13,
+      "profile_sha256": "01340e1c5a1e7a9bbe56afb038632e7029b98962be233275bb41bf16892e263b"
+    },
+    {
+      "method": "sv",
+      "case": {
+        "id": "test4",
+        "title": "GC1991 Test 4 — fixed teaching baseline",
+        "physical": {
+          "hin_m": 0.043,
+          "uin_m_s": 2.737,
+          "hout_m": 0.222,
+          "manning_n": 0.008,
+          "width_m": 0.46,
+          "gravity_m_s2": 9.81,
+          "bed_slope": 0.0,
+          "x0_m": 0.305,
+          "xout_m": 14.0
+        },
+        "standard_step": {
+          "dx_m": 0.005
+        },
+        "sv": {
+          "cells": 512,
+          "end_s": 1200.0,
+          "mean_start_s": 1000.0,
+          "CFL": 0.4,
+          "boundary_kind": 1
+        },
+        "custom": {
+          "intervals": 92,
+          "boussinesq": 1,
+          "scheme": 1,
+          "CFL": 0.1,
+          "kappa": 0.03,
+          "end_s": 300.0,
+          "mean_start_s": 200.0,
+          "max_dt_s": 1.0,
+          "source_mode": 0,
+          "strip_mode": 2,
+          "periodic": 0
+        }
+      },
+      "status": "passed",
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "interface_sha256": "ae48c2d2ba1a2e5e0d092a29b51aa82d0132871101e2c891e106a79c1019ddd0",
+      "observations_sha256": "330512a4fc91aca77a43ba3524d735cb096a05339383c3d194a83acbd2266b15",
+      "basilisk": {
+        "identity": {
+          "source_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+          "qcc": "/home/hjslope/gc1991-lab/.tools/a629017cabad6626-Linux-x86_64/basilisk/src/qcc",
+          "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "kit_directory": "/home/hjslope/gc1991-lab"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "build_commands": [
+          [
+            "make",
+            "-C",
+            "darcsit",
+            "literate-c"
+          ],
+          [
+            "make",
+            "ast"
+          ],
+          [
+            "make",
+            "qcc"
+          ]
+        ]
+      },
+      "compile_seconds": 4.281802556000002,
+      "build_command": [
+        "/home/hjslope/gc1991-lab/.tools/a629017cabad6626-Linux-x86_64/basilisk/src/qcc",
+        "-O2",
+        "-Wall",
+        "-disable-dimensions",
+        "-DMODEL_GN=0",
+        "sv_case.c",
+        "-o",
+        "solver",
+        "-lm"
+      ],
+      "source_sha256": {
+        "sv_case.c": "c939593af8a49cc041e4170a04ff78fad45f14f45955021c80b8fcaf3b3e4f19",
+        "sv_instrumented.h": "fb36fbf71b5c8463c7b23436679872cfbff93d02fb284d9990ce65bdde600243"
+      },
+      "binary_sha256": "3f2eb6a8e9ad9f21fbc81b82d98b09315e6ed731e7bbaeeb63828937735b61e8",
+      "run_command": [
+        "./solver",
+        "0.043",
+        "2.737",
+        "0.222",
+        "0.008",
+        "0.305",
+        "14.0",
+        "512",
+        "1200.0",
+        "1000.0",
+        "0.4",
+        "1",
+        "0",
+        "initial.dat"
+      ],
+      "flow_seconds": 35.94976460800001,
+      "diagnostics": {
+        "max_mass_error": 1.6858336948644137e-10,
+        "max_momentum_error": 1.2975789331903798e-09,
+        "max_inlet_error": 0.0,
+        "min_stage_h": 0.04303191829182992,
+        "mean_weight": 200.00000000073666,
+        "first_weight": 100.00000000022416,
+        "second_weight": 100.00000000050085,
+        "max_pressure_ratio": 0.0,
+        "pressure_failures": 0.0,
+        "active_fraction": 0.0
+      },
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 9.000022949123831e-12,
+        "passed": true
+      },
+      "rmse_m": 0.05219580879000728,
+      "observation_count": 13,
+      "profile_sha256": "a1791a791be8f30f6d8e05c11890b79d4794807e305679c87003d940e1eeb1bc"
+    },
+    {
+      "method": "custom",
+      "case": {
+        "id": "test4",
+        "title": "GC1991 Test 4 — fixed teaching baseline",
+        "physical": {
+          "hin_m": 0.043,
+          "uin_m_s": 2.737,
+          "hout_m": 0.222,
+          "manning_n": 0.008,
+          "width_m": 0.46,
+          "gravity_m_s2": 9.81,
+          "bed_slope": 0.0,
+          "x0_m": 0.305,
+          "xout_m": 14.0
+        },
+        "standard_step": {
+          "dx_m": 0.005
+        },
+        "sv": {
+          "cells": 512,
+          "end_s": 1200.0,
+          "mean_start_s": 1000.0,
+          "CFL": 0.4,
+          "boundary_kind": 1
+        },
+        "custom": {
+          "intervals": 92,
+          "boussinesq": 1,
+          "scheme": 1,
+          "CFL": 0.1,
+          "kappa": 0.03,
+          "end_s": 300.0,
+          "mean_start_s": 200.0,
+          "max_dt_s": 1.0,
+          "source_mode": 0,
+          "strip_mode": 2,
+          "periodic": 0
+        }
+      },
+      "status": "passed",
+      "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+      "interface_sha256": "ae48c2d2ba1a2e5e0d092a29b51aa82d0132871101e2c891e106a79c1019ddd0",
+      "observations_sha256": "330512a4fc91aca77a43ba3524d735cb096a05339383c3d194a83acbd2266b15",
+      "basilisk": {
+        "identity": {
+          "source_sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae",
+          "qcc": "/home/hjslope/gc1991-lab/.tools/a629017cabad6626-Linux-x86_64/basilisk/src/qcc",
+          "platform": "Linux-6.18.40.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+          "kit_directory": "/home/hjslope/gc1991-lab"
+        },
+        "compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "build_commands": [
+          [
+            "make",
+            "-C",
+            "darcsit",
+            "literate-c"
+          ],
+          [
+            "make",
+            "ast"
+          ],
+          [
+            "make",
+            "qcc"
+          ]
+        ]
+      },
+      "compile_seconds": 2.222202338000045,
+      "build_command": [
+        "/home/hjslope/gc1991-lab/.tools/a629017cabad6626-Linux-x86_64/basilisk/src/qcc",
+        "-O2",
+        "-Wall",
+        "-disable-dimensions",
+        "custom_solver.c",
+        "-o",
+        "solver",
+        "-lm"
+      ],
+      "source_sha256": {
+        "custom_solver.c": "80220e1c8e420f61357cd75488728e7130c151e3ec2fade53f8a522a69375220"
+      },
+      "binary_sha256": "31a4cf14ef69af6f073f7a0abf277fd8d0667ab740410e757cbb5a36c3a1be04",
+      "run_command": [
+        "./solver",
+        "config.dat",
+        "initial.dat",
+        "options.dat"
+      ],
+      "flow_seconds": 1.569380337000041,
+      "diagnostics": {
+        "actual_time": 300.0,
+        "steps": 142244.0,
+        "rejected": 0.0,
+        "dx": 0.1488586956521739,
+        "weight": 100.0000000000237,
+        "mass_error_max": 3.33510996597397e-13,
+        "momentum_error_max": 2.575717417130363e-13,
+        "mass_impulse": 2.001954437696712,
+        "momentum_impulse": 9.721052451432405,
+        "source_impulse": -9.686338746816988,
+        "filter_energy_rate_integral": -0.07370545678154923,
+        "min_stage_h": 0.043,
+        "max_filter_rate": 0.03816104824601333,
+        "final_volume": 2.8272933890278513,
+        "final_momentum": 1.646491949615345
+      },
+      "checks": {
+        "finite_positive_profile": true,
+        "max_reference_depth_difference_m": 1.942890293094024e-16,
+        "passed": true
+      },
+      "rmse_m": 0.014142414618083498,
+      "observation_count": 13,
+      "profile_sha256": "86f437e9d480c0c81d5d958c74dca816c8aa36864aaa3930626ffca48785dcd5"
+    }
+  ],
+  "GC1991_new_output_directories": [
+    "20261022T043935_standard_step_bffb10ed",
+    "20261022T043936_sv_77458084",
+    "20261022T044016_custom_4a03814a",
+    "20261022T044020_comparison_e587af2e"
+  ],
+  "GC1991_original_files_results_and_packages_preserved": true,
+  "kit_inputs_preserved": true
+}

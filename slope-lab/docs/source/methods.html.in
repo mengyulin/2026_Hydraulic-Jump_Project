@@ -1,0 +1,79 @@
+<p class="lead">本頁比較三種水理方法。它們使用同一個坡度變化矩形渠道，但對水流的描述方式不同。先理解每種方法算什麼，再討論水面線為何不同。</p>
+<p>符號沿用問題設定：\(x\) 為下游方向座標，\(z_b\) 為渠底高程，\(h\) 為水深，\(\eta=z_b+h\) 為水面高程，\(u\) 為斷面平均速度，\(q=hu=Q/W\) 為單位寬流量，\(g\) 為重力加速度。</p>
+{{METHOD_TABLE}}
+<p>第一組又稱 A 組，第二組又稱 B 組；<strong>「B 組」是學生分組，「B 模型」是計算方法</strong>。第一組會使用 B 模型，第二組則使用 Python 標準步法與 HEC-RAS。</p>
+<h2 id="method-ss">1. SS：標準步法，先追蹤兩側水面，再找水躍</h2>
+<p><strong>SS 是 Standard-step method（標準步法）的縮寫。</strong>它把渠道分成許多斷面，假設流量不隨時間改變，在相鄰斷面之間用能量方程求水深。這裡取速度分布修正係數為1，工程水頭為：</p>
+\[H=z_b+h+\frac{u^2}{2g}=z_b+h+\frac{q^2}{2gh^2}.\]
+<p>右邊三項分別是床面高程、水深與速度水頭，單位都為公尺。對沿下游方向排列的相鄰斷面 \(i,i+1\)，本套件使用：</p>
+\[
+H_i-H_{i+1}=\Delta x_i\frac{S_{f,i}+S_{f,i+1}}{2},
+\qquad \Delta x_i=x_{i+1}-x_i.
+\]
+<p>右側是這段渠道的摩阻水頭損失；摩阻坡度取兩端的算術平均。因為 \(C_c=C_e=0\)，本案沒有額外收縮／擴張項。求出下一斷面的水深，再往下一段走，就是「step」的意思。</p>
+<h3>什麼是水深分支？</h3>
+<p>同一個能量條件可能對應一個淺水解與一個深水解。淺水的超臨界分支由上游往下游算；深水的次臨界分支由下游尾水往上游算。這兩條分支是候選水面，尚未連接成完整答案。</p>
+<p>跨過水躍時會損失能量，所以不能只把同一條逐段能量曲線直接穿過水躍。本套件在兩條有效分支重疊處，比較單位寬度的<strong>比力（specific force）</strong>：</p>
+\[
+M(h)=\frac{h^2}{2}+\frac{q^2}{gh},\qquad
+M(h_1)=M(h_2).
+\]
+<p>比力式來自動量平衡，\(M\) 的單位為 \(\mathrm{m^2}\)；\(h_1,h_2\) 分別是水躍前、後水深。此處使用<strong>零長度局部跳接</strong>，忽略水躍內有限長度的床坡與摩阻積分。只接受由淺轉深且能量下降的連接。若有效分支不存在或連接不唯一，應回報問題，不自行補上一段曲線。</p>
+<p>在上述矩形局部近似下，可用經典共軛水深公式核對：</p>
+\[
+\frac{h_2}{h_1}=\frac{\sqrt{1+8\mathrm{Fr}_1^2}-1}{2},\qquad
+\Delta E_J=\frac{(h_2-h_1)^3}{4h_1h_2}.
+\]
+<p>\(\mathrm{Fr}_1\) 是<strong>躍前</strong>福祿數，不是入口福祿數；\(\Delta E_J\) 是這個局部經典跳接的能量水頭損失。坡度改變區中的真實有限長度水躍不必完全遵守此局部近似。標準步法把兩個水深畫在同一個 \(x_J\)，所以水面圖接近垂直；它本身不預測水躍的實際長度。</p>
+<div class="example"><strong>P0 核對量：</strong>標準步法在 \(\Delta x=0.025\,\mathrm{m}\) 時得到 \(x_J\approx12.16006\,\mathrm{m}\)、\(h_1\approx0.071383\,\mathrm{m}\)、\(h_2\approx0.166382\,\mathrm{m}\)。這是既有數值基準，用來檢查操作，不是實驗量測。</div>
+<h2 id="method-sv">2. SV：Saint-Venant 淺水方程，計算水深如何隨時間變化</h2>
+<p><strong>SV 是 Saint-Venant equations（聖維南方程）的縮寫。</strong>本專題使用一維、深度平均的淺水方程，假設垂直壓力接近靜水壓：在水面以下越深處壓力越大，且不另外解析垂直加速度造成的壓力變化。</p>
+\[
+\underbrace{\frac{\partial h}{\partial t}}_{\text{storage}}
++\underbrace{\frac{\partial q}{\partial x}}_{\text{net flux}}=0,
+\]
+\[
+\frac{\partial q}{\partial t}
++\frac{\partial}{\partial x}\left(\frac{q^2}{h}+\frac{gh^2}{2}\right)
+=-gh\frac{\partial z_b}{\partial x}
+-\frac{g n^2 q|q|}{hR^{4/3}}.
+\]
+<p>第一式是水量守恆：「某段水量的增加」等於「流入減流出」。第二式是動量守恆：左側描述動量隨時間的改變與沿程傳輸；右側分別是床坡重力作用與 Manning 摩阻。偏微分符號 \(\partial/\partial t\)、\(\partial/\partial x\) 分別表示隨時間、沿空間的變化率。</p>
+<p>程式把渠道分成 \(N\) 個小單元，按單元兩端的通量交換水量與動量，稱為<strong>有限體積法</strong>。水躍可表現為跨數個網格的快速水深上升。這段上升的寬度會受到網格與數值耗散影響，不能直接當成真實翻滾區長度。</p>
+<p>本套件的 SV 核心由 Basilisk 計算平台執行，採分段線性重建、限制斜率的 minmod2 方法、Kurganov 通量、靜水重建與兩階段時間更新。學生先理解這些方法都在計算「相鄰單元如何交換流量」，不必先自行寫出全部演算法。精確程式來源見附錄。</p>
+<p>SV 的 \(t\) 是物理時間。本套件預設計算至 \(300\,\mathrm{s}\)，以 \(200\text{–}300\,\mathrm{s}\) 的水深平均畫圖。固定邊界不保證每個格點完全靜止；仍要檢查後半段的平均與波動。</p>
+<h2 id="method-b">3. B：本套件的 Boussinesq 型定常壓力修正</h2>
+<p><strong>B 代表本套件的 Boussinesq（布西尼斯克）型模型。</strong>它在淺水動量式中加入非靜水壓修正，描述速度沿程變化與床面曲率所造成的部分垂直加速度效應。必須加上「<strong>定常壓力近似</strong>」這個限定：本程式省略完整非穩態壓力中的時間導數，不能當作一般移動波的完整 Boussinesq 求解器。</p>
+<p>為了與 SV 的物理時間區別，以下用 \(\tau\) 表示 B 程式的鬆弛推進時間，即尋找定常解的演算參數：</p>
+\[
+\frac{\partial h}{\partial\tau}+\frac{\partial q}{\partial x}=0,
+\]
+\[
+\begin{aligned}
+\frac{\partial q}{\partial\tau}
++\frac{\partial}{\partial x}\left(\frac{q^2}{h}+\frac{gh^2}{2}+\Pi_B\right)
+&=-gh\frac{\partial z_b}{\partial x}
+-P_{b,B}\frac{\partial z_b}{\partial x}
+-\frac{g n^2q|q|}{hR^{4/3}}.
+\end{aligned}
+\]
+<p>相對於 SV，多出壓力通量修正 \(Pi_B\) 與床面壓力作用 \(P_{b,B}\)。二者都已除以水的密度，單位分別為 \(\mathrm{m^3/s^2}\) 與 \(\mathrm{m^2/s^2}\)，不是直接以 Pa 表示的壓力。程式實際採：</p>
+\[
+\begin{aligned}
+\mathcal A&=u u_x z_{b,x}+u^2 z_{b,xx},&
+\mathcal C&=u_x^2-u u_{xx},\\
+\Pi_B&=\frac{h^2}{2}\mathcal A+\frac{h^3}{3}\mathcal C,&
+P_{b,B}&=h\mathcal A+\frac{h^2}{2}\mathcal C.
+\end{aligned}
+\]
+<p>下標 \(x\) 表示一次空間微分，\(xx\) 表示二次空間微分。例如 \(u_x=\partial u/\partial x\)，\(z_{b,xx}\) 描述床面曲率。這裡的 \(\mathcal A\) 是輔助量，與前面的通水面積 \(A\) 不同。學生可先掌握：水流沿程越急遽變化，這些項越可能影響水面。</p>
+<h3>為什麼可能出現一串波峰？</h3>
+<p><strong>色散</strong>指不同空間尺度的波動受到不同程度的傳播作用。加入高階空間變化項後，模型可能容許定常波列；同時，離散計算會引入<strong>數值耗散</strong>，使細小波動被抹平。網格變細時數值耗散可能降低，先前不明顯的波就會變清楚。因此「細網格波峰較高」需要進一步診斷，不能直接判成真實波形，也不能只因有波就判成計算錯誤。</p>
+<p>目前 B 模型沒有描述破波、含氣及紊流翻滾的獨立閉合項。Manning 的 \(n\) 仍代表渠道阻力，不應為了消除波峰而任意增加。學生的任務是辨認穩定趨勢與數值設定的影響，並如實報告尚未穩定的波動。</p>
+<h3>程式怎麼求出 B 的結果？</h3>
+<p>先以128個區間啟動，再逐級加密，求出使原程式一次完整更新後幾乎不變的狀態，稱為<strong>離散固定點</strong>。其後再用原程式短時間續算，檢查是否維持，以及水量與動量收支是否正確。這是加快尋找定常解的方法，並不等於已驗證任意初場的完整物理演化。</p>
+<p><strong>B on</strong> 表示開啟非靜水壓修正，<strong>B off</strong> 表示在同一個 B 核心中關閉它。B off 與獨立 SV 仍有不同的通量、重建及網格安排，因此兩條曲線不必完全重合。</p>
+<h2 id="method-hec">4. HEC-RAS 在本專題扮演什麼角色？</h2>
+<p><strong>HEC-RAS</strong> 的全名為 <em>Hydrologic Engineering Center's River Analysis System</em>，是美國陸軍工兵團水文工程中心的河川分析軟體。本專題使用<strong>6.6版、一維定常混合流</strong>功能；混合流表示同一渠道可同時出現超臨界與次臨界流段。</p>
+<p>第二組比較自己能追溯方程式的 Python 標準步法與 HEC-RAS 的工程計算結果。兩者須使用相同的斷面位置、床高、流量、粗糙度及邊界，才能討論方法差異。HEC-RAS 顯示「計算完成」不代表每個斷面的水理結果都正確，警告與臨界水深替代也要記錄。</p>
+<div class="exercise"><strong>讀完後自查：</strong>為何 SS 的跳接接近垂直，SV 卻可能跨數格上升？B 的推進時間為何不能直接解讀為真實波浪時間？B off 是否就是另一個完全相同的 SV 程式？</div>

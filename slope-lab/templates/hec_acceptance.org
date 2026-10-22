@@ -1,0 +1,12 @@
+#+title: HEC-RAS 6.6 實機驗收記錄
+學生／教師：
+日期／電腦／作業系統：
+HEC-RAS實際版本：
+案例／斷面間距：
+- [ ] SI單位、矩形A與R、河段長度及站號方向正確
+- [ ] 總Q、n、Cc/Ce、入口Normal Depth S1、出口Known W.S.與expected.json一致
+- [ ] Mixed、Average Friction Slope與計算容許值核對
+- [ ] 計算完成且保存警告、原始輸出、專案及版本證據
+- [ ] 跳接區間與paired_ss位置比較；記錄差異及臨界水深替代
+- [ ] 匯出資料通過compare_export；附圖與差異表
+未完成或異常原因：

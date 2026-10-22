@@ -1,0 +1,34 @@
+#+title: 坡度套件 v1.3 — Windows／WSL 實機驗收表
+
+* 基本資料（由實際操作者填寫）
+- 日期／操作者：
+- Windows 版本（winver）：
+- WSL 發行版名稱與 VERSION（wsl --list --verbose）：
+- Ubuntu／Python 版本：
+- 教材 ZIP SHA-256：
+- 新套件在 Ubuntu 的位置：
+- GC1991 原作業位置（確認保留）：
+
+* 安裝與數值檢查
+- [ ] bash setup.sh 成功（保存完整安裝記錄）
+- [ ] check_environment.py --require-wsl 通過；附 environment.json
+- [ ] verify_p0.py 的 SS／SV／B 重算通過；附 acceptance.json 與圖
+- [ ] 第一組 p0_group_a.ipynb 實際由 Windows 瀏覽器執行
+- [ ] 第二組 p0_group_b.ipynb 的 Python 計算與專案產生完成
+- [ ] Slope Channel Lab 核心、localhost 連線與儲存／重新開啟正常
+
+* HEC-RAS 6.6 與檔案交換（未執行就保持待完成）
+- 版本與計算機：待填
+- P0_B_八碼：待填
+- Windows 工作資料夾：待填
+- [ ] 專案完整複製至 Windows，原 Ubuntu 配對輸入保留
+- [ ] dx0p5、dx0p25、dx0p125 三份專案均實際開檔／Compute
+- [ ] 版本、原始表、計算訊息與警告已保存
+- [ ] 三個 UTF-8 CSV 各為 61／121／241 筆＋表頭
+- [ ] CSV、原始表與計算後完整專案已複製回相同八碼的 Ubuntu 資料夾
+- [ ] Notebook 比較器顯示 3／3；圖與差值可開啟
+
+* 結論與錯誤記錄
+- 結果：待完成（不得預填通過）
+- 未通過項目、完整錯誤與重現步驟：
+- P0重現是程式相容性證據，不代表物理驗證或B網格收斂。

@@ -1,0 +1,92 @@
+#+title: 坡度變化渠道水躍：大學生教學包 v1.3
+#+date: 2026-10-22
+#+language: zh-TW
+
+* 從這裡開始
+
+以瀏覽器開啟 [[file:docs/index.html][教材入口]]，或直接讀
+[[file:docs/handbook.html][完整教學講義]]。講義由問題設定開始，不需先前研究對話。
+LaTeX方程式已排版，字型隨包附上；閱讀不需網路或另外安裝LaTeX。
+
+本專題研究30 m長、0.46 m寬的矩形渠道：上游陡、下游緩，
+入口依實際坡度求正常水深，出口指定尾水。比較水躍位置、水深與水面波動。
+共同基準稱P0，每人另研究一個物理因子的低、高水準。
+
+* 兩組使用什麼方法
+
+第一組比較：
+- SS：Standard-step method，標準步法。
+- SV：Saint-Venant equations，聖維南淺水方程。
+- B：本套件採定常壓力近似的Boussinesq型模型，不是完整非穩態波浪模型。
+
+第二組比較Python標準步法與HEC-RAS 6.6：
+Hydrologic Engineering Center's River Analysis System，河川分析系統。
+本案選一維定常混合流。學生代號B1–B5不是B模型的意思。
+
+每組五人：上游坡度、尾水、轉折長度、下游坡度、Manning粗糙度各一人。
+同編號跨組配對；完整分工見 [[file:docs/design.html][案例設計]]。
+
+* 第一次操作：完整P0示範
+
+先開 [[file:docs/p0_demo.html][兩組示範入口]]：
+- 第一組：[[file:docs/p0_group_a.html][9步示範]]，開 p0_group_a.ipynb，逐格算SS／SV／B。
+- 第二組：[[file:docs/p0_group_b.html][10步示範]]，開 p0_group_b.ipynb，完成Python與HEC實機流程。
+- examples/P0_demo/：本次Python實算水面、指標與參考圖，沒有代填HEC結果。
+完成後再回到原student_lab.ipynb／group_b.ipynb進行個人案例與控制試算。
+
+* 安裝與執行
+
+已完成GC1991的兩組學生，依 [[file:docs/start.html][接續安裝頁]]，
+沿用原Windows／WSL的Ubuntu，另在slope-lab資料夾執行bash setup.sh。
+不必重新安裝WSL，不覆寫gc1991-lab；兩套有各自的.venv與.tools。
+第一組用bash start_lab.sh p0_group_a.ipynb；第二組用bash start_lab.sh p0_group_b.ipynb。
+瀏覽器選Slope Channel Lab核心。第二組依安裝頁第5步，將HEC專案複製到
+Windows計算，再帶回CSV與完整原始結果。macOS／Windows原生Python列為替代流程。
+WSL是Windows Subsystem for Linux；它提供編譯數值核心所需的Linux環境。
+第一次安裝需網路取得Python套件；一般閱讀教學文件不需網路。
+
+- 第一組開 student_lab.ipynb，先做P0再做個人案例。
+- 第二組開 group_b.ipynb，再於Windows HEC-RAS 6.6實際計算。
+- Notebook是把說明、程式與圖放在一起的互動筆記本，請由上往下執行。
+- [[file:docs/group_a.html][第一組步驟]]、[[file:docs/group_b.html][第二組步驟]]、[[file:docs/submission.html][繳交格式]]。
+
+* 教材與證據的位置
+
+- docs/handbook.html：四章完整講義，可用瀏覽器列印。
+- docs/glossary.html：縮寫、符號與單位表。
+- docs/assignments/：十位學生各自的操作單與參數表。
+- cases/：十一個物理案例。
+- runs/：你新計算的結果；每次執行使用新資料夾。
+- templates/：可填寫的報告、執行記錄及指標表。
+- hec_ras/P0/：三種斷面間距的HEC原生專案與Python配對參考。
+- reference/：既有數值參考，預設求解不從它直接開始。
+- [[file:docs/verification.html][驗證範圍]]：重現、定常性、解析度穩定性與實機待辦分開說明。
+
+* v1.3修改範圍
+
+改寫既有GC1991 Windows／WSL接續安裝、兩組P0啟動與HEC檔案交換。
+新增環境檢查與實機驗收表；替代PowerShell啟動器支援指定第二組P0。
+數值核心、案例及四份Notebook計算格不變。Windows／WSL與HEC實跑仍待完成，
+本機macOS相容性檢查另存新版證據。
+
+* v1.2修改範圍
+
+新增P0逐步操作、兩份Notebook與簡單顯示／整理工具，重算SS／SV／B示範。
+數值核心、物理案例、既有參考及原兩份Notebook的程式格維持不變。
+
+* v1.1修改範圍
+
+本版重寫教學說明與Notebook文字，數值核心、案例、Notebook程式區塊、
+HEC輸入與既有數值參考沿用v1。B的波動問題仍由學生研究。
+HEC-RAS 6.6開檔／計算及新的Windows／WSL安裝仍待實機驗收。
+
+* 維護者資訊
+
+一般學生不需重建文件。編寫來源在docs/source/，方程式使用LaTeX語法。
+重新建置需Node與Python：
+#+begin_src sh
+python3 scripts/make_teaching_assets.py
+python3 scripts/build_release.py --output 新的發行資料夾 --version v1.3
+#+end_src
+交付ZIP包含CHECKSUMS.json；python3 scripts/verify_files.py可核對內容。
+來源及授權見 [[file:docs/sources.html][來源附錄]]。

@@ -1,0 +1,67 @@
+{
+  "unchanged_copies": {
+    "vendor/basilisk-source.tar.gz": {
+      "source": "code/gc1991_lab/vendor/basilisk-source.tar.gz",
+      "sha256": "a629017cabad6626d71c782510f1d70b078eae44cc1c594c3e6b6fbb808164ae"
+    },
+    "vendor/basilisk-source.json": {
+      "source": "code/gc1991_lab/vendor/basilisk-source.json",
+      "sha256": "58c1a1e5f26ca8cfe6a6314cd22ee83884339bea2877ae73edc46e785bb3c056"
+    },
+    "LICENSES/Basilisk-COPYING.txt": {
+      "source": "code/gc1991_lab/LICENSES/Basilisk-COPYING.txt",
+      "sha256": "5f6bc79a5d29d49eaa17cc29bedd9c25d572adb648c52f3186b508aec12aaea4"
+    },
+    "core/sv_case.c": {
+      "source": "code/hydraulics/variable_bed_pde/sv_case.c",
+      "sha256": "6097bffbc3e72275d8e9611331986ed78340e397b636826dc808c2f1f3bfa318"
+    },
+    "core/sv_instrumented.h": {
+      "source": "code/hydraulics/variable_bed_pde/sv_instrumented.h",
+      "sha256": "897b421f1b200d000e0aed15a2010296750528eb3f500052033037665acf0753"
+    },
+    "core/bed.h": {
+      "source": "code/hydraulics/variable_bed_pde/refinement_8192_2026-10-21/bed.h",
+      "sha256": "05cafe07265b2594c8337b07031654a70d497bdc519920dd48fb7155055d4f62"
+    },
+    "core/custom_solver.c": {
+      "source": "code/hydraulics/variable_bed_pde/refinement_8192_2026-10-21/custom_solver.c",
+      "sha256": "6d67877dc0a8764a6ae8f7b2c61feef49fefbaea8131d8df84f854c3dcdf4b6d"
+    },
+    "core/gc1991_standard_step.py": {
+      "source": "code/hydraulics/gc1991_standard_step.py",
+      "sha256": "a7563201acb0656796f3374d96a9b916a2491fb1e527185d5e5029efa96b8855"
+    },
+    "core/variable_bed_standard_step.py": {
+      "source": "code/hydraulics/variable_bed_standard_step.py",
+      "sha256": "4f79aafa60c9f4ac7f0bc6a04e79c353028d482a0f85ce2785fe3ce91c8ca518"
+    }
+  },
+  "reference_files": {
+    "sv_N512_T300.dat": {
+      "source": "results/slope_break/S3_VARIABLE_BED_2026-10-20/data/S3_sv_N512/profile.dat",
+      "sha256": "5e733d0d7709d5caff9b2f3a39b244bf55e49950190e7df72f8b3039c704f934"
+    },
+    "b_N1024.dat": {
+      "source": "results/slope_break/S3_B4096_2026-10-20/data/root_N1024_B1_r1/profile.dat",
+      "sha256": "f3a55e683c1376ef959555539ec05d2e5001d9ec48e0158a1df77f90b8b2c449"
+    },
+    "b_N2048.dat": {
+      "source": "results/slope_break/S3_B4096_2026-10-20/data/root_N2048_B1_r1/profile.dat",
+      "sha256": "0450eced1fc1fe1799746e15d4c0c47d8d89eca3841cd8bcdaefff55a9f3bcd8"
+    },
+    "ss_P0_dx0025.csv": {
+      "source": "results/teaching/slope_cases_2026-10-21/data/P0_profile.csv",
+      "sha256": "03170e26ef740ca095ad28f892a493f006effd19dbc380472e15d7ba1df95108"
+    }
+  },
+  "bridge_original_sha256": "24fe6f89e72a339aef83abbda87b8a824df7d0d696d6837381c7a0fdd1daf063",
+  "bridge_change": "Remove Accelerate header and band_solve only; operators copied unchanged.",
+  "adapted_files": {
+    "scripts/setup_basilisk.py": {
+      "source": "code/gc1991_lab/scripts/setup_basilisk.py",
+      "sha256": "999f42e7d92004d812e6378b95b15a66ab41ee67a85f9485959015e0b310eeb5",
+      "change": "Only installation help links changed to docs/start.html."
+    }
+  }
+}
