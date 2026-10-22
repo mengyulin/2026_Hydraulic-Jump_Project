@@ -200,13 +200,18 @@ def verify(home):
     # Check the old launcher and rerun old calculations AFTER the slope package.
     assert snapshot_gc(gc) == before
     result['GC1991_launcher_after_slope'] = jupyter(gc, 'student_lab.ipynb', 'gc1991-lab')
+    save(out / 'result.json', result)
     previous = set((gc / 'runs').iterdir())
-    run([str(gc / '.venv/bin/python'), 'lab.py', 'all'], gc)
+    rerun_log = run([str(gc / '.venv/bin/python'), 'lab.py', 'all'], gc)
+    (out/'gc1991-rerun-after-slope.log').write_text(rerun_log, encoding='utf-8')
     for name, digest in before.items():
         assert sha(gc / name) == digest, name
-    fresh = sorted(set((gc / 'runs').iterdir()) - previous)
+    created = sorted(set((gc / 'runs').iterdir()) - previous)
+    # lab.py all also produces a comparison-figure folder with no metadata.json.
+    fresh = [p for p in created if (p/'metadata.json').is_file()]
     assert len(fresh) == 3
     result['GC1991_rerun_after_slope'] = [read(p / 'metadata.json') for p in fresh]
+    result['GC1991_new_output_directories'] = [p.name for p in created]
     result['GC1991_original_files_results_and_packages_preserved'] = True
     sealed(kit)
     result['kit_inputs_preserved'] = True
